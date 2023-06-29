@@ -5,7 +5,7 @@
 #include "../../LIB/STD_TYPES.h"
 
 //MCAL layer Section
-//#include "../../MCAL/<driverName>/interface.h"
+//#include "../../MCAL/<driverName>/<driverName>_interface.h"
 
 //HAL layer Section
 //#include "../../Drivers/HAL/<driverName>/<driverName>_interface.h"
@@ -18,9 +18,10 @@
 
 
 int main(void){
-
+	// setup section
+	
 	while(1){
-
+		// loop section
 	}
 	return 0;
 }
