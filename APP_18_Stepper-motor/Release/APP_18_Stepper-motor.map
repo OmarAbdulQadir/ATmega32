@@ -1,0 +1,413 @@
+Archive member included because of file (symbol)
+
+d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                              d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o (exit)
+d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                              ./ST_Motor/ST_Motor_program.o (__do_copy_data)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+LOAD ./ST_Motor/ST_Motor_program.o
+LOAD ./SRS/main.o
+LOAD ./DIO/DIO_program.o
+LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
+LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a
+LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000      0x7a8
+ *(.vectors)
+ .vectors       0x00000000       0x54 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+                0x00000054                . = ALIGN (0x2)
+                0x00000054                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000054        0x0 linker stubs
+ *(.trampolines*)
+                0x00000054                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x00000054                __ctors_start = .
+ *(.ctors)
+                0x00000054                __ctors_end = .
+                0x00000054                __dtors_start = .
+ *(.dtors)
+                0x00000054                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x00000054        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x00000054                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000054        0xc d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000060       0x16 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                0x00000060                __do_copy_data
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000076        0x8 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ *(.init9)
+ *(.text)
+ .text          0x0000007e        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x0000007e                __vector_1
+                0x0000007e                __vector_12
+                0x0000007e                __bad_interrupt
+                0x0000007e                __vector_6
+                0x0000007e                __vector_3
+                0x0000007e                __vector_11
+                0x0000007e                __vector_13
+                0x0000007e                __vector_17
+                0x0000007e                __vector_19
+                0x0000007e                __vector_7
+                0x0000007e                __vector_5
+                0x0000007e                __vector_4
+                0x0000007e                __vector_9
+                0x0000007e                __vector_2
+                0x0000007e                __vector_15
+                0x0000007e                __vector_8
+                0x0000007e                __vector_14
+                0x0000007e                __vector_10
+                0x0000007e                __vector_16
+                0x0000007e                __vector_18
+                0x0000007e                __vector_20
+ .text          0x00000082        0x0 ./ST_Motor/ST_Motor_program.o
+ .text          0x00000082        0x0 ./SRS/main.o
+ .text          0x00000082        0x0 ./DIO/DIO_program.o
+ .text          0x00000082        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text          0x00000082        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                0x00000082                . = ALIGN (0x2)
+ *(.text.*)
+ .text.st_mot_stop
+                0x00000082       0x52 ./ST_Motor/ST_Motor_program.o
+                0x00000082                st_mot_stop
+ .text.st_mot_void_steps_CCW
+                0x000000d4      0x202 ./ST_Motor/ST_Motor_program.o
+                0x000000d4                st_mot_void_steps_CCW
+ .text.st_mot_void_steps_CW
+                0x000002d6      0x206 ./ST_Motor/ST_Motor_program.o
+                0x000002d6                st_mot_void_steps_CW
+ .text.st_mot_void_init
+                0x000004dc       0x5a ./ST_Motor/ST_Motor_program.o
+                0x000004dc                st_mot_void_init
+ .text.main     0x00000536       0x40 ./SRS/main.o
+                0x00000536                main
+ .text.DIO_void_set_port_dir
+                0x00000576       0x16 ./DIO/DIO_program.o
+                0x00000576                DIO_void_set_port_dir
+ .text.DIO_void_set_port_in_pullUp
+                0x0000058c       0x26 ./DIO/DIO_program.o
+                0x0000058c                DIO_void_set_port_in_pullUp
+ .text.DIO_void_set_pin_dir
+                0x000005b2       0x52 ./DIO/DIO_program.o
+                0x000005b2                DIO_void_set_pin_dir
+ .text.DIO_void_set_pin_in_pullUP
+                0x00000604       0x3c ./DIO/DIO_program.o
+                0x00000604                DIO_void_set_pin_in_pullUP
+ .text.DIO_void_set_port
+                0x00000640       0x18 ./DIO/DIO_program.o
+                0x00000640                DIO_void_set_port
+ .text.DIO_void_clear_port
+                0x00000658       0x16 ./DIO/DIO_program.o
+                0x00000658                DIO_void_clear_port
+ .text.DIO_void_toggle_port
+                0x0000066e       0x1a ./DIO/DIO_program.o
+                0x0000066e                DIO_void_toggle_port
+ .text.DIO_void_assign_port
+                0x00000688       0x16 ./DIO/DIO_program.o
+                0x00000688                DIO_void_assign_port
+ .text.DIO_void_set_pin
+                0x0000069e       0x28 ./DIO/DIO_program.o
+                0x0000069e                DIO_void_set_pin
+ .text.DIO_void_clear_pin
+                0x000006c6       0x2a ./DIO/DIO_program.o
+                0x000006c6                DIO_void_clear_pin
+ .text.DIO_void_toggle_pin
+                0x000006f0       0x28 ./DIO/DIO_program.o
+                0x000006f0                DIO_void_toggle_pin
+ .text.DIO_void_assign_pin
+                0x00000718       0x52 ./DIO/DIO_program.o
+                0x00000718                DIO_void_assign_pin
+ .text.DIO_u8_get_port
+                0x0000076a       0x16 ./DIO/DIO_program.o
+                0x0000076a                DIO_u8_get_port
+ .text.DIO_u8_get_pin
+                0x00000780       0x24 ./DIO/DIO_program.o
+                0x00000780                DIO_u8_get_pin
+ .text.libgcc   0x000007a4        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x000007a4        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                0x000007a4                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x000007a4        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x000007a4                exit
+                0x000007a4                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x000007a4        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ *(.fini0)
+                0x000007a8                _etext = .
+
+.data           0x00800060       0x24 load address 0x000007a8
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ .data          0x00800060        0x0 ./ST_Motor/ST_Motor_program.o
+ .data          0x00800060        0x0 ./SRS/main.o
+ .data          0x00800060        0x0 ./DIO/DIO_program.o
+ .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ .rodata.steps_array
+                0x00800060        0x8 ./ST_Motor/ST_Motor_program.o
+ .rodata.C.0.1213
+                0x00800068        0x3 ./SRS/main.o
+ .rodata.DIO_PINx_REF
+                0x0080006b        0x8 ./DIO/DIO_program.o
+ .rodata.DIO_PORTx_REF
+                0x00800073        0x8 ./DIO/DIO_program.o
+ .rodata.DIO_DDRx_REF
+                0x0080007b        0x8 ./DIO/DIO_program.o
+ *(.gnu.linkonce.d*)
+                0x00800084                . = ALIGN (0x2)
+ *fill*         0x00800083        0x1 00
+                0x00800084                _edata = .
+                0x00800084                PROVIDE (__data_end, .)
+
+.bss            0x00800084        0x0
+                0x00800084                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800084        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ .bss           0x00800084        0x0 ./ST_Motor/ST_Motor_program.o
+ .bss           0x00800084        0x0 ./SRS/main.o
+ .bss           0x00800084        0x0 ./DIO/DIO_program.o
+ .bss           0x00800084        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .bss           0x00800084        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ *(.bss*)
+ *(COMMON)
+                0x00800084                PROVIDE (__bss_end, .)
+                0x000007a8                __data_load_start = LOADADDR (.data)
+                0x000007cc                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x00800084        0x0
+                0x00800084                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x00800084                PROVIDE (__noinit_end, .)
+                0x00800084                _end = .
+                0x00800084                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info)
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(APP_18_Stepper-motor.elf elf32-avr)
+LOAD linker stubs
