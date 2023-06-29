@@ -1,0 +1,32 @@
+	 Stepper-Motor driver for the microcontroller ATMega 32
+	    Created By: Omar Abdul Qadir   Version= 1.0
+		Date: 02/6/2023,       Day: Thursday
+
+
+Note: All the data in the file is readable, And any editing will affect the controller's behavior.
+So It's not recommended to edit any data, Unless you are sure of what is the effect on behaviors.
+
+
+1. Basic Driver function:
+	a. Configure the stepper motor pins.
+	b. Move the stepper motor in two directions (CW, CCW) in both modes steps, or angles.
+	c. Stop the stepper motor electrically.
+	
+2. Motor Structure and configurations:
+	a. stepper= {port, coil1, coil2, coil3, coil4, mode, step, speed}
+		I.    port: The port group that the stepper motor is connected to.
+		II.   coil1: The pin that the stepper's coil 1 motor is connected to.
+		III.  coil2: The pin that the stepper's coil 2 motor is connected to.
+		IV.   coil3: The pin that the stepper's coil 3 motor is connected to.
+		V.    coil4: The pin that the stepper's coil 4 motor is connected to.
+		VI.   mode: The mode of rotation either its (0 >> Full step single coil), (1 >> Full step Double coil), or (2 >> Half step) and its only effective with steps control mode.
+		VII.  step: The current step index in the stepper.
+		VIII. speed: The speed prescaler value.
+
+3. List of driver functions:
+	I.   void st_mot_void_init(stepper* )
+	II.  void st_mot_stop(stepper* )
+	III. void st_mot_void_steps_CW(stepper*, u8 )
+	IV.  void st_mot_void_steps_CCW(stepper*, u8 )
+	V.   void st_mot_void_angles_CW(stepper*, u8 )
+	VI.  void st_mot_void_angles_CCW(stepper*, u8 )

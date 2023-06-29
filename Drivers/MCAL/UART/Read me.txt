@@ -1,0 +1,17 @@
+	  UART protocol driver for the microcontroller ATMega 32
+	    Created By: Omar Abdul Qadir   Version= 1.0
+		Date: 24/6/2023,	Day: Saturday
+
+
+Note: All the data in the file is readable, And any editing will affect the controller's behavior.
+So It's not recommended to edit any data, Unless you are sure of what is the effect on behaviors.
+
+
+1. Basic Driver function:
+	a. 
+	
+2. Structs and configurations:
+	1. 
+
+3. List of driver functions:
+	I.   

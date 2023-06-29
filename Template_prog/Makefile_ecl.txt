@@ -1,0 +1,42 @@
+13:41:27 **** Build of configuration Release for project Led_flashing ****
+make all 
+'Building file: ../SRS/main.c'
+'Invoking: AVR Compiler'
+avr-gcc -Wall -Os -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"SRS/main.d" -MT"SRS/main.o" -c -o "SRS/main.o" "../SRS/main.c"
+'Finished building: ../SRS/main.c'
+' '
+'Building target: Led_flashing.elf'
+'Invoking: AVR C Linker'
+avr-gcc -Wl,-Map,Led_flashing.map -mmcu=atmega16 -o "Led_flashing.elf"  ./SRS/main.o   
+'Finished building target: Led_flashing.elf'
+' '
+'Invoking: AVR Create Extended Listing'
+avr-objdump -h -S Led_flashing.elf  >"Led_flashing.lss"
+'Finished building: Led_flashing.lss'
+' '
+'Create Flash image (ihex format)'
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex Led_flashing.elf  "Led_flashing.hex"
+'Finished building: Led_flashing.hex'
+' '
+'Create eeprom image (ihex format)'
+avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex Led_flashing.elf  "Led_flashing.eep"
+'Finished building: Led_flashing.eep'
+' '
+'Invoking: Print Size'
+avr-size --format=avr --mcu=atmega16 Led_flashing.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:     160 bytes (1.0% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+'Finished building: sizedummy'
+' '
+
+13:41:31 Build Finished. 0 errors, 0 warnings. (took 3s.814ms)
+

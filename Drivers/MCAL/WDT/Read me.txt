@@ -1,0 +1,26 @@
+	  Watchdog timer driver for the microcontroller ATMega 32
+	    Created By: Omar Abdul Qadir   Version= 1.0
+		Date: 25/6/2023,	Day: Sunday
+
+
+Note: All the data in the file is readable, And any editing will affect the controller's behavior.
+So It's not recommended to edit any data, Unless you are sure of what is the effect on behaviors.
+
+
+1. Basic Driver function:
+	a. Driver function is to set time of a task and reset if the task time excedded the preset value
+	
+2. Structs and configurations:
+	1. timer values set
+		a. time16_3_ms >> Timer value 16.3 ms
+		b. time35_5_ms >> Timer value 35.5 ms
+		c. time65_0_ms >> Timer value 65.0 ms
+		d. time130_ms  >> Timer value 130.0 ms
+		e. time260_ms  >> Timer value 260.0 ms
+		f. time520_ms  >> Timer value 520.0 ms
+		g. time1_0_s   >> Timer value 1.0 s
+		h. time2_1_s   >> Timer value 2.1 s
+
+3. List of driver functions:
+	I.  void WDT_void_start(u8 )
+	II. void WDT_void_stop(void )

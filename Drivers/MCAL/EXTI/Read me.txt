@@ -1,0 +1,28 @@
+	   External interrupt driver for the microcontroller ATMega 32
+	    Created By: Omar Abdul Qadir   Version= 1.0
+		Date: 02/6/2023,	Day: friday
+
+
+Note: All the data in the file is readable, And any editing will affect the controller's behavior.
+So It's not recommended to edit any data, Unless you are sure of what is the effect on behaviors.
+
+
+1. Basic Driver function:
+	a. Configure the external interupt pins.
+	b. Set its sense levels.
+	c. Address its call back functions.
+	
+2. Structures and configurations:
+	1. EXTI_init_config= {PIE_int0, sen_lev_int0, PIE_int1, sen_lev_int1, PIE_int2, sen_lev_int2}
+		a. PIE_int0: Interrupt pin 0 (PORT ,PIN ) enable/disable value
+		b. sen_lev_int0: Interrupt pin 0 sense level (00: Low level trigger, 01: Interupt on change trigger, 10: Falling edge trigger, 11: Rising edge trigger)
+		c. PIE_int1: Interrupt pin 1 (PORT ,PIN ) enable/disable value
+		d. sen_lev_int1: Interrupt pin 1 sense level (00: Low level trigger, 01: Interupt on change trigger, 10: Falling edge trigger, 11: Rising edge trigger)
+		e. PIE_int2: Interrupt pin 2 (PORT ,PIN ) enable/disable value
+		f. sen_lev_int2: Interrupt pin 0 sense level (0: Falling edge trigger, 1: Rising edge trigger)
+	
+
+3. List of driver functions:
+	I.   void EXTI_void_init(EXTI_init_config* )
+	II.  void EXTI_void_INT_callback(u8, void (*ptr_callback_function)(void))
+	III. u8 EXTI_get_INT_flag(u8 )

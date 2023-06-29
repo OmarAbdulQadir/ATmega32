@@ -1,0 +1,28 @@
+	  DC-Motor driver for the microcontroller ATMega 32
+	    Created By: Omar Abdul Qadir   Version= 1.0
+		Date: 20/5/2023,       Day: Saturday
+
+
+Note: All the data in the file is readable, And any editing will affect the controller's behavior.
+So It's not recommended to edit any data, Unless you are sure of what is the effect on behaviors.
+
+
+1. Basic Driver function:
+	a. Configure the motor pins.
+	b. Move the passed motor in two directions (CW, CCW) in both mode full speed and controled speed mode.
+	c. Stop the motor electrically.
+	
+2. Motor Structure and configurations:
+	a. MotorX: {PORT, forward_pin, reverse_pin, speed}
+		I.   PORT: port group of the motor pins. Note: motor pins must be connected to the same port group.
+		II.  forward_pin, reverse_pin: motor pins numbers. Note if the motor direction is switched its recommended to switch the motor pins.
+		III. speed: motor's rotational speed, needed if you are using the controlled speed mode.
+
+3. List of driver functions:
+	I.   DC_Motor_void_init(MotorX* )
+	II.  DC_motor_void_CW_full_speed(MotorX* )
+	III. DC_motor_void_CCW_full_speed(MotorX* )
+	IV.  DC_motor_void_stop(MotorX* )
+	V.   DC_motor_void_CW(MotorX* )
+	VI.  DC_motor_void_CCW(MotorX* )
+	

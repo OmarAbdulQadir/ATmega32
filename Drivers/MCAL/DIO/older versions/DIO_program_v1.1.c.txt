@@ -1,0 +1,356 @@
+/*******************************************************************/
+/***               Date: 2/5/2023	Day: Tuesday                 ***/
+/***    Digital I/O driver for the microcontroller ATMega 32     ***/
+/***     Created By: Omar Abdul Qadir	 Version= 1.1            ***/
+/*******************************************************************/
+/***         Note: All the data in the file is readable,         ***/
+/***     But any editing will affect the controller's behavior,  ***/
+/***          So It's not recommended to edit any data.          ***/
+/***   Unless you are sure of what is the effect on behaviors.   ***/
+/*******************************************************************/
+
+//Standard libraries Section
+#include "../../LIB/BIT_MATH.h"
+#include "../../LIB/STD_TYPES.h"
+
+//Private libraries Section
+#include "register.h"
+#include "interface.h"
+
+
+//Global valriables, struct and enums
+enum PORTS
+{
+	portA,
+	portB,
+	portC,
+	portD
+};
+
+/* Implementing of the driver functions */
+/* Set direction of PORTx functions */
+void set_port_dir(u8 port_id_copy, u8 port_dir_copy)
+{
+	/* Function set given port to a given direction
+		Inputs::
+			port_id_copy>> port indicator as folloing (0, PORTA)
+													  (1, PORTB)
+													  (2, PORTC)
+													  (3, PORTD)
+			port_dir_copy>> port direction in Hex or binary
+							Ex: 0b00001111
+							0: for input pin
+							1: for output pin
+		
+		Function does not return any output, yet it affects the 
+		PORT Direction Register DDRx							   */
+	switch (port_id_copy)
+	{
+		case portA: DDRA= port_dir_copy; break;
+		case portB: DDRB= port_dir_copy; break;
+		case portC: DDRC= port_dir_copy; break;				
+		case portD: DDRC= port_dir_copy; break;
+	}
+}
+
+
+void set_port_in_pullUp(u8 port_id_copy)
+{
+	/* Function set given port to be input pull up
+		Inputs::
+			port_id_copy>> port indicator as folloing (0, PORTA)
+													  (1, PORTB)
+													  (2, PORTC)
+													  (3, PORTD)
+		
+		Function does not return any output, yet it affects the 
+		PORT Direction Register DDRx							   */
+	switch (port_id_copy)
+	{
+		case portA: DDRA= 0x0; PORTA= 0xFF; break;
+		case portB: DDRB= 0x0; PORTB= 0xFF; break;
+		case portC: DDRC= 0x0; PORTC= 0xFF; break;				
+		case portD: DDRC= 0x0; PORTD= 0xFF; break;
+	}
+}
+
+
+/* Set direction of PINx functions */
+void set_pin_dir(u8 port_id_copy, u8 pin_num_copy, u8 pin_dir_copy)
+{
+	/* Function set given pin to a given direction
+	Inputs::
+		port_id_copy>> port indicator as folloing (0, PORTA)
+												  (1, PORTB)
+												  (2, PORTC)
+												  (3, PORTD)
+		pin_num_copy>> pin number that needed to be set 0-7
+		pin_dir_copy>> pin direction set as folloing
+					   0: for input pin
+					   1: for output pin
+	
+	Function does not return any output, yet it affects the 
+	pin in the PORT Direction Register DDRx						   */
+	switch (port_id_copy)
+	{
+		case portA: agn_bit(DDRA, pin_num_copy, pin_dir_copy); break;
+		case portB: agn_bit(DDRB, pin_num_copy, pin_dir_copy); break;
+		case portC: agn_bit(DDRC, pin_num_copy, pin_dir_copy); break;				
+		case portD: agn_bit(DDRD, pin_num_copy, pin_dir_copy); break;
+	}
+}
+
+
+void set_pin_in_pullUP(u8 port_id_copy, u8 pin_num_copy)
+{
+	/* Function set given pin to be input pull up
+		Inputs::
+			port_id_copy>> port indicator as folloing (0, PORTA)
+													  (1, PORTB)
+													  (2, PORTC)
+													  (3, PORTD)
+		
+		Function does not return any output, yet it affects the 
+		pin in the PORT Direction Register DDRx					   */
+	switch (port_id_copy)
+	{
+		case portA: clr_bit(DDRA, pin_num_copy); set_bit(PORTA, pin_num_copy); break;
+		case portB: clr_bit(DDRB, pin_num_copy); set_bit(PORTB, pin_num_copy); break;
+		case portC: clr_bit(DDRC, pin_num_copy); set_bit(PORTC, pin_num_copy); break;				
+		case portD: clr_bit(DDRD, pin_num_copy); set_bit(PORTD, pin_num_copy); break;
+	}
+}
+
+
+/* Assign Value to output PORTx functions */
+void set_port(u8 port_id_copy)
+{
+	/* Function set given port to high
+		Inputs::
+			port_id_copy>> port indicator as folloing (0, PORTA)
+													  (1, PORTB)
+													  (2, PORTC)
+													  (3, PORTD)
+		
+		Function does not return any output, yet it affects the 
+		PORT output Register PORTx							       */
+	switch(port_id_copy)
+	{
+		case portA: PORTA= 0xFF; break;
+		case portB: PORTB= 0xFF; break;
+		case portC: PORTC= 0xFF; break;
+		case portD: PORTD= 0xFF; break;
+	}
+}
+
+
+void clear_port(u8 port_id_copy)
+{
+	/* Function set given port to LOW
+		Inputs::
+			port_id_copy>> port indicator as folloing (0, PORTA)
+													  (1, PORTB)
+													  (2, PORTC)
+													  (3, PORTD)
+		
+		Function does not return any output, yet it affects the 
+		PORT output Register PORTx							       */
+	switch(port_id_copy)
+	{
+		case portA: PORTA= 0x0; break;
+		case portB: PORTB= 0x0; break;
+		case portC: PORTC= 0x0; break;
+		case portD: PORTD= 0x0; break;
+	}
+}
+
+
+void toggle_port(u8 port_id_copy)
+{
+	/* Function toggle all pins of given port
+		Inputs::
+			port_id_copy>> port indicator as folloing (0, PORTA)
+													  (1, PORTB)
+													  (2, PORTC)
+													  (3, PORTD)
+		
+		Function does not return any output, yet it affects the 
+		PORT output Register PORTx							       */
+	switch(port_id_copy)
+	{
+		case portA: PORTA^= 0xFF; break;
+		case portB: PORTB^= 0xFF; break;
+		case portC: PORTC^= 0xFF; break;
+		case portD: PORTD^= 0xFF; break;
+	}
+}
+
+
+void asign_port(u8 port_id_copy, u8 port_val)
+{
+		/* Function assign value to given port
+		Inputs::
+			port_id_copy>> port indicator as folloing (0, PORTA)
+													  (1, PORTB)
+													  (2, PORTC)
+													  (3, PORTD)
+		
+		Function does not return any output, yet it affects the 
+		PORT output Register PORTx							       */
+	switch(port_id_copy)
+	{
+		case portA: PORTA= port_val; break;
+		case portB: PORTB= port_val; break;
+		case portC: PORTC= port_val; break;
+		case portD: PORTD= port_val; break;
+	}
+}
+
+
+/* Assign Value to output PINx functions */
+void set_pin(u8 port_id_copy, u8 pin_num_copy)
+{
+	/* Function set given pin to high
+		Inputs::
+			port_id_copy>> port indicator as folloing (0, PORTA)
+													  (1, PORTB)
+													  (2, PORTC)
+													  (3, PORTD)
+			pin_num_copy>> pin number that needed to be set 0-7
+		
+		Function does not return any output, yet it affects 
+		given pin of the PORT output Register PORTx				   */
+	switch(port_id_copy)
+	{
+		case portA: set_bit(PORTA, pin_num_copy); break;
+		case portB: set_bit(PORTB, pin_num_copy); break;
+		case portC: set_bit(PORTC, pin_num_copy); break;
+		case portD: set_bit(PORTD, pin_num_copy); break;
+	}
+}
+
+
+void clear_pin(u8 port_id_copy, u8 pin_num_copy)
+{
+	/* Function set given pin to LOW
+		Inputs::
+			port_id_copy>> port indicator as folloing (0, PORTA)
+													  (1, PORTB)
+													  (2, PORTC)
+													  (3, PORTD)
+			pin_num_copy>> pin number that needed to be set 0-7
+		
+		Function does not return any output, yet it affects 
+		given pin of the PORT output Register PORTx				   */
+	switch(port_id_copy)
+	{
+		case portA: clr_bit(PORTA, pin_num_copy); break;
+		case portB: clr_bit(PORTB, pin_num_copy); break;
+		case portC: clr_bit(PORTC, pin_num_copy); break;
+		case portD: clr_bit(PORTD, pin_num_copy); break;
+	}
+}
+
+
+void toggle_pin(u8 port_id_copy, u8 pin_num_copy)
+{
+	/* Function toggle given pin
+		Inputs::
+			port_id_copy>> port indicator as folloing (0, PORTA)
+													  (1, PORTB)
+													  (2, PORTC)
+													  (3, PORTD)
+			pin_num_copy>> pin number that needed to be set 0-7
+		
+		Function does not return any output, yet it affects 
+		given pin of the PORT output Register PORTx				   */
+	switch(port_id_copy)
+	{
+		case portA: tgl_bit(PORTA, pin_num_copy); break;
+		case portB: tgl_bit(PORTB, pin_num_copy); break;
+		case portC: tgl_bit(PORTC, pin_num_copy); break;
+		case portD: tgl_bit(PORTD, pin_num_copy); break;
+	}
+}
+
+
+void asign_pin(u8 port_id_copy, u8 pin_num_copy, u8 pin_val)
+{
+	/* Function assign value to given pin
+		Inputs::
+			port_id_copy>> port indicator as folloing (0, PORTA)
+													  (1, PORTB)
+													  (2, PORTC)
+													  (3, PORTD)
+			pin_num_copy>> pin number that needed to be set 0-7
+		
+		Function does not return any output, yet it affects 
+		given pin of the PORT output Register PORTx				   */
+	switch(port_id_copy)
+	{
+		case portA: agn_bit(PORTA, pin_num_copy, pin_val); break;
+		case portB: agn_bit(PORTB, pin_num_copy, pin_val); break;
+		case portC: agn_bit(PORTC, pin_num_copy, pin_val); break;
+		case portD: agn_bit(PORTD, pin_num_copy, pin_val); break;
+	}
+}
+
+
+/* Get value from input PORTx functions */
+u8 get_port(u8 port_id_copy)
+{
+	/* Function gets the value of a given port
+		Inputs::
+			port_id_copy>> port indicator as folloing (0, PORTA)
+													  (1, PORTB)
+													  (2, PORTC)
+													  (3, PORTD)
+		
+		outputs::
+			port_val_copy>> copy of the register PINx value
+							size: 1 Byte - u8
+		
+		Function does not affect any regester it only gets
+		from the value in the input regester PINx of the 
+		given port                                                 */
+	u8 port_val_copy;
+	switch (port_id_copy)
+	{
+		case portA: port_val_copy= PINA;
+		case portB: port_val_copy= PINB;
+		case portC: port_val_copy= PINC;
+		case portD: port_val_copy= PIND;
+	}
+	return port_val_copy;
+}
+
+
+/* Get value from input PINx functions */
+u8 get_pin(u8 port_id_copy, u8 pin_num_copy)
+{
+	/* Function gets the value of a given pin
+		Inputs::
+			port_id_copy>> port indicator as folloing (0, PORTA)
+													  (1, PORTB)
+													  (2, PORTC)
+													  (3, PORTD)
+			pin_num_copy>> pin number that needed to be set 0-7
+		
+		outputs::
+			pin_val_copy>> copy of the register PINx value
+							size: 1 Byte - u8
+							values: 0 for LOW, 1 for HIGH
+		
+		Function does not affect any regester it only gets the pin
+		value from the value in the input regester PINx of the 
+		given port                                                 */
+	u8 pin_val_copy;
+	switch (port_id_copy)
+	{
+		case portA: pin_val_copy= get_bit(PINA, pin_num_copy);
+		case portB: pin_val_copy= get_bit(PINB, pin_num_copy);
+		case portC: pin_val_copy= get_bit(PINC, pin_num_copy);
+		case portD: pin_val_copy= get_bit(PIND, pin_num_copy);
+	}
+	return pin_val_copy;
+}

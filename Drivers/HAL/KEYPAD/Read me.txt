@@ -1,0 +1,35 @@
+	   KEYPAD driver for the microcontroller ATMega 32
+	    Created By: Omar Abdul Qadir   Version= 1.0
+		Date: 12/5/2023,       Day: Friday
+
+
+Note: All the data in the file is readable, And any editing will affect the controller's behavior.
+So It's not recommended to edit any data, Unless you are sure of what is the effect on behaviors.
+
+
+1. Basic Driver function:
+	a. After configuring the setting of the driver.
+	b. You could get the corresponding value of the pressed key.
+	c. Also you can change the key map so that you get cusomized values when pressing each key.
+	
+2. Default Configurations:
+	a. Number of columns: 4
+	b. Number of rows: 4
+	c. Port group: A
+	d. Key Map:
+			   |   C1  |   C2  |  C3  |  C4  |
+			---|-------|-------|------|------|
+			R1 |   1   |    2  |   3  |   4  |
+			---|-------|-------|------|------|
+			R2 |   5   |    6  |   7  |   8  |
+			---|-------|-------|------|------|						  		
+			R3 |   9   |   10  |  11  |  12  |
+			---|-------|-------|------|------|	  	
+			R4 |   13  |   14  |  15  |  16  |
+			---|-------|-------|------|------|
+	
+
+3. List of driver functions:
+	I.   void keypad_init(void)
+	II.  s8 keypad_read(void)
+	III. void keypad_set_map(s8* )
