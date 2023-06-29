@@ -1,0 +1,171 @@
+
+APP_28_I2C-testing.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000ea  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .stab         000003c0  00000000  00000000  00000140  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  2 .stabstr      0000045d  00000000  00000000  00000500  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 63 00 	jmp	0xc6	; 0xc6 <__vector_19>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 36 00 	call	0x6c	; 0x6c <main>
+  64:	0c 94 73 00 	jmp	0xe6	; 0xe6 <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <main>:
+
+// Global variables section
+
+
+// Main app
+int main(void ){
+  6c:	df 93       	push	r29
+  6e:	cf 93       	push	r28
+  70:	cd b7       	in	r28, 0x3d	; 61
+  72:	de b7       	in	r29, 0x3e	; 62
+  74:	ff cf       	rjmp	.-2      	; 0x74 <main+0x8>
+
+00000076 <I2C_void_master_inti>:
+// Global variables and structs
+
+
+/******************************************************************************/
+/* Functions implementation section */
+void I2C_void_master_inti(void ){
+  76:	df 93       	push	r29
+  78:	cf 93       	push	r28
+  7a:	cd b7       	in	r28, 0x3d	; 61
+  7c:	de b7       	in	r29, 0x3e	; 62
+	/*
+	 *
+	 */
+	// Set the bit rate regester
+	I2C_TWBR = I2C_TWBR_val;
+  7e:	e0 e2       	ldi	r30, 0x20	; 32
+  80:	f0 e0       	ldi	r31, 0x00	; 0
+  82:	80 e2       	ldi	r24, 0x20	; 32
+  84:	80 83       	st	Z, r24
+	// set the prescaler register
+	I2C_TWSR = I2C_TWPS_val;
+  86:	e1 e2       	ldi	r30, 0x21	; 33
+  88:	f0 e0       	ldi	r31, 0x00	; 0
+  8a:	10 82       	st	Z, r1
+	// initiate I2C perepheral and configure the register
+	I2C_TWCR = ((I2C_enable << I2C_TWCR_TWINT) | (I2C_enable << I2C_TWCR_TWEA) | (I2C_disable << I2C_TWCR_TWSTA) | (I2C_disable << I2C_TWCR_TWSTO) | (I2C_enable << I2C_TWCR_TWWC) | (I2C_enable << I2C_TWCR_TWEN) | (I2C_enable << I2C_TWCR_TWIE));
+  8c:	e6 e5       	ldi	r30, 0x56	; 86
+  8e:	f0 e0       	ldi	r31, 0x00	; 0
+  90:	8d ec       	ldi	r24, 0xCD	; 205
+  92:	80 83       	st	Z, r24
+}
+  94:	cf 91       	pop	r28
+  96:	df 91       	pop	r29
+  98:	08 95       	ret
+
+0000009a <I2C_u8_master_sent_byte>:
+
+
+void I2C_u8_master_sent_byte(u8 copy_data_byte){
+  9a:	df 93       	push	r29
+  9c:	cf 93       	push	r28
+  9e:	0f 92       	push	r0
+  a0:	cd b7       	in	r28, 0x3d	; 61
+  a2:	de b7       	in	r29, 0x3e	; 62
+  a4:	89 83       	std	Y+1, r24	; 0x01
+	/*
+	 *
+	 */
+	
+}
+  a6:	0f 90       	pop	r0
+  a8:	cf 91       	pop	r28
+  aa:	df 91       	pop	r29
+  ac:	08 95       	ret
+
+000000ae <I2C_u8_master_start_comm>:
+
+
+void I2C_u8_master_start_comm(u8* copy_ptr_data_frame){
+  ae:	df 93       	push	r29
+  b0:	cf 93       	push	r28
+  b2:	00 d0       	rcall	.+0      	; 0xb4 <I2C_u8_master_start_comm+0x6>
+  b4:	cd b7       	in	r28, 0x3d	; 61
+  b6:	de b7       	in	r29, 0x3e	; 62
+  b8:	9a 83       	std	Y+2, r25	; 0x02
+  ba:	89 83       	std	Y+1, r24	; 0x01
+	/*
+	 *
+	 */
+
+}
+  bc:	0f 90       	pop	r0
+  be:	0f 90       	pop	r0
+  c0:	cf 91       	pop	r28
+  c2:	df 91       	pop	r29
+  c4:	08 95       	ret
+
+000000c6 <__vector_19>:
+
+void __vector_19(void){
+  c6:	1f 92       	push	r1
+  c8:	0f 92       	push	r0
+  ca:	0f b6       	in	r0, 0x3f	; 63
+  cc:	0f 92       	push	r0
+  ce:	11 24       	eor	r1, r1
+  d0:	df 93       	push	r29
+  d2:	cf 93       	push	r28
+  d4:	cd b7       	in	r28, 0x3d	; 61
+  d6:	de b7       	in	r29, 0x3e	; 62
+	/*
+	 *
+	 */
+
+}
+  d8:	cf 91       	pop	r28
+  da:	df 91       	pop	r29
+  dc:	0f 90       	pop	r0
+  de:	0f be       	out	0x3f, r0	; 63
+  e0:	0f 90       	pop	r0
+  e2:	1f 90       	pop	r1
+  e4:	18 95       	reti
+
+000000e6 <_exit>:
+  e6:	f8 94       	cli
+
+000000e8 <__stop_program>:
+  e8:	ff cf       	rjmp	.-2      	; 0xe8 <__stop_program>
