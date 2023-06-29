@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Archive member included because of file (symbol)
 
 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
@@ -482,3 +483,489 @@ LOAD c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.debug_macinfo)
 OUTPUT(APP_4_Flashing-led-DIO.elf elf32-avr)
 LOAD linker stubs
+=======
+Archive member included because of file (symbol)
+
+c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+                              ./Drivers/HAL/LCD_8bit/LCD_8bit_program.o (__divmodsi4)
+c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                              c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o (exit)
+c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                              ./Drivers/MCAL/DIO/DIO_program.o (__do_copy_data)
+c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                              c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o) (__udivmodsi4)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+LOAD ./SRS/main.o
+LOAD ./Drivers/MCAL/DIO/DIO_program.o
+LOAD ./Drivers/HAL/LCD_8bit/LCD_8bit_program.o
+LOAD ./Drivers/HAL/KEYPAD/KEYPAD_program.o
+LOAD ./Drivers/HAL/DC_Motor/DC_Motor_program.o
+LOAD c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
+LOAD c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a
+LOAD c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000      0x7e6
+ *(.vectors)
+ .vectors       0x00000000       0x54 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+                0x00000054                . = ALIGN (0x2)
+                0x00000054                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000054        0x0 linker stubs
+ *(.trampolines*)
+                0x00000054                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x00000054                __ctors_start = .
+ *(.ctors)
+                0x00000054                __ctors_end = .
+                0x00000054                __dtors_start = .
+ *(.dtors)
+                0x00000054                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x00000054        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x00000054                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000054        0xc c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000060       0x16 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                0x00000060                __do_copy_data
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000076        0x8 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ *(.init9)
+ *(.text)
+ .text          0x0000007e        0x4 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x0000007e                __vector_1
+                0x0000007e                __vector_12
+                0x0000007e                __bad_interrupt
+                0x0000007e                __vector_6
+                0x0000007e                __vector_3
+                0x0000007e                __vector_11
+                0x0000007e                __vector_13
+                0x0000007e                __vector_17
+                0x0000007e                __vector_19
+                0x0000007e                __vector_7
+                0x0000007e                __vector_5
+                0x0000007e                __vector_4
+                0x0000007e                __vector_9
+                0x0000007e                __vector_2
+                0x0000007e                __vector_15
+                0x0000007e                __vector_8
+                0x0000007e                __vector_14
+                0x0000007e                __vector_10
+                0x0000007e                __vector_16
+                0x0000007e                __vector_18
+                0x0000007e                __vector_20
+ .text          0x00000082        0x0 ./SRS/main.o
+ .text          0x00000082        0x0 ./Drivers/MCAL/DIO/DIO_program.o
+ .text          0x00000082        0x0 ./Drivers/HAL/LCD_8bit/LCD_8bit_program.o
+ .text          0x00000082        0x0 ./Drivers/HAL/KEYPAD/KEYPAD_program.o
+ .text          0x00000082        0x0 ./Drivers/HAL/DC_Motor/DC_Motor_program.o
+ .text          0x00000082        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+ .text          0x00000082        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text          0x00000082        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text          0x00000082        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x00000082                . = ALIGN (0x2)
+ *(.text.*)
+ .text.main     0x00000082       0x38 ./SRS/main.o
+                0x00000082                main
+ .text.DIO_void_set_port_dir
+                0x000000ba       0x16 ./Drivers/MCAL/DIO/DIO_program.o
+                0x000000ba                DIO_void_set_port_dir
+ .text.DIO_void_set_port_in_pullUp
+                0x000000d0       0x26 ./Drivers/MCAL/DIO/DIO_program.o
+                0x000000d0                DIO_void_set_port_in_pullUp
+ .text.DIO_void_set_pin_dir
+                0x000000f6       0x3a ./Drivers/MCAL/DIO/DIO_program.o
+                0x000000f6                DIO_void_set_pin_dir
+ .text.DIO_void_set_pin_in_pullUP
+                0x00000130       0x3c ./Drivers/MCAL/DIO/DIO_program.o
+                0x00000130                DIO_void_set_pin_in_pullUP
+ .text.DIO_void_set_port
+                0x0000016c       0x18 ./Drivers/MCAL/DIO/DIO_program.o
+                0x0000016c                DIO_void_set_port
+ .text.DIO_void_clear_port
+                0x00000184       0x16 ./Drivers/MCAL/DIO/DIO_program.o
+                0x00000184                DIO_void_clear_port
+ .text.DIO_void_toggle_port
+                0x0000019a       0x1a ./Drivers/MCAL/DIO/DIO_program.o
+                0x0000019a                DIO_void_toggle_port
+ .text.DIO_void_assign_port
+                0x000001b4       0x16 ./Drivers/MCAL/DIO/DIO_program.o
+                0x000001b4                DIO_void_assign_port
+ .text.DIO_void_set_pin
+                0x000001ca       0x28 ./Drivers/MCAL/DIO/DIO_program.o
+                0x000001ca                DIO_void_set_pin
+ .text.DIO_void_clear_pin
+                0x000001f2       0x2a ./Drivers/MCAL/DIO/DIO_program.o
+                0x000001f2                DIO_void_clear_pin
+ .text.DIO_void_toggle_pin
+                0x0000021c       0x28 ./Drivers/MCAL/DIO/DIO_program.o
+                0x0000021c                DIO_void_toggle_pin
+ .text.DIO_void_assign_pin
+                0x00000244       0x3a ./Drivers/MCAL/DIO/DIO_program.o
+                0x00000244                DIO_void_assign_pin
+ .text.DIO_u8_get_port
+                0x0000027e       0x16 ./Drivers/MCAL/DIO/DIO_program.o
+                0x0000027e                DIO_u8_get_port
+ .text.DIO_u8_get_pin
+                0x00000294       0x24 ./Drivers/MCAL/DIO/DIO_program.o
+                0x00000294                DIO_u8_get_pin
+ .text.LCD_write_float
+                0x000002b8        0x2 ./Drivers/HAL/LCD_8bit/LCD_8bit_program.o
+                0x000002b8                LCD_write_float
+ .text.LCD_create_char
+                0x000002ba        0x2 ./Drivers/HAL/LCD_8bit/LCD_8bit_program.o
+                0x000002ba                LCD_create_char
+ .text.LCD_read_data_8bit
+                0x000002bc       0x36 ./Drivers/HAL/LCD_8bit/LCD_8bit_program.o
+                0x000002bc                LCD_read_data_8bit
+ .text.LCD_write_cmd_8bit
+                0x000002f2       0x46 ./Drivers/HAL/LCD_8bit/LCD_8bit_program.o
+                0x000002f2                LCD_write_cmd_8bit
+ .text.LCD_clear
+                0x00000338       0x26 ./Drivers/HAL/LCD_8bit/LCD_8bit_program.o
+                0x00000338                LCD_clear
+ .text.LCD_set_cursor
+                0x0000035e       0x1c ./Drivers/HAL/LCD_8bit/LCD_8bit_program.o
+                0x0000035e                LCD_set_cursor
+ .text.LCD_init
+                0x0000037a       0x64 ./Drivers/HAL/LCD_8bit/LCD_8bit_program.o
+                0x0000037a                LCD_init
+ .text.LCD_write_data_8bit
+                0x000003de       0x46 ./Drivers/HAL/LCD_8bit/LCD_8bit_program.o
+                0x000003de                LCD_write_data_8bit
+ .text.LCD_write_char
+                0x00000424        0xc ./Drivers/HAL/LCD_8bit/LCD_8bit_program.o
+                0x00000424                LCD_write_char
+ .text.LCD_wtire_s32_number
+                0x00000430      0x170 ./Drivers/HAL/LCD_8bit/LCD_8bit_program.o
+                0x00000430                LCD_wtire_s32_number
+ .text.LCD_write_str
+                0x000005a0       0x26 ./Drivers/HAL/LCD_8bit/LCD_8bit_program.o
+                0x000005a0                LCD_write_str
+ .text.keypad_set_map
+                0x000005c6       0x36 ./Drivers/HAL/KEYPAD/KEYPAD_program.o
+                0x000005c6                keypad_set_map
+ .text.keypad_read
+                0x000005fc       0x88 ./Drivers/HAL/KEYPAD/KEYPAD_program.o
+                0x000005fc                keypad_read
+ .text.keypad_init
+                0x00000684       0x48 ./Drivers/HAL/KEYPAD/KEYPAD_program.o
+                0x00000684                keypad_init
+ .text.DC_motor_void_CW
+                0x000006cc        0x2 ./Drivers/HAL/DC_Motor/DC_Motor_program.o
+                0x000006cc                DC_motor_void_CW
+ .text.DC_motor_void_CCW
+                0x000006ce        0x2 ./Drivers/HAL/DC_Motor/DC_Motor_program.o
+                0x000006ce                DC_motor_void_CCW
+ .text.DC_motor_void_stop
+                0x000006d0       0x20 ./Drivers/HAL/DC_Motor/DC_Motor_program.o
+                0x000006d0                DC_motor_void_stop
+ .text.DC_motor_void_CCW_full_speed
+                0x000006f0       0x20 ./Drivers/HAL/DC_Motor/DC_Motor_program.o
+                0x000006f0                DC_motor_void_CCW_full_speed
+ .text.DC_motor_void_CW_full_speed
+                0x00000710       0x20 ./Drivers/HAL/DC_Motor/DC_Motor_program.o
+                0x00000710                DC_motor_void_CW_full_speed
+ .text.DC_Motor_void_init
+                0x00000730       0x38 ./Drivers/HAL/DC_Motor/DC_Motor_program.o
+                0x00000730                DC_Motor_void_init
+ .text.libgcc   0x00000768       0x36 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+                0x00000768                __divmodsi4
+ .text.libgcc   0x0000079e        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x0000079e        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x0000079e       0x44 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x0000079e                __udivmodsi4
+                0x000007e2                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x000007e2        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x000007e2                exit
+                0x000007e2                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x000007e2        0x4 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ *(.fini0)
+                0x000007e6                _etext = .
+
+.data           0x00800060       0x28 load address 0x000007e6
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800060        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ .data          0x00800060        0x0 ./SRS/main.o
+ .data          0x00800060        0x0 ./Drivers/MCAL/DIO/DIO_program.o
+ .data          0x00800060        0x0 ./Drivers/HAL/LCD_8bit/LCD_8bit_program.o
+ .data          0x00800060        0x0 ./Drivers/HAL/KEYPAD/KEYPAD_program.o
+ .data          0x00800060        0x0 ./Drivers/HAL/DC_Motor/DC_Motor_program.o
+ .data          0x00800060        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+ .data          0x00800060        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .data          0x00800060        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .data          0x00800060        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+ *(.data*)
+ .data.DIO_PINx_REF
+                0x00800060        0x8 ./Drivers/MCAL/DIO/DIO_program.o
+                0x00800060                DIO_PINx_REF
+ .data.DIO_DDRx_REF
+                0x00800068        0x8 ./Drivers/MCAL/DIO/DIO_program.o
+                0x00800068                DIO_DDRx_REF
+ .data.DIO_PORTx_REF
+                0x00800070        0x8 ./Drivers/MCAL/DIO/DIO_program.o
+                0x00800070                DIO_PORTx_REF
+ .data.keypad_map
+                0x00800078       0x10 ./Drivers/HAL/KEYPAD/KEYPAD_program.o
+                0x00800078                keypad_map
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x00800088                . = ALIGN (0x2)
+                0x00800088                _edata = .
+                0x00800088                PROVIDE (__data_end, .)
+
+.bss            0x00800088        0x0
+                0x00800088                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800088        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ .bss           0x00800088        0x0 ./SRS/main.o
+ .bss           0x00800088        0x0 ./Drivers/MCAL/DIO/DIO_program.o
+ .bss           0x00800088        0x0 ./Drivers/HAL/LCD_8bit/LCD_8bit_program.o
+ .bss           0x00800088        0x0 ./Drivers/HAL/KEYPAD/KEYPAD_program.o
+ .bss           0x00800088        0x0 ./Drivers/HAL/DC_Motor/DC_Motor_program.o
+ .bss           0x00800088        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+ .bss           0x00800088        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .bss           0x00800088        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .bss           0x00800088        0x0 c:/c-toolchains/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+ *(.bss*)
+ *(COMMON)
+                0x00800088                PROVIDE (__bss_end, .)
+                0x000007e6                __data_load_start = LOADADDR (.data)
+                0x0000080e                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x00800088        0x0
+                0x00800088                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x00800088                PROVIDE (__noinit_end, .)
+                0x00800088                _end = .
+                0x00800088                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info)
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(APP_4_Flashing-led-DIO.elf elf32-avr)
+LOAD linker stubs
+>>>>>>> 2c4bb027bb2ff926eb51bd60e47e4c12845a2cf9
