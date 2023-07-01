@@ -118,7 +118,7 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x66e
+.text           0x00000000      0x624
  *(.vectors)
  .vectors       0x00000000       0x54 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -204,80 +204,80 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  *(.text.*)
  .text.main     0x00000092       0x36 ./SRS/main.o
                 0x00000092                main
- .text.I2C_get_status_word
-                0x000000c8        0x6 ./IIC/IIC_program.o
-                0x000000c8                I2C_get_status_word
- .text.I2C_void_master_start_comm
-                0x000000ce       0x2e ./IIC/IIC_program.o
-                0x000000ce                I2C_void_master_start_comm
- .text.I2C_slave_transmit_respond
-                0x000000fc        0x2 ./IIC/IIC_program.o
-                0x000000fc                I2C_slave_transmit_respond
- .text.I2C_slave_recive_respond
-                0x000000fe        0x2 ./IIC/IIC_program.o
-                0x000000fe                I2C_slave_recive_respond
- .text.I2C_master_recive_respond
-                0x00000100      0x11e ./IIC/IIC_program.o
-                0x00000100                I2C_master_recive_respond
- .text.I2C_master_transmit_respond
-                0x0000021e      0x184 ./IIC/IIC_program.o
-                0x0000021e                I2C_master_transmit_respond
- .text.__vector_19
-                0x000003a2       0x6c ./IIC/IIC_program.o
-                0x000003a2                __vector_19
  .text.I2C_void_master_inti
-                0x0000040e       0x2e ./IIC/IIC_program.o
-                0x0000040e                I2C_void_master_inti
+                0x000000c8       0x1e ./IIC/IIC_program.o
+                0x000000c8                I2C_void_master_inti
+ .text.I2C_get_status_word
+                0x000000e6        0x6 ./IIC/IIC_program.o
+                0x000000e6                I2C_get_status_word
+ .text.I2C_master_recive_respond
+                0x000000ec       0xfc ./IIC/IIC_program.o
+                0x000000ec                I2C_master_recive_respond
+ .text.I2C_void_master_start_comm
+                0x000001e8       0x2e ./IIC/IIC_program.o
+                0x000001e8                I2C_void_master_start_comm
+ .text.I2C_master_transmit_respond
+                0x00000216      0x16c ./IIC/IIC_program.o
+                0x00000216                I2C_master_transmit_respond
+ .text.I2C_slave_transmit_respond
+                0x00000382        0x2 ./IIC/IIC_program.o
+                0x00000382                I2C_slave_transmit_respond
+ .text.I2C_slave_recive_respond
+                0x00000384        0x2 ./IIC/IIC_program.o
+                0x00000384                I2C_slave_recive_respond
+ .text.__vector_19
+                0x00000386       0x6c ./IIC/IIC_program.o
+                0x00000386                __vector_19
  .text.DIO_void_set_port_dir
-                0x0000043c       0x16 ./DIO/DIO_program.o
-                0x0000043c                DIO_void_set_port_dir
+                0x000003f2       0x16 ./DIO/DIO_program.o
+                0x000003f2                DIO_void_set_port_dir
  .text.DIO_void_set_port_in_pullUp
-                0x00000452       0x26 ./DIO/DIO_program.o
-                0x00000452                DIO_void_set_port_in_pullUp
+                0x00000408       0x26 ./DIO/DIO_program.o
+                0x00000408                DIO_void_set_port_in_pullUp
  .text.DIO_void_set_pin_dir
-                0x00000478       0x52 ./DIO/DIO_program.o
-                0x00000478                DIO_void_set_pin_dir
+                0x0000042e       0x52 ./DIO/DIO_program.o
+                0x0000042e                DIO_void_set_pin_dir
  .text.DIO_void_set_pin_in_pullUP
-                0x000004ca       0x3c ./DIO/DIO_program.o
-                0x000004ca                DIO_void_set_pin_in_pullUP
+                0x00000480       0x3c ./DIO/DIO_program.o
+                0x00000480                DIO_void_set_pin_in_pullUP
  .text.DIO_void_set_port
-                0x00000506       0x18 ./DIO/DIO_program.o
-                0x00000506                DIO_void_set_port
+                0x000004bc       0x18 ./DIO/DIO_program.o
+                0x000004bc                DIO_void_set_port
  .text.DIO_void_clear_port
-                0x0000051e       0x16 ./DIO/DIO_program.o
-                0x0000051e                DIO_void_clear_port
+                0x000004d4       0x16 ./DIO/DIO_program.o
+                0x000004d4                DIO_void_clear_port
  .text.DIO_void_toggle_port
-                0x00000534       0x1a ./DIO/DIO_program.o
-                0x00000534                DIO_void_toggle_port
+                0x000004ea       0x1a ./DIO/DIO_program.o
+                0x000004ea                DIO_void_toggle_port
  .text.DIO_void_assign_port
-                0x0000054e       0x16 ./DIO/DIO_program.o
-                0x0000054e                DIO_void_assign_port
+                0x00000504       0x16 ./DIO/DIO_program.o
+                0x00000504                DIO_void_assign_port
  .text.DIO_void_set_pin
-                0x00000564       0x28 ./DIO/DIO_program.o
-                0x00000564                DIO_void_set_pin
+                0x0000051a       0x28 ./DIO/DIO_program.o
+                0x0000051a                DIO_void_set_pin
  .text.DIO_void_clear_pin
-                0x0000058c       0x2a ./DIO/DIO_program.o
-                0x0000058c                DIO_void_clear_pin
+                0x00000542       0x2a ./DIO/DIO_program.o
+                0x00000542                DIO_void_clear_pin
  .text.DIO_void_toggle_pin
-                0x000005b6       0x28 ./DIO/DIO_program.o
-                0x000005b6                DIO_void_toggle_pin
+                0x0000056c       0x28 ./DIO/DIO_program.o
+                0x0000056c                DIO_void_toggle_pin
  .text.DIO_void_assign_pin
-                0x000005de       0x52 ./DIO/DIO_program.o
-                0x000005de                DIO_void_assign_pin
+                0x00000594       0x52 ./DIO/DIO_program.o
+                0x00000594                DIO_void_assign_pin
  .text.DIO_u8_get_port
-                0x00000630       0x16 ./DIO/DIO_program.o
-                0x00000630                DIO_u8_get_port
+                0x000005e6       0x16 ./DIO/DIO_program.o
+                0x000005e6                DIO_u8_get_port
  .text.DIO_u8_get_pin
-                0x00000646       0x24 ./DIO/DIO_program.o
-                0x00000646                DIO_u8_get_pin
- .text.libgcc   0x0000066a        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x0000066a        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x0000066a        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
-                0x0000066a                . = ALIGN (0x2)
+                0x000005fc       0x24 ./DIO/DIO_program.o
+                0x000005fc                DIO_u8_get_pin
+ .text.libgcc   0x00000620        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00000620        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000620        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x00000620                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000066a        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x0000066a                exit
-                0x0000066a                _exit
+ .fini9         0x00000620        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00000620                exit
+                0x00000620                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -296,11 +296,11 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000066a        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000620        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000066e                _etext = .
+                0x00000624                _etext = .
 
-.data           0x00800060       0x26 load address 0x0000066e
+.data           0x00800060       0x26 load address 0x00000624
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
@@ -342,19 +342,19 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
                 0x00800086        0x2 ./IIC/IIC_program.o
  .bss.I2C_recive_data
                 0x00800088        0x8 ./IIC/IIC_program.o
- .bss.recived_data_index.1355
+ .bss.recived_data_index.1316
                 0x00800090        0x1 ./IIC/IIC_program.o
- .bss.data_frame_index.1354
+ .bss.data_frame_index.1315
                 0x00800091        0x1 ./IIC/IIC_program.o
  .bss.err_handle
                 0x00800092        0x1 ./IIC/IIC_program.o
- .bss.data_frame_index.1289
+ .bss.data_frame_index.1250
                 0x00800093        0x1 ./IIC/IIC_program.o
  .bss.I2C_mode  0x00800094        0x1 ./IIC/IIC_program.o
  *(COMMON)
                 0x00800095                PROVIDE (__bss_end, .)
-                0x0000066e                __data_load_start = LOADADDR (.data)
-                0x00000694                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000624                __data_load_start = LOADADDR (.data)
+                0x0000064a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800095        0x0
                 0x00800095                PROVIDE (__noinit_start, .)

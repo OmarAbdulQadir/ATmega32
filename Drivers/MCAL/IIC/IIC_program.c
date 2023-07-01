@@ -18,7 +18,7 @@
 #include "IIC_interface.h"
 
 // Drivers section
-#include "../DIO/DIO_interface.h"
+
 
 // Global variables and structs
 static u8 I2C_mode;
@@ -67,8 +67,6 @@ void I2C_void_master_inti(u8 I2C_SLA){
 	I2C_SREG |= (I2C_enable << I2C_glob_int);
 	// Set mode to scilent
 	I2C_mode = I2C_silent;
-	DIO_void_set_port_dir(PORTD, OUTPUT);
-	DIO_void_set_port_dir(PORTB, OUTPUT);
 }
 
 
@@ -88,7 +86,6 @@ void I2C_master_transmit_respond(void ){
 	switch(I2C_get_status_word()){
 		case (I2C_S_cond_ack):
 			// Load SLA+W in the data register
-			DIO_void_assign_port(PORTB,  copy_ptr_master_data_frame[data_frame_index]);
 			I2C_TWDR = copy_ptr_master_data_frame[data_frame_index];
 			// Clear start condition bit
 			clr_bit(I2C_TWCR, I2C_TWCR_TWSTA);
@@ -242,11 +239,9 @@ void I2C_master_recive_respond(void ){
 	 */
 	static u8 data_frame_index = I2C_S_frame;
 	static u8 recived_data_index = 0;
-	DIO_void_assign_port(PORTD,  I2C_get_status_word());
 	switch (I2C_get_status_word()){
 		case (I2C_S_cond_ack):
 			// Load SLA+W in the data register
-			DIO_void_assign_port(PORTB,  copy_ptr_master_data_frame[data_frame_index]);
 			I2C_TWDR = copy_ptr_master_data_frame[data_frame_index];
 			// Clear start condition bit
 			clr_bit(I2C_TWCR, I2C_TWCR_TWSTA);
@@ -257,7 +252,6 @@ void I2C_master_recive_respond(void ){
 		break;
 		case (I2C_RS_cond_ack):
 			// Load SLA+W in the data register
-			DIO_void_assign_port(PORTB,  copy_ptr_master_data_frame[data_frame_index]);
 			I2C_TWDR = copy_ptr_master_data_frame[data_frame_index];
 			// Clear start condition bit
 			clr_bit(I2C_TWCR, I2C_TWCR_TWSTA);
