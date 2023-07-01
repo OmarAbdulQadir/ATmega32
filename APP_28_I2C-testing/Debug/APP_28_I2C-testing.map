@@ -2,6 +2,8 @@ Archive member included because of file (symbol)
 
 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
                               d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o (exit)
+d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                              ./IIC/IIC_program.o (__do_clear_bss)
 
 Memory Configuration
 
@@ -113,7 +115,7 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000       0xea
+.text           0x00000000      0x648
  *(.vectors)
  .vectors       0x00000000       0x54 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -151,6 +153,8 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  *(.init3)
  *(.init3)
  *(.init4)
+ .init4         0x00000060       0x10 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x00000060                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -161,55 +165,69 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x00000060        0x8 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ .init9         0x00000070        0x8 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
  *(.init9)
  *(.text)
- .text          0x00000068        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
-                0x00000068                __vector_1
-                0x00000068                __vector_12
-                0x00000068                __bad_interrupt
-                0x00000068                __vector_6
-                0x00000068                __vector_3
-                0x00000068                __vector_11
-                0x00000068                __vector_13
-                0x00000068                __vector_17
-                0x00000068                __vector_7
-                0x00000068                __vector_5
-                0x00000068                __vector_4
-                0x00000068                __vector_9
-                0x00000068                __vector_2
-                0x00000068                __vector_15
-                0x00000068                __vector_8
-                0x00000068                __vector_14
-                0x00000068                __vector_10
-                0x00000068                __vector_16
-                0x00000068                __vector_18
-                0x00000068                __vector_20
- .text          0x0000006c        0x0 ./SRS/main.o
- .text          0x0000006c        0x0 ./IIC/IIC_program.o
- .text          0x0000006c        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x0000006c                . = ALIGN (0x2)
+ .text          0x00000078        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x00000078                __vector_1
+                0x00000078                __vector_12
+                0x00000078                __bad_interrupt
+                0x00000078                __vector_6
+                0x00000078                __vector_3
+                0x00000078                __vector_11
+                0x00000078                __vector_13
+                0x00000078                __vector_17
+                0x00000078                __vector_7
+                0x00000078                __vector_5
+                0x00000078                __vector_4
+                0x00000078                __vector_9
+                0x00000078                __vector_2
+                0x00000078                __vector_15
+                0x00000078                __vector_8
+                0x00000078                __vector_14
+                0x00000078                __vector_10
+                0x00000078                __vector_16
+                0x00000078                __vector_18
+                0x00000078                __vector_20
+ .text          0x0000007c        0x0 ./SRS/main.o
+ .text          0x0000007c        0x0 ./IIC/IIC_program.o
+ .text          0x0000007c        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text          0x0000007c        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x0000007c                . = ALIGN (0x2)
  *(.text.*)
- .text.main     0x0000006c        0xa ./SRS/main.o
-                0x0000006c                main
+ .text.main     0x0000007c       0x2e ./SRS/main.o
+                0x0000007c                main
  .text.I2C_void_master_inti
-                0x00000076       0x24 ./IIC/IIC_program.o
-                0x00000076                I2C_void_master_inti
- .text.I2C_u8_master_sent_byte
-                0x0000009a       0x14 ./IIC/IIC_program.o
-                0x0000009a                I2C_u8_master_sent_byte
- .text.I2C_u8_master_start_comm
-                0x000000ae       0x18 ./IIC/IIC_program.o
-                0x000000ae                I2C_u8_master_start_comm
+                0x000000aa       0x50 ./IIC/IIC_program.o
+                0x000000aa                I2C_void_master_inti
+ .text.I2C_get_status_word
+                0x000000fa       0x16 ./IIC/IIC_program.o
+                0x000000fa                I2C_get_status_word
+ .text.I2C_master_transmit_respond
+                0x00000110      0x3de ./IIC/IIC_program.o
+                0x00000110                I2C_master_transmit_respond
+ .text.I2C_master_recive_respond
+                0x000004ee        0xe ./IIC/IIC_program.o
+                0x000004ee                I2C_master_recive_respond
+ .text.I2C_void_master_start_comm
+                0x000004fc       0x6a ./IIC/IIC_program.o
+                0x000004fc                I2C_void_master_start_comm
+ .text.I2C_slave_transmit_respond
+                0x00000566        0xe ./IIC/IIC_program.o
+                0x00000566                I2C_slave_transmit_respond
+ .text.I2C_slave_recive_respond
+                0x00000574        0xe ./IIC/IIC_program.o
+                0x00000574                I2C_slave_recive_respond
  .text.__vector_19
-                0x000000c6       0x20 ./IIC/IIC_program.o
-                0x000000c6                __vector_19
- .text.libgcc   0x000000e6        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x000000e6                . = ALIGN (0x2)
+                0x00000582       0xc2 ./IIC/IIC_program.o
+                0x00000582                __vector_19
+ .text.libgcc   0x00000644        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00000644        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x00000644                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000000e6        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x000000e6                exit
-                0x000000e6                _exit
+ .fini9         0x00000644        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00000644                exit
+                0x00000644                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -228,17 +246,18 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000000e6        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000644        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000000ea                _etext = .
+                0x00000648                _etext = .
 
-.data           0x00800060        0x0 load address 0x000000ea
+.data           0x00800060        0x0 load address 0x00000648
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
  .data          0x00800060        0x0 ./SRS/main.o
  .data          0x00800060        0x0 ./IIC/IIC_program.o
  .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
  *(.data*)
  *(.rodata)
  *(.rodata*)
@@ -247,25 +266,35 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
                 0x00800060                _edata = .
                 0x00800060                PROVIDE (__data_end, .)
 
-.bss            0x00800060        0x0
+.bss            0x00800060        0xd
                 0x00800060                PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
  .bss           0x00800060        0x0 ./SRS/main.o
  .bss           0x00800060        0x0 ./IIC/IIC_program.o
  .bss           0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .bss           0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
  *(.bss*)
+ .bss.slave_data
+                0x00800060        0x8 ./IIC/IIC_program.o
+ .bss.err_handle
+                0x00800068        0x1 ./IIC/IIC_program.o
+ .bss.copy_ptr_master_data_frame
+                0x00800069        0x2 ./IIC/IIC_program.o
+ .bss.data_frame_index.1247
+                0x0080006b        0x1 ./IIC/IIC_program.o
+ .bss.I2C_mode  0x0080006c        0x1 ./IIC/IIC_program.o
  *(COMMON)
-                0x00800060                PROVIDE (__bss_end, .)
-                0x000000ea                __data_load_start = LOADADDR (.data)
-                0x000000ea                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0080006d                PROVIDE (__bss_end, .)
+                0x00000648                __data_load_start = LOADADDR (.data)
+                0x00000648                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800060        0x0
-                0x00800060                PROVIDE (__noinit_start, .)
+.noinit         0x0080006d        0x0
+                0x0080006d                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00800060                PROVIDE (__noinit_end, .)
-                0x00800060                _end = .
-                0x00800060                PROVIDE (__heap_start, .)
+                0x0080006d                PROVIDE (__noinit_end, .)
+                0x0080006d                _end = .
+                0x0080006d                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -283,15 +312,15 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
 .signature
  *(.signature*)
 
-.stab           0x00000000      0x3c0
+.stab           0x00000000      0x8b8
  *(.stab)
- .stab          0x00000000      0x18c ./SRS/main.o
- .stab          0x0000018c      0x234 ./IIC/IIC_program.o
-                                0x240 (size before relaxing)
+ .stab          0x00000000      0x1d4 ./SRS/main.o
+ .stab          0x000001d4      0x6e4 ./IIC/IIC_program.o
+                                0x6f0 (size before relaxing)
 
-.stabstr        0x00000000      0x45d
+.stabstr        0x00000000      0x6b4
  *(.stabstr)
- .stabstr       0x00000000      0x45d ./SRS/main.o
+ .stabstr       0x00000000      0x6b4 ./SRS/main.o
 
 .stab.excl
  *(.stab.excl)

@@ -12,7 +12,18 @@
 
 #ifndef SPI_INTERFACE_H
 #define SPI_INTERFACE_H
-	
+
+	/*
+	 * Note: Each data byte to be sent its value must be between 0 - 250, And the other values
+	 * are reserved for special operations as described below.
+	 *
+	 * 255: End of frame.
+	 * 254:	Repeated start.
+	 * 253:
+	 * 252:
+	 * 251:
+	 */
+
 	/* Transmition frequency configuration */
 	// Bit rate register value
 	#define I2C_TWBR_val		32
@@ -23,9 +34,9 @@
 	
 	/* public functions decleration */
 	// Initiate the I2C prepheral
-	void I2C_master_inti(void );
+	void I2C_void_master_inti(u8 );
 	// Start communication in master mode
-	void I2C_u8_master_start_comm(u8 * );
+	void I2C_void_master_start_comm(u8 * );
 	
 
 #endif /* end SPI_INTERFACE_H */

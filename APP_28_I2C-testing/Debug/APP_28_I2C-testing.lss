@@ -3,37 +3,39 @@ APP_28_I2C-testing.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000000ea  00000000  00000000  00000054  2**1
+  0 .text         00000648  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .stab         000003c0  00000000  00000000  00000140  2**2
+  1 .bss          0000000d  00800060  00800060  000006bc  2**0
+                  ALLOC
+  2 .stab         000008b8  00000000  00000000  000006bc  2**2
                   CONTENTS, READONLY, DEBUGGING
-  2 .stabstr      0000045d  00000000  00000000  00000500  2**0
+  3 .stabstr      000006b4  00000000  00000000  00000f74  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
-   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  4c:	0c 94 63 00 	jmp	0xc6	; 0xc6 <__vector_19>
-  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 c1 02 	jmp	0x582	; 0x582 <__vector_19>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
 
 00000054 <__ctors_end>:
   54:	11 24       	eor	r1, r1
@@ -42,130 +44,931 @@ Disassembly of section .text:
   5a:	d8 e0       	ldi	r29, 0x08	; 8
   5c:	de bf       	out	0x3e, r29	; 62
   5e:	cd bf       	out	0x3d, r28	; 61
-  60:	0e 94 36 00 	call	0x6c	; 0x6c <main>
-  64:	0c 94 73 00 	jmp	0xe6	; 0xe6 <_exit>
 
-00000068 <__bad_interrupt>:
-  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+00000060 <__do_clear_bss>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
 
-0000006c <main>:
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	ad 36       	cpi	r26, 0x6D	; 109
+  6c:	b1 07       	cpc	r27, r17
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 3e 00 	call	0x7c	; 0x7c <main>
+  74:	0c 94 22 03 	jmp	0x644	; 0x644 <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <main>:
 
 // Global variables section
 
 
 // Main app
 int main(void ){
-  6c:	df 93       	push	r29
-  6e:	cf 93       	push	r28
-  70:	cd b7       	in	r28, 0x3d	; 61
-  72:	de b7       	in	r29, 0x3e	; 62
-  74:	ff cf       	rjmp	.-2      	; 0x74 <main+0x8>
+  7c:	df 93       	push	r29
+  7e:	cf 93       	push	r28
+  80:	00 d0       	rcall	.+0      	; 0x82 <main+0x6>
+  82:	00 d0       	rcall	.+0      	; 0x84 <main+0x8>
+  84:	cd b7       	in	r28, 0x3d	; 61
+  86:	de b7       	in	r29, 0x3e	; 62
+	// Setup section
 
-00000076 <I2C_void_master_inti>:
-// Global variables and structs
+	u8 I2C_test_frame[4]= {147, 10, 11, 255};
+  88:	83 e9       	ldi	r24, 0x93	; 147
+  8a:	89 83       	std	Y+1, r24	; 0x01
+  8c:	8a e0       	ldi	r24, 0x0A	; 10
+  8e:	8a 83       	std	Y+2, r24	; 0x02
+  90:	8b e0       	ldi	r24, 0x0B	; 11
+  92:	8b 83       	std	Y+3, r24	; 0x03
+  94:	8f ef       	ldi	r24, 0xFF	; 255
+  96:	8c 83       	std	Y+4, r24	; 0x04
+	I2C_void_master_inti(75);
+  98:	8b e4       	ldi	r24, 0x4B	; 75
+  9a:	90 e0       	ldi	r25, 0x00	; 0
+  9c:	0e 94 55 00 	call	0xaa	; 0xaa <I2C_void_master_inti>
+	I2C_void_master_start_comm(I2C_test_frame);
+  a0:	ce 01       	movw	r24, r28
+  a2:	01 96       	adiw	r24, 0x01	; 1
+  a4:	0e 94 7e 02 	call	0x4fc	; 0x4fc <I2C_void_master_start_comm>
+  a8:	ff cf       	rjmp	.-2      	; 0xa8 <main+0x2c>
 
+000000aa <I2C_void_master_inti>:
+	I2C_DB_n_nack = 0x30,
+};
 
 /******************************************************************************/
 /* Functions implementation section */
-void I2C_void_master_inti(void ){
-  76:	df 93       	push	r29
-  78:	cf 93       	push	r28
-  7a:	cd b7       	in	r28, 0x3d	; 61
-  7c:	de b7       	in	r29, 0x3e	; 62
+void I2C_void_master_inti(u8 I2C_SLA){
+  aa:	df 93       	push	r29
+  ac:	cf 93       	push	r28
+  ae:	0f 92       	push	r0
+  b0:	cd b7       	in	r28, 0x3d	; 61
+  b2:	de b7       	in	r29, 0x3e	; 62
+  b4:	89 83       	std	Y+1, r24	; 0x01
 	/*
 	 *
 	 */
 	// Set the bit rate regester
 	I2C_TWBR = I2C_TWBR_val;
-  7e:	e0 e2       	ldi	r30, 0x20	; 32
-  80:	f0 e0       	ldi	r31, 0x00	; 0
-  82:	80 e2       	ldi	r24, 0x20	; 32
-  84:	80 83       	st	Z, r24
+  b6:	e0 e2       	ldi	r30, 0x20	; 32
+  b8:	f0 e0       	ldi	r31, 0x00	; 0
+  ba:	80 e2       	ldi	r24, 0x20	; 32
+  bc:	80 83       	st	Z, r24
 	// set the prescaler register
 	I2C_TWSR = I2C_TWPS_val;
-  86:	e1 e2       	ldi	r30, 0x21	; 33
-  88:	f0 e0       	ldi	r31, 0x00	; 0
-  8a:	10 82       	st	Z, r1
+  be:	e1 e2       	ldi	r30, 0x21	; 33
+  c0:	f0 e0       	ldi	r31, 0x00	; 0
+  c2:	10 82       	st	Z, r1
+	// Set the slave address, and enable general call recognition bit
+	I2C_TWAR = ((I2C_SLA << 1) | 1);
+  c4:	e2 e2       	ldi	r30, 0x22	; 34
+  c6:	f0 e0       	ldi	r31, 0x00	; 0
+  c8:	89 81       	ldd	r24, Y+1	; 0x01
+  ca:	88 2f       	mov	r24, r24
+  cc:	90 e0       	ldi	r25, 0x00	; 0
+  ce:	88 0f       	add	r24, r24
+  d0:	99 1f       	adc	r25, r25
+  d2:	81 60       	ori	r24, 0x01	; 1
+  d4:	80 83       	st	Z, r24
 	// initiate I2C perepheral and configure the register
 	I2C_TWCR = ((I2C_enable << I2C_TWCR_TWINT) | (I2C_enable << I2C_TWCR_TWEA) | (I2C_disable << I2C_TWCR_TWSTA) | (I2C_disable << I2C_TWCR_TWSTO) | (I2C_enable << I2C_TWCR_TWWC) | (I2C_enable << I2C_TWCR_TWEN) | (I2C_enable << I2C_TWCR_TWIE));
-  8c:	e6 e5       	ldi	r30, 0x56	; 86
-  8e:	f0 e0       	ldi	r31, 0x00	; 0
-  90:	8d ec       	ldi	r24, 0xCD	; 205
-  92:	80 83       	st	Z, r24
+  d6:	e6 e5       	ldi	r30, 0x56	; 86
+  d8:	f0 e0       	ldi	r31, 0x00	; 0
+  da:	8d ec       	ldi	r24, 0xCD	; 205
+  dc:	80 83       	st	Z, r24
+	// Enable global intrrupt
+	I2C_SREG |= (I2C_enable << I2C_glob_int);
+  de:	af e5       	ldi	r26, 0x5F	; 95
+  e0:	b0 e0       	ldi	r27, 0x00	; 0
+  e2:	ef e5       	ldi	r30, 0x5F	; 95
+  e4:	f0 e0       	ldi	r31, 0x00	; 0
+  e6:	80 81       	ld	r24, Z
+  e8:	80 68       	ori	r24, 0x80	; 128
+  ea:	8c 93       	st	X, r24
+	// Set mode to scilent
+	I2C_mode = I2C_silent;
+  ec:	8f ef       	ldi	r24, 0xFF	; 255
+  ee:	80 93 6c 00 	sts	0x006C, r24
 }
-  94:	cf 91       	pop	r28
-  96:	df 91       	pop	r29
-  98:	08 95       	ret
+  f2:	0f 90       	pop	r0
+  f4:	cf 91       	pop	r28
+  f6:	df 91       	pop	r29
+  f8:	08 95       	ret
 
-0000009a <I2C_u8_master_sent_byte>:
+000000fa <I2C_get_status_word>:
 
 
-void I2C_u8_master_sent_byte(u8 copy_data_byte){
-  9a:	df 93       	push	r29
-  9c:	cf 93       	push	r28
-  9e:	0f 92       	push	r0
-  a0:	cd b7       	in	r28, 0x3d	; 61
-  a2:	de b7       	in	r29, 0x3e	; 62
-  a4:	89 83       	std	Y+1, r24	; 0x01
+u8 I2C_get_status_word(void ){
+  fa:	df 93       	push	r29
+  fc:	cf 93       	push	r28
+  fe:	cd b7       	in	r28, 0x3d	; 61
+ 100:	de b7       	in	r29, 0x3e	; 62
 	/*
 	 *
 	 */
-	
+	return (I2C_TWSR & I2C_TWS_mask);
+ 102:	e1 e2       	ldi	r30, 0x21	; 33
+ 104:	f0 e0       	ldi	r31, 0x00	; 0
+ 106:	80 81       	ld	r24, Z
+ 108:	88 7f       	andi	r24, 0xF8	; 248
 }
-  a6:	0f 90       	pop	r0
-  a8:	cf 91       	pop	r28
-  aa:	df 91       	pop	r29
-  ac:	08 95       	ret
+ 10a:	cf 91       	pop	r28
+ 10c:	df 91       	pop	r29
+ 10e:	08 95       	ret
 
-000000ae <I2C_u8_master_start_comm>:
+00000110 <I2C_master_transmit_respond>:
 
 
-void I2C_u8_master_start_comm(u8* copy_ptr_data_frame){
-  ae:	df 93       	push	r29
-  b0:	cf 93       	push	r28
-  b2:	00 d0       	rcall	.+0      	; 0xb4 <I2C_u8_master_start_comm+0x6>
-  b4:	cd b7       	in	r28, 0x3d	; 61
-  b6:	de b7       	in	r29, 0x3e	; 62
-  b8:	9a 83       	std	Y+2, r25	; 0x02
-  ba:	89 83       	std	Y+1, r24	; 0x01
+void I2C_master_transmit_respond(void ){
+ 110:	df 93       	push	r29
+ 112:	cf 93       	push	r28
+ 114:	00 d0       	rcall	.+0      	; 0x116 <I2C_master_transmit_respond+0x6>
+ 116:	cd b7       	in	r28, 0x3d	; 61
+ 118:	de b7       	in	r29, 0x3e	; 62
+	/*
+	 *
+	 */
+	static u8 data_frame_index = I2C_S_frame;
+	switch(I2C_get_status_word()){
+ 11a:	0e 94 7d 00 	call	0xfa	; 0xfa <I2C_get_status_word>
+ 11e:	28 2f       	mov	r18, r24
+ 120:	30 e0       	ldi	r19, 0x00	; 0
+ 122:	3a 83       	std	Y+2, r19	; 0x02
+ 124:	29 83       	std	Y+1, r18	; 0x01
+ 126:	89 81       	ldd	r24, Y+1	; 0x01
+ 128:	9a 81       	ldd	r25, Y+2	; 0x02
+ 12a:	88 31       	cpi	r24, 0x18	; 24
+ 12c:	91 05       	cpc	r25, r1
+ 12e:	09 f4       	brne	.+2      	; 0x132 <I2C_master_transmit_respond+0x22>
+ 130:	69 c0       	rjmp	.+210    	; 0x204 <I2C_master_transmit_respond+0xf4>
+ 132:	29 81       	ldd	r18, Y+1	; 0x01
+ 134:	3a 81       	ldd	r19, Y+2	; 0x02
+ 136:	29 31       	cpi	r18, 0x19	; 25
+ 138:	31 05       	cpc	r19, r1
+ 13a:	5c f4       	brge	.+22     	; 0x152 <I2C_master_transmit_respond+0x42>
+ 13c:	89 81       	ldd	r24, Y+1	; 0x01
+ 13e:	9a 81       	ldd	r25, Y+2	; 0x02
+ 140:	88 30       	cpi	r24, 0x08	; 8
+ 142:	91 05       	cpc	r25, r1
+ 144:	c9 f0       	breq	.+50     	; 0x178 <I2C_master_transmit_respond+0x68>
+ 146:	29 81       	ldd	r18, Y+1	; 0x01
+ 148:	3a 81       	ldd	r19, Y+2	; 0x02
+ 14a:	20 31       	cpi	r18, 0x10	; 16
+ 14c:	31 05       	cpc	r19, r1
+ 14e:	b9 f1       	breq	.+110    	; 0x1be <I2C_master_transmit_respond+0xae>
+ 150:	c9 c1       	rjmp	.+914    	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+ 152:	89 81       	ldd	r24, Y+1	; 0x01
+ 154:	9a 81       	ldd	r25, Y+2	; 0x02
+ 156:	88 32       	cpi	r24, 0x28	; 40
+ 158:	91 05       	cpc	r25, r1
+ 15a:	09 f4       	brne	.+2      	; 0x15e <I2C_master_transmit_respond+0x4e>
+ 15c:	6f c0       	rjmp	.+222    	; 0x23c <I2C_master_transmit_respond+0x12c>
+ 15e:	29 81       	ldd	r18, Y+1	; 0x01
+ 160:	3a 81       	ldd	r19, Y+2	; 0x02
+ 162:	20 33       	cpi	r18, 0x30	; 48
+ 164:	31 05       	cpc	r19, r1
+ 166:	09 f4       	brne	.+2      	; 0x16a <I2C_master_transmit_respond+0x5a>
+ 168:	64 c1       	rjmp	.+712    	; 0x432 <I2C_master_transmit_respond+0x322>
+ 16a:	89 81       	ldd	r24, Y+1	; 0x01
+ 16c:	9a 81       	ldd	r25, Y+2	; 0x02
+ 16e:	80 32       	cpi	r24, 0x20	; 32
+ 170:	91 05       	cpc	r25, r1
+ 172:	09 f4       	brne	.+2      	; 0x176 <I2C_master_transmit_respond+0x66>
+ 174:	03 c1       	rjmp	.+518    	; 0x37c <I2C_master_transmit_respond+0x26c>
+ 176:	b6 c1       	rjmp	.+876    	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+		case (I2C_S_cond_ack):
+			// Clear start condition bit
+			clr_bit(I2C_TWCR, I2C_TWCR_TWSTA);
+ 178:	a6 e5       	ldi	r26, 0x56	; 86
+ 17a:	b0 e0       	ldi	r27, 0x00	; 0
+ 17c:	e6 e5       	ldi	r30, 0x56	; 86
+ 17e:	f0 e0       	ldi	r31, 0x00	; 0
+ 180:	80 81       	ld	r24, Z
+ 182:	8f 7d       	andi	r24, 0xDF	; 223
+ 184:	8c 93       	st	X, r24
+			// Load SLA+W in the data register
+			I2C_TWDR = copy_ptr_master_data_frame[data_frame_index];
+ 186:	a3 e2       	ldi	r26, 0x23	; 35
+ 188:	b0 e0       	ldi	r27, 0x00	; 0
+ 18a:	20 91 69 00 	lds	r18, 0x0069
+ 18e:	30 91 6a 00 	lds	r19, 0x006A
+ 192:	80 91 6b 00 	lds	r24, 0x006B
+ 196:	88 2f       	mov	r24, r24
+ 198:	90 e0       	ldi	r25, 0x00	; 0
+ 19a:	f9 01       	movw	r30, r18
+ 19c:	e8 0f       	add	r30, r24
+ 19e:	f9 1f       	adc	r31, r25
+ 1a0:	80 81       	ld	r24, Z
+ 1a2:	8c 93       	st	X, r24
+			// Increment the frame index pointing to next byte in the frame
+			data_frame_index++;
+ 1a4:	80 91 6b 00 	lds	r24, 0x006B
+ 1a8:	8f 5f       	subi	r24, 0xFF	; 255
+ 1aa:	80 93 6b 00 	sts	0x006B, r24
+			// Clearing TWI interrupt flage
+			set_bit(I2C_TWCR, I2C_TWCR_TWINT);
+ 1ae:	a6 e5       	ldi	r26, 0x56	; 86
+ 1b0:	b0 e0       	ldi	r27, 0x00	; 0
+ 1b2:	e6 e5       	ldi	r30, 0x56	; 86
+ 1b4:	f0 e0       	ldi	r31, 0x00	; 0
+ 1b6:	80 81       	ld	r24, Z
+ 1b8:	80 68       	ori	r24, 0x80	; 128
+ 1ba:	8c 93       	st	X, r24
+ 1bc:	93 c1       	rjmp	.+806    	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+		break;
+		case (I2C_RS_cond_ack):
+			// Clear start condition bit
+			clr_bit(I2C_TWCR, I2C_TWCR_TWSTA);
+ 1be:	a6 e5       	ldi	r26, 0x56	; 86
+ 1c0:	b0 e0       	ldi	r27, 0x00	; 0
+ 1c2:	e6 e5       	ldi	r30, 0x56	; 86
+ 1c4:	f0 e0       	ldi	r31, 0x00	; 0
+ 1c6:	80 81       	ld	r24, Z
+ 1c8:	8f 7d       	andi	r24, 0xDF	; 223
+ 1ca:	8c 93       	st	X, r24
+			// Load SLA+W in the data register
+			I2C_TWDR = copy_ptr_master_data_frame[data_frame_index];
+ 1cc:	a3 e2       	ldi	r26, 0x23	; 35
+ 1ce:	b0 e0       	ldi	r27, 0x00	; 0
+ 1d0:	20 91 69 00 	lds	r18, 0x0069
+ 1d4:	30 91 6a 00 	lds	r19, 0x006A
+ 1d8:	80 91 6b 00 	lds	r24, 0x006B
+ 1dc:	88 2f       	mov	r24, r24
+ 1de:	90 e0       	ldi	r25, 0x00	; 0
+ 1e0:	f9 01       	movw	r30, r18
+ 1e2:	e8 0f       	add	r30, r24
+ 1e4:	f9 1f       	adc	r31, r25
+ 1e6:	80 81       	ld	r24, Z
+ 1e8:	8c 93       	st	X, r24
+			// Increment the frame index pointing to next byte in the frame
+			data_frame_index++;
+ 1ea:	80 91 6b 00 	lds	r24, 0x006B
+ 1ee:	8f 5f       	subi	r24, 0xFF	; 255
+ 1f0:	80 93 6b 00 	sts	0x006B, r24
+			// Clearing TWI interrupt flage
+			set_bit(I2C_TWCR, I2C_TWCR_TWINT);
+ 1f4:	a6 e5       	ldi	r26, 0x56	; 86
+ 1f6:	b0 e0       	ldi	r27, 0x00	; 0
+ 1f8:	e6 e5       	ldi	r30, 0x56	; 86
+ 1fa:	f0 e0       	ldi	r31, 0x00	; 0
+ 1fc:	80 81       	ld	r24, Z
+ 1fe:	80 68       	ori	r24, 0x80	; 128
+ 200:	8c 93       	st	X, r24
+ 202:	70 c1       	rjmp	.+736    	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+		break;
+		case (I2C_SLA_W_ack):
+			// Load the first data byte
+			I2C_TWDR = copy_ptr_master_data_frame[data_frame_index];
+ 204:	a3 e2       	ldi	r26, 0x23	; 35
+ 206:	b0 e0       	ldi	r27, 0x00	; 0
+ 208:	20 91 69 00 	lds	r18, 0x0069
+ 20c:	30 91 6a 00 	lds	r19, 0x006A
+ 210:	80 91 6b 00 	lds	r24, 0x006B
+ 214:	88 2f       	mov	r24, r24
+ 216:	90 e0       	ldi	r25, 0x00	; 0
+ 218:	f9 01       	movw	r30, r18
+ 21a:	e8 0f       	add	r30, r24
+ 21c:	f9 1f       	adc	r31, r25
+ 21e:	80 81       	ld	r24, Z
+ 220:	8c 93       	st	X, r24
+			// Increment the frame index pointing to next byte in the frame
+			data_frame_index++;
+ 222:	80 91 6b 00 	lds	r24, 0x006B
+ 226:	8f 5f       	subi	r24, 0xFF	; 255
+ 228:	80 93 6b 00 	sts	0x006B, r24
+			// Clearing TWI interrupt flage
+			set_bit(I2C_TWCR, I2C_TWCR_TWINT);
+ 22c:	a6 e5       	ldi	r26, 0x56	; 86
+ 22e:	b0 e0       	ldi	r27, 0x00	; 0
+ 230:	e6 e5       	ldi	r30, 0x56	; 86
+ 232:	f0 e0       	ldi	r31, 0x00	; 0
+ 234:	80 81       	ld	r24, Z
+ 236:	80 68       	ori	r24, 0x80	; 128
+ 238:	8c 93       	st	X, r24
+ 23a:	54 c1       	rjmp	.+680    	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+		break;
+		case (I2C_DB_n_ack):
+			if((copy_ptr_master_data_frame[data_frame_index] == I2C_end_frame) || (data_frame_index > I2C_max_frame)){
+ 23c:	20 91 69 00 	lds	r18, 0x0069
+ 240:	30 91 6a 00 	lds	r19, 0x006A
+ 244:	80 91 6b 00 	lds	r24, 0x006B
+ 248:	88 2f       	mov	r24, r24
+ 24a:	90 e0       	ldi	r25, 0x00	; 0
+ 24c:	f9 01       	movw	r30, r18
+ 24e:	e8 0f       	add	r30, r24
+ 250:	f9 1f       	adc	r31, r25
+ 252:	80 81       	ld	r24, Z
+ 254:	8f 3f       	cpi	r24, 0xFF	; 255
+ 256:	21 f0       	breq	.+8      	; 0x260 <I2C_master_transmit_respond+0x150>
+ 258:	80 91 6b 00 	lds	r24, 0x006B
+ 25c:	89 30       	cpi	r24, 0x09	; 9
+ 25e:	c0 f0       	brcs	.+48     	; 0x290 <I2C_master_transmit_respond+0x180>
+				// Send stop condition
+				set_bit(I2C_TWCR, I2C_TWCR_TWSTO);
+ 260:	a6 e5       	ldi	r26, 0x56	; 86
+ 262:	b0 e0       	ldi	r27, 0x00	; 0
+ 264:	e6 e5       	ldi	r30, 0x56	; 86
+ 266:	f0 e0       	ldi	r31, 0x00	; 0
+ 268:	80 81       	ld	r24, Z
+ 26a:	80 61       	ori	r24, 0x10	; 16
+ 26c:	8c 93       	st	X, r24
+				// Reset I2C mode flag
+				I2C_mode = I2C_silent;
+ 26e:	8f ef       	ldi	r24, 0xFF	; 255
+ 270:	80 93 6c 00 	sts	0x006C, r24
+				// Reset the frame index
+				data_frame_index = I2C_S_frame;
+ 274:	10 92 6b 00 	sts	0x006B, r1
+				// Reset the frame pointer
+				copy_ptr_master_data_frame = NULL;
+ 278:	10 92 6a 00 	sts	0x006A, r1
+ 27c:	10 92 69 00 	sts	0x0069, r1
+				// Clearing TWI interrupt flage
+				set_bit(I2C_TWCR, I2C_TWCR_TWINT);
+ 280:	a6 e5       	ldi	r26, 0x56	; 86
+ 282:	b0 e0       	ldi	r27, 0x00	; 0
+ 284:	e6 e5       	ldi	r30, 0x56	; 86
+ 286:	f0 e0       	ldi	r31, 0x00	; 0
+ 288:	80 81       	ld	r24, Z
+ 28a:	80 68       	ori	r24, 0x80	; 128
+ 28c:	8c 93       	st	X, r24
+ 28e:	2a c1       	rjmp	.+596    	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+			}
+			else if(copy_ptr_master_data_frame[data_frame_index] == I2C_repeated_start){
+ 290:	20 91 69 00 	lds	r18, 0x0069
+ 294:	30 91 6a 00 	lds	r19, 0x006A
+ 298:	80 91 6b 00 	lds	r24, 0x006B
+ 29c:	88 2f       	mov	r24, r24
+ 29e:	90 e0       	ldi	r25, 0x00	; 0
+ 2a0:	f9 01       	movw	r30, r18
+ 2a2:	e8 0f       	add	r30, r24
+ 2a4:	f9 1f       	adc	r31, r25
+ 2a6:	80 81       	ld	r24, Z
+ 2a8:	8e 3f       	cpi	r24, 0xFE	; 254
+ 2aa:	f9 f4       	brne	.+62     	; 0x2ea <I2C_master_transmit_respond+0x1da>
+				// Reset I2C mode flag
+				I2C_mode = I2C_silent;
+ 2ac:	8f ef       	ldi	r24, 0xFF	; 255
+ 2ae:	80 93 6c 00 	sts	0x006C, r24
+				// Store the value of the new address for the repeated start
+				copy_ptr_master_data_frame = &copy_ptr_master_data_frame[++data_frame_index];
+ 2b2:	20 91 69 00 	lds	r18, 0x0069
+ 2b6:	30 91 6a 00 	lds	r19, 0x006A
+ 2ba:	80 91 6b 00 	lds	r24, 0x006B
+ 2be:	8f 5f       	subi	r24, 0xFF	; 255
+ 2c0:	80 93 6b 00 	sts	0x006B, r24
+ 2c4:	80 91 6b 00 	lds	r24, 0x006B
+ 2c8:	88 2f       	mov	r24, r24
+ 2ca:	90 e0       	ldi	r25, 0x00	; 0
+ 2cc:	82 0f       	add	r24, r18
+ 2ce:	93 1f       	adc	r25, r19
+ 2d0:	90 93 6a 00 	sts	0x006A, r25
+ 2d4:	80 93 69 00 	sts	0x0069, r24
+				// Reset the frame index
+				data_frame_index = I2C_S_frame;
+ 2d8:	10 92 6b 00 	sts	0x006B, r1
+				// Send repeated start
+				I2C_void_master_start_comm(copy_ptr_master_data_frame);
+ 2dc:	80 91 69 00 	lds	r24, 0x0069
+ 2e0:	90 91 6a 00 	lds	r25, 0x006A
+ 2e4:	0e 94 7e 02 	call	0x4fc	; 0x4fc <I2C_void_master_start_comm>
+ 2e8:	fd c0       	rjmp	.+506    	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+			}
+			else if(copy_ptr_master_data_frame[data_frame_index] == I2C_253_None){
+ 2ea:	20 91 69 00 	lds	r18, 0x0069
+ 2ee:	30 91 6a 00 	lds	r19, 0x006A
+ 2f2:	80 91 6b 00 	lds	r24, 0x006B
+ 2f6:	88 2f       	mov	r24, r24
+ 2f8:	90 e0       	ldi	r25, 0x00	; 0
+ 2fa:	f9 01       	movw	r30, r18
+ 2fc:	e8 0f       	add	r30, r24
+ 2fe:	f9 1f       	adc	r31, r25
+ 300:	80 81       	ld	r24, Z
+ 302:	8d 3f       	cpi	r24, 0xFD	; 253
+ 304:	09 f4       	brne	.+2      	; 0x308 <I2C_master_transmit_respond+0x1f8>
+ 306:	ee c0       	rjmp	.+476    	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+			}
+			else if(copy_ptr_master_data_frame[data_frame_index] == I2C_252_None){
+ 308:	20 91 69 00 	lds	r18, 0x0069
+ 30c:	30 91 6a 00 	lds	r19, 0x006A
+ 310:	80 91 6b 00 	lds	r24, 0x006B
+ 314:	88 2f       	mov	r24, r24
+ 316:	90 e0       	ldi	r25, 0x00	; 0
+ 318:	f9 01       	movw	r30, r18
+ 31a:	e8 0f       	add	r30, r24
+ 31c:	f9 1f       	adc	r31, r25
+ 31e:	80 81       	ld	r24, Z
+ 320:	8c 3f       	cpi	r24, 0xFC	; 252
+ 322:	09 f4       	brne	.+2      	; 0x326 <I2C_master_transmit_respond+0x216>
+ 324:	df c0       	rjmp	.+446    	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+			}
+			else if(copy_ptr_master_data_frame[data_frame_index] == I2C_251_None){
+ 326:	20 91 69 00 	lds	r18, 0x0069
+ 32a:	30 91 6a 00 	lds	r19, 0x006A
+ 32e:	80 91 6b 00 	lds	r24, 0x006B
+ 332:	88 2f       	mov	r24, r24
+ 334:	90 e0       	ldi	r25, 0x00	; 0
+ 336:	f9 01       	movw	r30, r18
+ 338:	e8 0f       	add	r30, r24
+ 33a:	f9 1f       	adc	r31, r25
+ 33c:	80 81       	ld	r24, Z
+ 33e:	8b 3f       	cpi	r24, 0xFB	; 251
+ 340:	09 f4       	brne	.+2      	; 0x344 <I2C_master_transmit_respond+0x234>
+ 342:	d0 c0       	rjmp	.+416    	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+			}
+			else{
+				// Load the data byte
+				I2C_TWDR = copy_ptr_master_data_frame[data_frame_index];
+ 344:	a3 e2       	ldi	r26, 0x23	; 35
+ 346:	b0 e0       	ldi	r27, 0x00	; 0
+ 348:	20 91 69 00 	lds	r18, 0x0069
+ 34c:	30 91 6a 00 	lds	r19, 0x006A
+ 350:	80 91 6b 00 	lds	r24, 0x006B
+ 354:	88 2f       	mov	r24, r24
+ 356:	90 e0       	ldi	r25, 0x00	; 0
+ 358:	f9 01       	movw	r30, r18
+ 35a:	e8 0f       	add	r30, r24
+ 35c:	f9 1f       	adc	r31, r25
+ 35e:	80 81       	ld	r24, Z
+ 360:	8c 93       	st	X, r24
+				// Increment the frame index pointing to next byte in the frame
+				data_frame_index++;
+ 362:	80 91 6b 00 	lds	r24, 0x006B
+ 366:	8f 5f       	subi	r24, 0xFF	; 255
+ 368:	80 93 6b 00 	sts	0x006B, r24
+				// Clearing TWI interrupt flag
+				set_bit(I2C_TWCR, I2C_TWCR_TWINT);
+ 36c:	a6 e5       	ldi	r26, 0x56	; 86
+ 36e:	b0 e0       	ldi	r27, 0x00	; 0
+ 370:	e6 e5       	ldi	r30, 0x56	; 86
+ 372:	f0 e0       	ldi	r31, 0x00	; 0
+ 374:	80 81       	ld	r24, Z
+ 376:	80 68       	ori	r24, 0x80	; 128
+ 378:	8c 93       	st	X, r24
+ 37a:	b4 c0       	rjmp	.+360    	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+			}
+		break;
+		case (I2C_SLA_W_nack):
+			if(err_handle == I2C_no_err){
+ 37c:	80 91 68 00 	lds	r24, 0x0068
+ 380:	88 23       	and	r24, r24
+ 382:	21 f5       	brne	.+72     	; 0x3cc <I2C_master_transmit_respond+0x2bc>
+				// Resend SLA+W
+				err_handle = I2C_20_R0;
+ 384:	82 e0       	ldi	r24, 0x02	; 2
+ 386:	80 93 68 00 	sts	0x0068, r24
+				// Load SLA+W in the data register
+				I2C_TWDR = copy_ptr_master_data_frame[--data_frame_index];
+ 38a:	a3 e2       	ldi	r26, 0x23	; 35
+ 38c:	b0 e0       	ldi	r27, 0x00	; 0
+ 38e:	20 91 69 00 	lds	r18, 0x0069
+ 392:	30 91 6a 00 	lds	r19, 0x006A
+ 396:	80 91 6b 00 	lds	r24, 0x006B
+ 39a:	81 50       	subi	r24, 0x01	; 1
+ 39c:	80 93 6b 00 	sts	0x006B, r24
+ 3a0:	80 91 6b 00 	lds	r24, 0x006B
+ 3a4:	88 2f       	mov	r24, r24
+ 3a6:	90 e0       	ldi	r25, 0x00	; 0
+ 3a8:	f9 01       	movw	r30, r18
+ 3aa:	e8 0f       	add	r30, r24
+ 3ac:	f9 1f       	adc	r31, r25
+ 3ae:	80 81       	ld	r24, Z
+ 3b0:	8c 93       	st	X, r24
+				// Increment the frame index pointing to next byte in the frame
+				data_frame_index++;
+ 3b2:	80 91 6b 00 	lds	r24, 0x006B
+ 3b6:	8f 5f       	subi	r24, 0xFF	; 255
+ 3b8:	80 93 6b 00 	sts	0x006B, r24
+				// Clearing TWI interrupt flage
+				set_bit(I2C_TWCR, I2C_TWCR_TWINT);
+ 3bc:	a6 e5       	ldi	r26, 0x56	; 86
+ 3be:	b0 e0       	ldi	r27, 0x00	; 0
+ 3c0:	e6 e5       	ldi	r30, 0x56	; 86
+ 3c2:	f0 e0       	ldi	r31, 0x00	; 0
+ 3c4:	80 81       	ld	r24, Z
+ 3c6:	80 68       	ori	r24, 0x80	; 128
+ 3c8:	8c 93       	st	X, r24
+ 3ca:	8c c0       	rjmp	.+280    	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+			}
+			else if(err_handle == I2C_20_R0){
+ 3cc:	80 91 68 00 	lds	r24, 0x0068
+ 3d0:	82 30       	cpi	r24, 0x02	; 2
+ 3d2:	79 f4       	brne	.+30     	; 0x3f2 <I2C_master_transmit_respond+0x2e2>
+				// Send repeated start
+				err_handle = I2C_20_R1;
+ 3d4:	84 e0       	ldi	r24, 0x04	; 4
+ 3d6:	80 93 68 00 	sts	0x0068, r24
+				// Reset I2C mode flag
+				I2C_mode = I2C_silent;
+ 3da:	8f ef       	ldi	r24, 0xFF	; 255
+ 3dc:	80 93 6c 00 	sts	0x006C, r24
+				// Reset the frame index
+				data_frame_index = I2C_S_frame;
+ 3e0:	10 92 6b 00 	sts	0x006B, r1
+				// Send repeated start
+				I2C_void_master_start_comm(copy_ptr_master_data_frame);
+ 3e4:	80 91 69 00 	lds	r24, 0x0069
+ 3e8:	90 91 6a 00 	lds	r25, 0x006A
+ 3ec:	0e 94 7e 02 	call	0x4fc	; 0x4fc <I2C_void_master_start_comm>
+ 3f0:	79 c0       	rjmp	.+242    	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+			}
+			else if(err_handle == I2C_20_R1){
+ 3f2:	80 91 68 00 	lds	r24, 0x0068
+ 3f6:	84 30       	cpi	r24, 0x04	; 4
+ 3f8:	09 f0       	breq	.+2      	; 0x3fc <I2C_master_transmit_respond+0x2ec>
+ 3fa:	74 c0       	rjmp	.+232    	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+				// Send stop codondition
+				err_handle = I2C_20_R2;
+ 3fc:	86 e0       	ldi	r24, 0x06	; 6
+ 3fe:	80 93 68 00 	sts	0x0068, r24
+				// Send stop condition
+				set_bit(I2C_TWCR, I2C_TWCR_TWSTO);
+ 402:	a6 e5       	ldi	r26, 0x56	; 86
+ 404:	b0 e0       	ldi	r27, 0x00	; 0
+ 406:	e6 e5       	ldi	r30, 0x56	; 86
+ 408:	f0 e0       	ldi	r31, 0x00	; 0
+ 40a:	80 81       	ld	r24, Z
+ 40c:	80 61       	ori	r24, 0x10	; 16
+ 40e:	8c 93       	st	X, r24
+				// Reset I2C mode flag
+				I2C_mode = I2C_silent;
+ 410:	8f ef       	ldi	r24, 0xFF	; 255
+ 412:	80 93 6c 00 	sts	0x006C, r24
+				// Reset the frame index
+				data_frame_index = I2C_S_frame;
+ 416:	10 92 6b 00 	sts	0x006B, r1
+				// Reset the frame pointer
+				copy_ptr_master_data_frame = NULL;
+ 41a:	10 92 6a 00 	sts	0x006A, r1
+ 41e:	10 92 69 00 	sts	0x0069, r1
+				// Clearing TWI interrupt flage
+				set_bit(I2C_TWCR, I2C_TWCR_TWINT);
+ 422:	a6 e5       	ldi	r26, 0x56	; 86
+ 424:	b0 e0       	ldi	r27, 0x00	; 0
+ 426:	e6 e5       	ldi	r30, 0x56	; 86
+ 428:	f0 e0       	ldi	r31, 0x00	; 0
+ 42a:	80 81       	ld	r24, Z
+ 42c:	80 68       	ori	r24, 0x80	; 128
+ 42e:	8c 93       	st	X, r24
+ 430:	59 c0       	rjmp	.+178    	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+			}
+		break;
+		case (I2C_DB_n_nack):
+			if(err_handle == I2C_no_err){
+ 432:	80 91 68 00 	lds	r24, 0x0068
+ 436:	88 23       	and	r24, r24
+ 438:	21 f5       	brne	.+72     	; 0x482 <I2C_master_transmit_respond+0x372>
+				// Resend the data byte (n)
+				err_handle = I2C_30_R0;
+ 43a:	88 e0       	ldi	r24, 0x08	; 8
+ 43c:	80 93 68 00 	sts	0x0068, r24
+				// Load the data byte
+				I2C_TWDR = copy_ptr_master_data_frame[--data_frame_index];
+ 440:	a3 e2       	ldi	r26, 0x23	; 35
+ 442:	b0 e0       	ldi	r27, 0x00	; 0
+ 444:	20 91 69 00 	lds	r18, 0x0069
+ 448:	30 91 6a 00 	lds	r19, 0x006A
+ 44c:	80 91 6b 00 	lds	r24, 0x006B
+ 450:	81 50       	subi	r24, 0x01	; 1
+ 452:	80 93 6b 00 	sts	0x006B, r24
+ 456:	80 91 6b 00 	lds	r24, 0x006B
+ 45a:	88 2f       	mov	r24, r24
+ 45c:	90 e0       	ldi	r25, 0x00	; 0
+ 45e:	f9 01       	movw	r30, r18
+ 460:	e8 0f       	add	r30, r24
+ 462:	f9 1f       	adc	r31, r25
+ 464:	80 81       	ld	r24, Z
+ 466:	8c 93       	st	X, r24
+				// Increment the frame index pointing to next byte in the frame
+				data_frame_index++;
+ 468:	80 91 6b 00 	lds	r24, 0x006B
+ 46c:	8f 5f       	subi	r24, 0xFF	; 255
+ 46e:	80 93 6b 00 	sts	0x006B, r24
+				// Clearing TWI interrupt flage
+				set_bit(I2C_TWCR, I2C_TWCR_TWINT);
+ 472:	a6 e5       	ldi	r26, 0x56	; 86
+ 474:	b0 e0       	ldi	r27, 0x00	; 0
+ 476:	e6 e5       	ldi	r30, 0x56	; 86
+ 478:	f0 e0       	ldi	r31, 0x00	; 0
+ 47a:	80 81       	ld	r24, Z
+ 47c:	80 68       	ori	r24, 0x80	; 128
+ 47e:	8c 93       	st	X, r24
+ 480:	31 c0       	rjmp	.+98     	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+			}
+			else if(err_handle == I2C_30_R0){
+ 482:	80 91 68 00 	lds	r24, 0x0068
+ 486:	88 30       	cpi	r24, 0x08	; 8
+ 488:	79 f4       	brne	.+30     	; 0x4a8 <I2C_master_transmit_respond+0x398>
+				// Send repeated start
+				err_handle = I2C_30_R1;
+ 48a:	8a e0       	ldi	r24, 0x0A	; 10
+ 48c:	80 93 68 00 	sts	0x0068, r24
+				// Reset I2C mode flag
+				I2C_mode = I2C_silent;
+ 490:	8f ef       	ldi	r24, 0xFF	; 255
+ 492:	80 93 6c 00 	sts	0x006C, r24
+				// Reset the frame index
+				data_frame_index = I2C_S_frame;
+ 496:	10 92 6b 00 	sts	0x006B, r1
+				// Send repeated start
+				I2C_void_master_start_comm(copy_ptr_master_data_frame);
+ 49a:	80 91 69 00 	lds	r24, 0x0069
+ 49e:	90 91 6a 00 	lds	r25, 0x006A
+ 4a2:	0e 94 7e 02 	call	0x4fc	; 0x4fc <I2C_void_master_start_comm>
+ 4a6:	1e c0       	rjmp	.+60     	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+			}
+			else if(err_handle == I2C_30_R1){
+ 4a8:	80 91 68 00 	lds	r24, 0x0068
+ 4ac:	8a 30       	cpi	r24, 0x0A	; 10
+ 4ae:	d1 f4       	brne	.+52     	; 0x4e4 <I2C_master_transmit_respond+0x3d4>
+				// Send stop condition
+				err_handle = I2C_30_R2;
+ 4b0:	8c e0       	ldi	r24, 0x0C	; 12
+ 4b2:	80 93 68 00 	sts	0x0068, r24
+				// Send stop condition
+				set_bit(I2C_TWCR, I2C_TWCR_TWSTO);
+ 4b6:	a6 e5       	ldi	r26, 0x56	; 86
+ 4b8:	b0 e0       	ldi	r27, 0x00	; 0
+ 4ba:	e6 e5       	ldi	r30, 0x56	; 86
+ 4bc:	f0 e0       	ldi	r31, 0x00	; 0
+ 4be:	80 81       	ld	r24, Z
+ 4c0:	80 61       	ori	r24, 0x10	; 16
+ 4c2:	8c 93       	st	X, r24
+				// Reset I2C mode flag
+				I2C_mode = I2C_silent;
+ 4c4:	8f ef       	ldi	r24, 0xFF	; 255
+ 4c6:	80 93 6c 00 	sts	0x006C, r24
+				// Reset the frame index
+				data_frame_index = I2C_S_frame;
+ 4ca:	10 92 6b 00 	sts	0x006B, r1
+				// Reset the frame pointer
+				copy_ptr_master_data_frame = NULL;
+ 4ce:	10 92 6a 00 	sts	0x006A, r1
+ 4d2:	10 92 69 00 	sts	0x0069, r1
+				// Clearing TWI interrupt flag
+				set_bit(I2C_TWCR, I2C_TWCR_TWINT);
+ 4d6:	a6 e5       	ldi	r26, 0x56	; 86
+ 4d8:	b0 e0       	ldi	r27, 0x00	; 0
+ 4da:	e6 e5       	ldi	r30, 0x56	; 86
+ 4dc:	f0 e0       	ldi	r31, 0x00	; 0
+ 4de:	80 81       	ld	r24, Z
+ 4e0:	80 68       	ori	r24, 0x80	; 128
+ 4e2:	8c 93       	st	X, r24
+			}
+		break;
+	}
+}
+ 4e4:	0f 90       	pop	r0
+ 4e6:	0f 90       	pop	r0
+ 4e8:	cf 91       	pop	r28
+ 4ea:	df 91       	pop	r29
+ 4ec:	08 95       	ret
+
+000004ee <I2C_master_recive_respond>:
+
+
+void I2C_master_recive_respond(void ){
+ 4ee:	df 93       	push	r29
+ 4f0:	cf 93       	push	r28
+ 4f2:	cd b7       	in	r28, 0x3d	; 61
+ 4f4:	de b7       	in	r29, 0x3e	; 62
 	/*
 	 *
 	 */
 
 }
-  bc:	0f 90       	pop	r0
-  be:	0f 90       	pop	r0
-  c0:	cf 91       	pop	r28
-  c2:	df 91       	pop	r29
-  c4:	08 95       	ret
+ 4f6:	cf 91       	pop	r28
+ 4f8:	df 91       	pop	r29
+ 4fa:	08 95       	ret
 
-000000c6 <__vector_19>:
+000004fc <I2C_void_master_start_comm>:
 
-void __vector_19(void){
-  c6:	1f 92       	push	r1
-  c8:	0f 92       	push	r0
-  ca:	0f b6       	in	r0, 0x3f	; 63
-  cc:	0f 92       	push	r0
-  ce:	11 24       	eor	r1, r1
-  d0:	df 93       	push	r29
-  d2:	cf 93       	push	r28
-  d4:	cd b7       	in	r28, 0x3d	; 61
-  d6:	de b7       	in	r29, 0x3e	; 62
+
+void I2C_void_master_start_comm(u8* copy_ptr_data_frame ){
+ 4fc:	df 93       	push	r29
+ 4fe:	cf 93       	push	r28
+ 500:	00 d0       	rcall	.+0      	; 0x502 <I2C_void_master_start_comm+0x6>
+ 502:	0f 92       	push	r0
+ 504:	cd b7       	in	r28, 0x3d	; 61
+ 506:	de b7       	in	r29, 0x3e	; 62
+ 508:	9a 83       	std	Y+2, r25	; 0x02
+ 50a:	89 83       	std	Y+1, r24	; 0x01
+	/*
+	 *
+	 */
+	// Check data frame validity and mode flag
+	if((copy_ptr_data_frame[0] != I2C_end_frame) && (I2C_mode == I2C_silent)){
+ 50c:	e9 81       	ldd	r30, Y+1	; 0x01
+ 50e:	fa 81       	ldd	r31, Y+2	; 0x02
+ 510:	80 81       	ld	r24, Z
+ 512:	8f 3f       	cpi	r24, 0xFF	; 255
+ 514:	11 f1       	breq	.+68     	; 0x55a <I2C_void_master_start_comm+0x5e>
+ 516:	80 91 6c 00 	lds	r24, 0x006C
+ 51a:	8f 3f       	cpi	r24, 0xFF	; 255
+ 51c:	f1 f4       	brne	.+60     	; 0x55a <I2C_void_master_start_comm+0x5e>
+		// Set I2C mode flag to master mode R/W
+		I2C_mode = ((get_bit(copy_ptr_data_frame[0], 0) == 0) ? 0x02 : 0x04);
+ 51e:	e9 81       	ldd	r30, Y+1	; 0x01
+ 520:	fa 81       	ldd	r31, Y+2	; 0x02
+ 522:	80 81       	ld	r24, Z
+ 524:	88 2f       	mov	r24, r24
+ 526:	90 e0       	ldi	r25, 0x00	; 0
+ 528:	81 70       	andi	r24, 0x01	; 1
+ 52a:	90 70       	andi	r25, 0x00	; 0
+ 52c:	00 97       	sbiw	r24, 0x00	; 0
+ 52e:	19 f4       	brne	.+6      	; 0x536 <I2C_void_master_start_comm+0x3a>
+ 530:	82 e0       	ldi	r24, 0x02	; 2
+ 532:	8b 83       	std	Y+3, r24	; 0x03
+ 534:	02 c0       	rjmp	.+4      	; 0x53a <I2C_void_master_start_comm+0x3e>
+ 536:	84 e0       	ldi	r24, 0x04	; 4
+ 538:	8b 83       	std	Y+3, r24	; 0x03
+ 53a:	8b 81       	ldd	r24, Y+3	; 0x03
+ 53c:	80 93 6c 00 	sts	0x006C, r24
+		// Store the data frame pointer
+		copy_ptr_master_data_frame = copy_ptr_data_frame;
+ 540:	89 81       	ldd	r24, Y+1	; 0x01
+ 542:	9a 81       	ldd	r25, Y+2	; 0x02
+ 544:	90 93 6a 00 	sts	0x006A, r25
+ 548:	80 93 69 00 	sts	0x0069, r24
+		// Send start cond
+		set_bit(I2C_TWCR, I2C_TWCR_TWSTA);
+ 54c:	a6 e5       	ldi	r26, 0x56	; 86
+ 54e:	b0 e0       	ldi	r27, 0x00	; 0
+ 550:	e6 e5       	ldi	r30, 0x56	; 86
+ 552:	f0 e0       	ldi	r31, 0x00	; 0
+ 554:	80 81       	ld	r24, Z
+ 556:	80 62       	ori	r24, 0x20	; 32
+ 558:	8c 93       	st	X, r24
+	}
+	else{
+
+	}
+}
+ 55a:	0f 90       	pop	r0
+ 55c:	0f 90       	pop	r0
+ 55e:	0f 90       	pop	r0
+ 560:	cf 91       	pop	r28
+ 562:	df 91       	pop	r29
+ 564:	08 95       	ret
+
+00000566 <I2C_slave_transmit_respond>:
+
+
+void I2C_slave_transmit_respond(void ){
+ 566:	df 93       	push	r29
+ 568:	cf 93       	push	r28
+ 56a:	cd b7       	in	r28, 0x3d	; 61
+ 56c:	de b7       	in	r29, 0x3e	; 62
 	/*
 	 *
 	 */
 
 }
-  d8:	cf 91       	pop	r28
-  da:	df 91       	pop	r29
-  dc:	0f 90       	pop	r0
-  de:	0f be       	out	0x3f, r0	; 63
-  e0:	0f 90       	pop	r0
-  e2:	1f 90       	pop	r1
-  e4:	18 95       	reti
+ 56e:	cf 91       	pop	r28
+ 570:	df 91       	pop	r29
+ 572:	08 95       	ret
 
-000000e6 <_exit>:
-  e6:	f8 94       	cli
+00000574 <I2C_slave_recive_respond>:
 
-000000e8 <__stop_program>:
-  e8:	ff cf       	rjmp	.-2      	; 0xe8 <__stop_program>
+
+void I2C_slave_recive_respond(void ){
+ 574:	df 93       	push	r29
+ 576:	cf 93       	push	r28
+ 578:	cd b7       	in	r28, 0x3d	; 61
+ 57a:	de b7       	in	r29, 0x3e	; 62
+	/*
+	 *
+	 */
+
+}
+ 57c:	cf 91       	pop	r28
+ 57e:	df 91       	pop	r29
+ 580:	08 95       	ret
+
+00000582 <__vector_19>:
+
+
+void __vector_19(void ){
+ 582:	1f 92       	push	r1
+ 584:	0f 92       	push	r0
+ 586:	0f b6       	in	r0, 0x3f	; 63
+ 588:	0f 92       	push	r0
+ 58a:	11 24       	eor	r1, r1
+ 58c:	2f 93       	push	r18
+ 58e:	3f 93       	push	r19
+ 590:	4f 93       	push	r20
+ 592:	5f 93       	push	r21
+ 594:	6f 93       	push	r22
+ 596:	7f 93       	push	r23
+ 598:	8f 93       	push	r24
+ 59a:	9f 93       	push	r25
+ 59c:	af 93       	push	r26
+ 59e:	bf 93       	push	r27
+ 5a0:	ef 93       	push	r30
+ 5a2:	ff 93       	push	r31
+ 5a4:	df 93       	push	r29
+ 5a6:	cf 93       	push	r28
+ 5a8:	00 d0       	rcall	.+0      	; 0x5aa <__vector_19+0x28>
+ 5aa:	cd b7       	in	r28, 0x3d	; 61
+ 5ac:	de b7       	in	r29, 0x3e	; 62
+	/*
+	 *
+	 */
+	if (I2C_mode == I2C_silent){
+ 5ae:	80 91 6c 00 	lds	r24, 0x006C
+ 5b2:	8f 3f       	cpi	r24, 0xFF	; 255
+ 5b4:	31 f4       	brne	.+12     	; 0x5c2 <__vector_19+0x40>
+		I2C_mode = (I2C_TWSR & I2C_TWS_mask);
+ 5b6:	e1 e2       	ldi	r30, 0x21	; 33
+ 5b8:	f0 e0       	ldi	r31, 0x00	; 0
+ 5ba:	80 81       	ld	r24, Z
+ 5bc:	88 7f       	andi	r24, 0xF8	; 248
+ 5be:	80 93 6c 00 	sts	0x006C, r24
+	}
+	switch(I2C_mode){
+ 5c2:	80 91 6c 00 	lds	r24, 0x006C
+ 5c6:	28 2f       	mov	r18, r24
+ 5c8:	30 e0       	ldi	r19, 0x00	; 0
+ 5ca:	3a 83       	std	Y+2, r19	; 0x02
+ 5cc:	29 83       	std	Y+1, r18	; 0x01
+ 5ce:	89 81       	ldd	r24, Y+1	; 0x01
+ 5d0:	9a 81       	ldd	r25, Y+2	; 0x02
+ 5d2:	84 30       	cpi	r24, 0x04	; 4
+ 5d4:	91 05       	cpc	r25, r1
+ 5d6:	c9 f0       	breq	.+50     	; 0x60a <__vector_19+0x88>
+ 5d8:	29 81       	ldd	r18, Y+1	; 0x01
+ 5da:	3a 81       	ldd	r19, Y+2	; 0x02
+ 5dc:	25 30       	cpi	r18, 0x05	; 5
+ 5de:	31 05       	cpc	r19, r1
+ 5e0:	34 f4       	brge	.+12     	; 0x5ee <__vector_19+0x6c>
+ 5e2:	89 81       	ldd	r24, Y+1	; 0x01
+ 5e4:	9a 81       	ldd	r25, Y+2	; 0x02
+ 5e6:	82 30       	cpi	r24, 0x02	; 2
+ 5e8:	91 05       	cpc	r25, r1
+ 5ea:	61 f0       	breq	.+24     	; 0x604 <__vector_19+0x82>
+ 5ec:	16 c0       	rjmp	.+44     	; 0x61a <__vector_19+0x98>
+ 5ee:	29 81       	ldd	r18, Y+1	; 0x01
+ 5f0:	3a 81       	ldd	r19, Y+2	; 0x02
+ 5f2:	20 36       	cpi	r18, 0x60	; 96
+ 5f4:	31 05       	cpc	r19, r1
+ 5f6:	79 f0       	breq	.+30     	; 0x616 <__vector_19+0x94>
+ 5f8:	89 81       	ldd	r24, Y+1	; 0x01
+ 5fa:	9a 81       	ldd	r25, Y+2	; 0x02
+ 5fc:	88 3a       	cpi	r24, 0xA8	; 168
+ 5fe:	91 05       	cpc	r25, r1
+ 600:	39 f0       	breq	.+14     	; 0x610 <__vector_19+0x8e>
+ 602:	0b c0       	rjmp	.+22     	; 0x61a <__vector_19+0x98>
+		case I2C_master_transmit:
+			I2C_master_transmit_respond();
+ 604:	0e 94 88 00 	call	0x110	; 0x110 <I2C_master_transmit_respond>
+ 608:	08 c0       	rjmp	.+16     	; 0x61a <__vector_19+0x98>
+			break;
+		case I2C_master_recive:
+			I2C_master_recive_respond();
+ 60a:	0e 94 77 02 	call	0x4ee	; 0x4ee <I2C_master_recive_respond>
+ 60e:	05 c0       	rjmp	.+10     	; 0x61a <__vector_19+0x98>
+			break;
+		case I2C_slave_transmit:
+			I2C_slave_transmit_respond();
+ 610:	0e 94 b3 02 	call	0x566	; 0x566 <I2C_slave_transmit_respond>
+ 614:	02 c0       	rjmp	.+4      	; 0x61a <__vector_19+0x98>
+			break;
+		case I2C_slave_recive:
+			I2C_slave_recive_respond();
+ 616:	0e 94 ba 02 	call	0x574	; 0x574 <I2C_slave_recive_respond>
+			break;
+	}
+}
+ 61a:	0f 90       	pop	r0
+ 61c:	0f 90       	pop	r0
+ 61e:	cf 91       	pop	r28
+ 620:	df 91       	pop	r29
+ 622:	ff 91       	pop	r31
+ 624:	ef 91       	pop	r30
+ 626:	bf 91       	pop	r27
+ 628:	af 91       	pop	r26
+ 62a:	9f 91       	pop	r25
+ 62c:	8f 91       	pop	r24
+ 62e:	7f 91       	pop	r23
+ 630:	6f 91       	pop	r22
+ 632:	5f 91       	pop	r21
+ 634:	4f 91       	pop	r20
+ 636:	3f 91       	pop	r19
+ 638:	2f 91       	pop	r18
+ 63a:	0f 90       	pop	r0
+ 63c:	0f be       	out	0x3f, r0	; 63
+ 63e:	0f 90       	pop	r0
+ 640:	1f 90       	pop	r1
+ 642:	18 95       	reti
+
+00000644 <_exit>:
+ 644:	f8 94       	cli
+
+00000646 <__stop_program>:
+ 646:	ff cf       	rjmp	.-2      	; 0x646 <__stop_program>
