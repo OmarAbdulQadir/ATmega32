@@ -1,5 +1,5 @@
 # ATmega32
-Apps and Drivers for ATmega32 microcontroller. This was made for educational purposes, and reporting any test results, comments, or bugs are welcomed.
+Apps and Drivers for ATmega32 microcontroller. This was made for educational purposes. Reporting any test results, comments, or bugs will be appreciated.
 
 This Repo consists of four main folder types:
   1. LIB: Folder that contains the vertical layer's files (standard libraries), There is only one "LIB" folder.
