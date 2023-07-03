@@ -34,9 +34,12 @@
 	
 	/* public functions decleration */
 	// Initiate the I2C prepheral
-	void I2C_void_master_inti(u8 );
+	void I2C_void_master_init(u8 );
 	// Start communication in master mode
-	void I2C_void_master_start_comm(u8 * );
-	
+	u8 I2C_void_master_start_comm(u8 * );
+	// Get the pointer to the buffered data frame
+	u8* I2C_u8_ptr_get_buffered_frame(void );
+	// Set buffered data frame
+	void I2C_u8_ptr_set_buffered_frame(u8* );
 
 #endif /* end SPI_INTERFACE_H */

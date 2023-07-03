@@ -31,6 +31,10 @@
 	#define I2C_S_frame			0
 	// Maxmum number bytes per frame
 	#define I2C_max_frame		8
+	// Data frame index start
+	#define I2C_D_frame_St		0
+	// Data frame max index
+	#define I2C_D_frame_max		7
 	// No error
 	#define I2C_no_err			0
 	// Error SLA+W recive NACK respond resend SLA+W
@@ -45,14 +49,24 @@
 	#define I2C_30_R1			10
 	// Error DBn recive NACK respond Stop condition
 	#define I2C_30_R2			12
+	// Error SLA+R recive NACK respond resend SLA+R
+	#define I2C_48_R0			14
+	// Error SLA+R recive NACK respond repeated start
+	#define I2C_48_R1			16
+	// Error SLA+R recive NACK respond stop condition
+	#define I2C_48_R2			18
+	// Error DBn recive NACK respond recive DBn again
+	#define I2C_58_R0			20
+	// Error DBn recive NACK respond repeated start
+	#define I2C_58_R1			22
+	// Error DBn recive NACK respond stop condition
+	#define I2C_58_R2			24
 	// Enable
 	#define I2C_enable			1
 	// Disable
 	#define I2C_disable			0
 	// Status word mask
 	#define I2C_TWS_mask		0b11111000
-	// Index reset
-	#define I2C_Idx_reset		0
 	// Slave mode value
 	#define I2C_slave			0
 	// Master mode value
@@ -96,6 +110,8 @@
 	/* Helper functions */
 	// Get the value of the status regester at this time
 	u8 I2C_get_status_word(void );
+	// Master follow when artbitration is lost
+	void I2C_Arb_lost_respond(void );
 	// Master follow transmission process
 	void I2C_master_transmit_respond(void );
 	// Master follow reciving process

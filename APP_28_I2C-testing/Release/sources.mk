@@ -23,5 +23,6 @@ C_DEPS :=
 SUBDIRS := \
 DIO \
 IIC \
+LCD \
 SRS \
 

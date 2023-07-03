@@ -19,14 +19,14 @@
 	// LCD 4bit mode value
 	#define _4bit_interface 1
 	// LCD Selection of the mode
-	#define _LCD_interface_ _8bit_interface
+	#define _LCD_interface_ _4bit_interface
 	
 	/* Ports definition */
 	// "For 8 bit connection" All port B0-B7 is connected to LCD D0-D7 respectively
 	// "For 4 bit connection" All port B4-B7 is connected to LCD D4-D7 respectively
-	#define lcd_data_port 	PORTC
+	#define lcd_data_port 	PORTA
 	// Control pins is connected to the same port and defined below
-	#define lcd_ctrl_port 	PORTD
+	#define lcd_ctrl_port 	PORTA
 
 	/* Control pins definition */
 	// Enable pin
