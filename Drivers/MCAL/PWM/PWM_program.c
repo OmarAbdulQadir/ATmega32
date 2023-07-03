@@ -1,6 +1,6 @@
 /*******************************************************************/
-/***               Date: 09/6/2023	Day: Friday		             ***/
-/*** 	 TIMER driver for the microcontroller ATMega 32			 ***/
+/***               Date: 03/7/2023	Day: Monday 		         ***/
+/*** 	 PWM driver for the microcontroller ATMega 32			 ***/
 /***     Created By: Omar Abdul Qadir	 Version= 1.0            ***/
 /*******************************************************************/
 /***         Note: All the data in the file is readable,         ***/
@@ -14,9 +14,9 @@
 #include "../../../LIB/STD_TYPES.h"
 
 //Private libraries Section
-#include "TIMER_Register.h"
-#include "TIMER_Private.h"
-#include "TIMER_interface.h"
+#include "PWM_Register.h"
+#include "PWM_Private.h"
+#include "PWM_interface.h"
 
 
 //Global variables

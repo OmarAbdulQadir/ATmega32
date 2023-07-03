@@ -1,33 +1,34 @@
 /*
  * main.c
  *
- *  Created on: Jun 10, 2023
+ *  Created on: Jul 3, 2023
  *      Author: Omar A.Qadir
  */
 
 
-// Standard libraries Section
-#include <util/delay.h>
-#include "../../LIB/BIT_MATH.h"
+// STD Libraries section
 #include "../../LIB/STD_TYPES.h"
-
-// Drivers Section
-
-
-// Functions decleration
+#include "../../LIB/BiT_MATH.h"
 
 
-// Global variables section
+// Drivers section
+#include "../../Drivers/MCAL/DIO/DIO_interface.h"
+#include "../../Drivers/MCAL/PWM/PWM_interface.h"
+
+// Macros section
 
 
+// Global Variable section
+
+
+// Main function
 int main(void ){
 	// Setup section
 
-	while (1){
+	while(1){
 		// Loop section
 
 	}
 	return 0;
 }
 
-// Functions implementation
