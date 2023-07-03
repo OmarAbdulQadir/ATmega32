@@ -14,6 +14,7 @@
 // Drivers section
 #include "../../Drivers/MCAL/DIO/DIO_interface.h"
 #include "../../Drivers/MCAL/PWM/PWM_interface.h"
+#include "../../Drivers/MCAL/ADC/ADC_interface.h"
 
 // Macros section
 
@@ -27,13 +28,24 @@ int main(void ){
 
 	DIO_void_set_pin_dir(PORTB, B3, OUTPUT);
 
-	u8 preload_val[] = {0, 175};
+	u8 preload_val[] = {0, 126};
 	PWM_config PWM_config_struct = {PWM_fast, PWM_fast_clr_top, PWM_1024PRE, 0, preload_val};
 	gen_PWM(&PWM_config_struct);
 
+	ADC_config_struct ADC_config_struct = {0, 3, 0, 0, 0};
+	ADC_void_init();
+	ADC_void_config(&ADC_config_struct);
+	u16 analog_data = 0, last_analog_data = 0;
+	ADC_void_read_data(&analog_data);
+
 	while(1){
 		// Loop section
-
+		if(analog_data != last_analog_data){
+			preload_val[1] = analog_data/4;
+			gen_PWM(&PWM_config_struct);
+			last_analog_data = analog_data;
+		}
+		ADC_void_read_data(&analog_data);
 	}
 	return 0;
 }
