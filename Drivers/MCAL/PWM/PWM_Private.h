@@ -13,70 +13,52 @@
 #define PWM_PRIVATE_H
 
 	/* Private macros */
-	// INIT reference start
-	#define INIT_ref_st 		0
-	// INIT reference end
-	#define INIT_ref_ed 		7
 	// Bottom value
-	#define TIMER_BOTTOM 		0
+	#define PWM_BOTTOM 			0
 	// Max value
-	#define	TIMER_MAX			0xFF
+	#define	PWM_MAX				0xFF
 	// Enable Value
-	#define TIMER_ENABLE		1
+	#define PWM_ENABLE			1
 	// Disable value
-	#define TIMER_DISABLE		0
+	#define PWM_DISABLE			0
 	// Null Definition
 	#define NULL 				(void* ) 0
 	// TCCR0 Register reset
-	#define TIMER0_TCCR_Reset	0b00000000
+	#define PWM0_TCCR_Reset		0b00000000
 	// TIMSK0 Register reset
-	#define TIMER0_TIMSK_Reset	0b11111100
+	#define PWM0_TIMSK_Reset	0b11111100
 	// TCCR2 Register reset
-	#define TIMER2_TCCR_Reset	0b00000000
+	#define PWM2_TCCR_Reset		0b00000000
 	// TIMSK2 Register reset
-	#define TIMER2_TIMSK_Reset	0b00111111
+	#define PWM2_TIMSK_Reset	0b00111111
 	// Timer stop mask
-	#define TIMER_STOP_MASK		0b11111000
-	// One bit shift
-	#define BIT_SHIFT1			1
+	#define PWM_STOP_MASK		0b11111000
+	// TCNT index
+	#define PWM_TCNT_i			0
+	// OCR index
+	#define PWM_OCR_i			1
+	// ICR index
+	#define PWM_ICR_i			2
 	
 	
 	/* Waveform generattion modes references */
-	// TIMER 0 Normal mode
-	#define TIMER0_NORM		0
-	// TIMER 0 CTC mode
-	#define TIMER0_CTC		2
-	// TIMER 1 Normel mode
-	#define TIMER1_NORM		0
-	// TIMER 1 CTC top - OCR
-	#define TIMER1_CTC_OCR	4
-	// TIMER 1 CTC top - ICR
-	#define TIMER1_CTC_ICR	12
-	// TIMER 2 Normal mode
-	#define TIMER2_NORM		0
-	// TIMER 2 CTC mode
-	#define TIMER2_CTC		2
-	// Timer0 separator
-	#define TIMER0_sep		1
-	// Timer1 Separator
-	#define TIMER1_sep		4
 
 	/* Bit numbers of timer 0 */
 	// Timer/Counter Control Register
 	// Waveform Generation Mode bit 0
-	#define TIMER_WGM00			6
+	#define PWM_WGM00			6
 	// Waveform Generation Mode bit 1
-	#define TIMER_WGM01			3
+	#define PWM_WGM01			3
 	// Compare Match Output Mode bit 1
-	#define TIMER_COM01			5
+	#define PWM_COM01			5
 	// Compare Match Output Mode bit 0
-	#define TIMER_COM00			4
+	#define PWM_COM00			4
 	// Clock Select bit 2
-	#define TIMER_CS02			2
+	#define PWM_CS02			2
 	// Clock Select bit 1
-	#define TIMER_CS01			1
+	#define PWM_CS01			1
 	// Clock Select bit 0
-	#define TIMER_CS00			0
+	#define PWM_CS00			0
 
 
 	/* Bit numbers of timer 1 */
@@ -86,26 +68,26 @@
 	/* Bit numbers of timer 2 */
 	// Timer/Counter Control Register
 	// Waveform Generation Mode bit 0
-	#define TIMER_WGM20			6
+	#define PWM_WGM20			6
 	// Waveform Generation Mode bit 1
-	#define TIMER_WGM21			3
+	#define PWM_WGM21			3
 	// Compare Match Output Mode bit 1
-	#define TIMER_COM21			5
+	#define PWM_COM21			5
 	// Compare Match Output Mode bit 0
-	#define TIMER_COM20			4
+	#define PWM_COM20			4
 	// Clock Select bit 2
-	#define TIMER_CS22			2
+	#define PWM_CS22			2
 	// Clock Select bit 1
-	#define TIMER_CS21			1
+	#define PWM_CS21			1
 	// Clock Select bit 0
-	#define TIMER_CS20			0
+	#define PWM_CS20			0
 
 
 	// Timer/Counter Interrupt Mask Register
 	// Timer/Counter0 Overflow Interrupt Enable
-	#define TIMER_TOIE0			0
+	#define PWM_TOIE0			0
 	// Timer/Counter0 Output Compare Match Interrupt Enable
-	#define TIMER_OCIE0			1
+	#define PWM_OCIE0			1
 	//
 
 	//
@@ -115,13 +97,13 @@
 	//
 
 	// Timer/Counter2 Overflow Interrupt Enable
-	#define TIMER_TOIE2			6
+	#define PWM_TOIE2			6
 	// Timer/Counter2 Output Compare Match Interrupt Enable
-	#define TIMER_OCIE2			7
+	#define PWM_OCIE2			7
 
 	//Status Register
 	// Global interrupt
-	#define TIMER_Glob_Init_bit	7
+	#define PWM_Glob_Init_bit	7
 
 
 	/* Private functions decleration */

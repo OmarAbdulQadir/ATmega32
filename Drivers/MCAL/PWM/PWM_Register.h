@@ -23,8 +23,8 @@
 	#define PWM_OCR0		*((volatile u8* ) 0x5C)
 
 	/* Timer 1 Registers */
-	#define PWM_TCCR1A	*((volatile u8* ) 0x4F)
-	#define PWM_TCCR1B	*((volatile u8* ) 0x4E)
+	#define PWM_TCCR1A		*((volatile u8* ) 0x4F)
+	#define PWM_TCCR1B		*((volatile u8* ) 0x4E)
 	#define PWM_TCNT1		*((volatile u16*) 0x4C)
 	#define PWM_OCR1A		*((volatile u16*) 0x4A)
 	#define PWM_OCR1B		*((volatile u16*) 0x48)

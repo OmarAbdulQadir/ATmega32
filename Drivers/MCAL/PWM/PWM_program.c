@@ -22,112 +22,97 @@
 //Global variables
 // Call back function container
 static void (*call_back_function[7])(void);
-// pointer to temporary configuration struct
-static timer_config* copy_ptr_temp_timer_config = NULL;
 
 
 /* Implementing of the driver functions */
-void TIMER_init(timer_config* ptr_timer_config){
+u8 gen_PWM(PWM_config* copy_ptr_PWM_config){
 	/*
 	 *
 	 */
-	copy_ptr_temp_timer_config = ptr_timer_config;
-}
-
-void TIMER_set_callback(u8 copy_int_ref, void (*copy_ptr_call_back_function)(void) ){
-	/*
-	 *
-	 */
-	if((copy_int_ref >= 0)&&(copy_int_ref <= 6))
-		call_back_function[copy_int_ref] = copy_ptr_call_back_function;
-}
-
-void TIMER_config(void ){
-	/*
-	 *
-	 */
-	if (copy_ptr_temp_timer_config != NULL){
-		if((copy_ptr_temp_timer_config -> WGM) <= TIMER0_sep){
-			// Set preload value of the TCNT register (1)
-			TIMER_TCNT0 = *((u8*)(copy_ptr_temp_timer_config -> preload));
-			// Set preload value of the OCR or ICR register (2)
-			TIMER_OCR0 = *(((u8*)(copy_ptr_temp_timer_config -> preload))+1);
-			// Reset timer control register (3)
-			TIMER_TCCR0 &= TIMER0_TCCR_Reset;
-			// Reset timer interrupt mask register (timer 0 interrupt bits) (4)
-			TIMER_TIMSK &= TIMER0_TIMSK_Reset;
-			// Set wave form generation mode (5)
-			// Enable the interrupt bit (6)
-			if((copy_ptr_temp_timer_config -> WGM) == 0){
-				// Normal mode 
-				TIMER_TCCR0 |= ((get_bit(TIMER0_NORM, 1) << TIMER_WGM01) | (get_bit(TIMER0_NORM, 0) << TIMER_WGM00));	//0b0000000
-				// In normal mode the overflow interrupt is enabled
-				TIMER_TIMSK |= ((TIMER_DISABLE << TIMER_OCIE0) | (TIMER_ENABLE << TIMER_TOIE0));	//0bxxxxxx01
-			}
-			else{
-				// Clear timer on compare mode
-				TIMER_TCCR0 |= ((get_bit(TIMER0_CTC, 1) << TIMER_WGM01) | (get_bit(TIMER0_CTC, 0) << TIMER_WGM00));	//0b00001000
-				// In compare match mode the compare match interrupt is enabled
-				TIMER_TIMSK |= ((TIMER_ENABLE << TIMER_OCIE0) | (TIMER_DISABLE << TIMER_TOIE0));	//0bxxxxxx10
-			}
-			// Set output compare mode (7)
-			TIMER_TCCR0 |= ((copy_ptr_temp_timer_config -> COM) << TIMER_COM00);
-			// Set prescaler value (8)
-			TIMER_TCCR0 |= (copy_ptr_temp_timer_config -> CS);
-			// Enable Global interrupt (9)
-			TIMER_SREG |= (TIMER_ENABLE << TIMER_Glob_Init_bit);
+	if((copy_ptr_PWM_config -> Timer) == PWM_TIMER0){
+		// Timer 0 control register reset
+		PWM_TCCR0 = PWM0_TCCR_Reset;
+		// Reconfigure timer 0 contol register
+		PWM_TCCR0 |= (((copy_ptr_PWM_config -> WGM) << PWM_WGM01) | (PWM_ENABLE << PWM_WGM00) | ((copy_ptr_PWM_config -> COM) << PWM_COM00) | (copy_ptr_PWM_config -> CS));
+		// Load the value of the TCNT register
+		PWM_TCNT0 = *((u8*)(copy_ptr_PWM_config -> preload));
+		// Load the value of the OCR register
+		PWM_OCR0 = *((u8*)(copy_ptr_PWM_config -> preload)+1);
+		// in normal mode interrupts must be enabled
+		if((copy_ptr_PWM_config -> COM) == PWM_normal){
+			// Enable OVF and COC interrupt for timer 0
+			PWM_TIMSK |= ((PWM_ENABLE << PWM_TOIE0) | (PWM_ENABLE << PWM_OCIE0));
+			// Enable global interrupt
+			set_bit(PWM_SREG, PWM_Glob_Init_bit);
 		}
-		else if(((copy_ptr_temp_timer_config -> WGM) > TIMER0_sep) && ((copy_ptr_temp_timer_config -> WGM) <= TIMER1_sep)){
+		// Return success code
+		return 0;
+	}
+	else if((copy_ptr_PWM_config -> Timer) == PWM_TIMER1){
 
+		// Return success code
+		return 1;
+	}
+	else if((copy_ptr_PWM_config -> Timer) == PWM_TIMER2){
+		// Timer 0 control register reset
+		PWM_TCCR2 = PWM2_TCCR_Reset;
+		// Reconfigure timer 0 contol register
+		PWM_TCCR2 |= (((copy_ptr_PWM_config -> WGM) << PWM_WGM21) | (PWM_DISABLE << PWM_WGM20) | ((copy_ptr_PWM_config -> COM) << PWM_COM20) | (copy_ptr_PWM_config -> CS));
+		// Load the value of the TCNT register
+		PWM_TCNT2 = *((u8*)(copy_ptr_PWM_config -> preload));
+		// Load the value of the OCR register
+		PWM_OCR2 = *((u8*)(copy_ptr_PWM_config -> preload)+1);
+		// in normal mode interrupts must be enabled
+		if((copy_ptr_PWM_config -> COM) == PWM_normal){
+			// Enable OVF and COC interrupt for timer 2
+			PWM_TIMSK |= ((PWM_ENABLE << PWM_TOIE2) | (PWM_ENABLE << PWM_OCIE2));
+			// Enable global interrupt
+			set_bit(PWM_SREG, PWM_Glob_Init_bit);
 		}
-		else{
-			// Set preload value of the TCNT register (1)
-			TIMER_TCNT2 = *((u8*)(copy_ptr_temp_timer_config -> preload));
-			// Set preload value of the OCR or ICR register (2)
-			TIMER_OCR2 = *(((u8*)(copy_ptr_temp_timer_config -> preload))+1);
-			// Reset timer control register (3)
-			TIMER_TCCR2 &= TIMER2_TCCR_Reset;
-			// Reset timer interrupt mask register (timer 2 interrupt bits) (4)
-			TIMER_TIMSK &= TIMER2_TIMSK_Reset;
-			// Set wave form generation mode (5)
-			// Enable the interrupt bit (6)
-			if((copy_ptr_temp_timer_config -> WGM) == 5){
-				// Normal mode
-				TIMER_TCCR2 |= ((get_bit(TIMER2_NORM, 1) << TIMER_WGM21) | (get_bit(TIMER2_NORM, 0) << TIMER_WGM20));
-				// In normal mode the overflow interrupt is enabled
-				TIMER_TIMSK |= ((TIMER_DISABLE << TIMER_OCIE2) | (TIMER_ENABLE << TIMER_TOIE2));
-			}
-			else{
-				// Clear timer on compare mode
-				TIMER_TCCR2 |= ((get_bit(TIMER2_CTC, 1) << TIMER_WGM21) | (get_bit(TIMER2_CTC, 0) << TIMER_WGM20));
-				// In compare match mode the compare match interrupt is enabled
-				TIMER_TIMSK |= ((TIMER_ENABLE << TIMER_OCIE2) | (TIMER_DISABLE << TIMER_TOIE2));
-			}
-			// Set output compare mode (7)
-			TIMER_TCCR2 |= ((copy_ptr_temp_timer_config -> COM) << TIMER_COM20);
-			// Set prescaler value (8)
-			TIMER_TCCR2 |= (copy_ptr_temp_timer_config -> CS);
-			// Enable Global interrupt (9)
-			TIMER_SREG |= (TIMER_ENABLE << TIMER_Glob_Init_bit);
-		}
+		// Return success code
+		return 2;
+	}
+	else{
+		// Return faild code
+		return 3;
 	}
 }
 
-void TIMER_stop(void ){
+
+u8 PWM_stop(u8 copr_timer_id){
 	/*
 	 *
 	 */
-	if (copy_ptr_temp_timer_config != NULL){
-		if((copy_ptr_temp_timer_config -> WGM) <= TIMER0_sep){
-			TIMER_TCCR0 &= TIMER_STOP_MASK;
-		}
-		else if(((copy_ptr_temp_timer_config -> WGM) > TIMER0_sep) && ((copy_ptr_temp_timer_config -> WGM) <= TIMER1_sep)){
-			
-		}
-		else{
-			TIMER_TCCR2 &= TIMER_STOP_MASK;
-		}
+	if (copr_timer_id == PWM_TIMER0){
+		// Clear the prescaler bits to stop the timer 0
+		PWM_TCNT0 &= PWM_STOP_MASK;
+		// Retuen success code
+		return 0;
 	}
+	else if (copr_timer_id == PWM_TIMER1){
+
+		// Retuen success code
+		return 1;
+	}
+	else if (copr_timer_id == PWM_TIMER2){
+		// Clear the prescaler bits to stop the timer 2
+		PWM_TCCR2 &= PWM_STOP_MASK;
+		// Retuen success code
+		return 2;
+	}
+	else{
+		// Retuen failed code
+		return 3;
+	}
+}
+
+void set_callback(u8 copy_vector_id, void (*copy_ptr_call_back_function)(void) ){
+	/*
+	 *
+	 */
+	// Save the fucntion pointer to its index in the callback functions array
+	if((copy_vector_id >= 0)&&(copy_vector_id <= 6))
+		call_back_function[copy_vector_id] = copy_ptr_call_back_function;
 }
 
 void __vector_11(void){
