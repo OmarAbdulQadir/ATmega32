@@ -9,13 +9,20 @@
 /***   Unless you are sure of what is the effect on behaviors.   ***/
 /*******************************************************************/
 
-//Standard libraries Section
+// Standard libraries Section
 #include "../../../LIB/BIT_MATH.h"
 #include "../../../LIB/STD_TYPES.h"
-#include "../../MCAL/DIO/DIO_interface.h"
 
-//Private libraries Section
+// Drivers Section
+#include "../../MCAL/DIO/DIO_interface.h"
+#include "../../MCAL/PWM/PWM_interface.h"
+
+// Private libraries Section
 #include "DC_Motor_interface.h"
+
+// Private functions decleration
+void DC_motor_void_CW_callback(void );
+void DC_motor_void_CCW_callback(void );
 
 //Global variables
 
@@ -94,9 +101,35 @@ void DC_motor_void_CW(MotorX_struct* Motor){
 	/*
 	 *
 	 */
+	PWM_config Motor_Speed_config = {};
+	gen_PWM(&Motor_Speed_config);
+	set_callback(ref_TIMER0_OVF, DC_motor_void_CW_callback);
+	set_callback(ref_TIMER0_COMP, DC_motor_void_CW_callback);
+	DC_motor_void_CW_callback();
 }
 void DC_motor_void_CCW(MotorX_struct* Motor){
 	/*
 	 *
 	 */
+	PWM_config Motor_Speed_config = {};
+	gen_PWM(&Motor_Speed_config);
+	set_callback(ref_TIMER0_OVF, DC_motor_void_CCW_callback);
+	set_callback(ref_TIMER0_COMP, DC_motor_void_CCW_callback);
+	DC_motor_void_CCW_callback();
+}
+
+
+void DC_motor_void_CW_callback(void ){
+	/*
+	 *
+	 */
+
+}
+
+
+void DC_motor_void_CCW_callback(void ){
+	/*
+	 *
+	 */
+
 }
