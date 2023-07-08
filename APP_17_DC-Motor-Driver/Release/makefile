@@ -9,6 +9,7 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include SRS/subdir.mk
+-include PWM/subdir.mk
 -include DIO/subdir.mk
 -include DC_Motor/subdir.mk
 -include subdir.mk

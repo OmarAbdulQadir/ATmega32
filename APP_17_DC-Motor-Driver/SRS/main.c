@@ -16,15 +16,15 @@
 #define reverse_pin B1
 #define forward_sw B2
 #define reverse_sw B3
-#define sw_port PORTA
+#define sw_port DIO_REF_PORTA
 
 int main(void){
 
 	DIO_void_set_pin_in_pullUP(sw_port, forward_sw);
 	DIO_void_set_pin_in_pullUP(sw_port, reverse_sw);
 
-	MotorX_struct motor1= {PORTA, forward_pin, reverse_pin, 100};
-	MotorX_struct motor2= {PORTB, forward_pin, reverse_pin, 100};
+	MotorX_struct motor1= {DIO_REF_PORTA, forward_pin, reverse_pin, 100};
+	MotorX_struct motor2= {DIO_REF_PORTB, forward_pin, reverse_pin, 100};
 	DC_Motor_void_init(&motor1);
 	DC_Motor_void_init(&motor2);
 

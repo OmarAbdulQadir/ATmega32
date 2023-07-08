@@ -14,10 +14,10 @@
 #define DIO_INTERFACE_H
 	
 	/* Defining global values of ports and pins */
-	#define PORTA 0
-	#define PORTB 1
-	#define PORTC 2
-	#define PORTD 3
+	#define DIO_REF_PORTA		0
+	#define DIO_REF_PORTB		1
+	#define DIO_REF_PORTC		2
+	#define DIO_REF_PORTD		3
 	
 	#define B0 0
 	#define B1 1

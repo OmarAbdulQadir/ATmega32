@@ -40,12 +40,12 @@ u8 real_light, copy_byte_temp_val;
 int main(void){
 	// Setup section
 	// Configure the direction of mode selection value
-	DIO_void_set_pin_dir(PORTC, B0, INPUT);
-	DIO_void_set_pin_dir(PORTC, B1, INPUT);
+	DIO_void_set_pin_dir(DIO_REF_PORTC, B0, INPUT);
+	DIO_void_set_pin_dir(DIO_REF_PORTC, B1, INPUT);
 
 	// Read the mode pins value
 	u8 _mode_select = 0;
-	_mode_select =  ((DIO_u8_get_pin(PORTC, B0)) | (DIO_u8_get_pin(PORTC, B1) << 1));
+	_mode_select =  ((DIO_u8_get_pin(DIO_REF_PORTC, B0)) | (DIO_u8_get_pin(DIO_REF_PORTC, B1) << 1));
 
 	// Select the mode value
 	if(_mode_select == _master_mode){			// Master chip mode
@@ -80,7 +80,7 @@ int main(void){
 		u16 last_Light_val= 0;
 		f32 last_temp_value= 0;
 
-		DIO_void_set_port_dir(PORTD, OUTPUT);
+		DIO_void_set_port_dir(DIO_REF_PORTD, OUTPUT);
 		while(1){
 			// Loop section
 			/* Update The LCD */
@@ -137,8 +137,8 @@ int main(void){
 		ADC_void_read_data(&ADC_temp_data);
 
 		// Tempratue mode indicatior pin
-		DIO_void_set_pin_dir(PORTC, B2, OUTPUT);
-		DIO_void_clear_pin(PORTC, B2);
+		DIO_void_set_pin_dir(DIO_REF_PORTC, B2, OUTPUT);
+		DIO_void_clear_pin(DIO_REF_PORTC, B2);
 
 		while(1){
 			// Loop section
@@ -181,8 +181,8 @@ int main(void){
 		ADC_void_config(&temp_adc_config);
 
 		// Light mode indicatior pin
-		DIO_void_set_pin_dir(PORTC, B2, OUTPUT);
-		DIO_void_set_pin(PORTC, B2);
+		DIO_void_set_pin_dir(DIO_REF_PORTC, B2, OUTPUT);
+		DIO_void_set_pin(DIO_REF_PORTC, B2);
 
 		while(1){
 			// Loop section
@@ -192,8 +192,8 @@ int main(void){
 	else if(_mode_select == _fan_mode){
 
 		// Active indecator pin
-		DIO_void_set_pin_dir(PORTA, B0, OUTPUT);
-		DIO_void_set_pin(PORTA, B0);
+		DIO_void_set_pin_dir(DIO_REF_PORTA, B0, OUTPUT);
+		DIO_void_set_pin(DIO_REF_PORTA, B0);
 
 		motor_slave_init();
 

@@ -37,8 +37,8 @@ u8 flag, duty;
 
 int main(void){
 	// set input pin clear
-	DIO_void_set_pin_dir(PORTD, B6, INPUT);
-	DIO_void_set_pin_dir(PORTB, B3, OUTPUT);
+	DIO_void_set_pin_dir(DIO_REF_PORTD, B6, INPUT);
+	DIO_void_set_pin_dir(DIO_REF_PORTB, B3, OUTPUT);
 
 	// Setup section
 	// Timer 0 setup

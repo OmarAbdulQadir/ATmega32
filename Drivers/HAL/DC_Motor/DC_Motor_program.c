@@ -101,21 +101,13 @@ void DC_motor_void_CW(MotorX_struct* Motor){
 	/*
 	 *
 	 */
-	PWM_config Motor_Speed_config = {};
-	gen_PWM(&Motor_Speed_config);
-	set_callback(ref_TIMER0_OVF, DC_motor_void_CW_callback);
-	set_callback(ref_TIMER0_COMP, DC_motor_void_CW_callback);
-	DC_motor_void_CW_callback();
+
 }
 void DC_motor_void_CCW(MotorX_struct* Motor){
 	/*
 	 *
 	 */
-	PWM_config Motor_Speed_config = {};
-	gen_PWM(&Motor_Speed_config);
-	set_callback(ref_TIMER0_OVF, DC_motor_void_CCW_callback);
-	set_callback(ref_TIMER0_COMP, DC_motor_void_CCW_callback);
-	DC_motor_void_CCW_callback();
+
 }
 
 

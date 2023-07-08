@@ -30,15 +30,15 @@
 int main(void){
 
 	u8 seg_val_dec[10] ={64, 121, 36, 48, 25, 18, 2, 120, 0, 24}; //DEC values for the 7 segment numbers
-	DIO_void_set_port_dir(PORTC, PORT_MAX);
-	DIO_void_set_port(PORTC);
+	DIO_void_set_port_dir(DIO_REF_PORTC, PORT_MAX);
+	DIO_void_set_port(DIO_REF_PORTC);
 	u8 count = min;
 
 	while(1){
 		if (max < count){
 			count = min;
 		}
-		DIO_void_assign_port(PORTC, seg_val_dec[count++]);
+		DIO_void_assign_port(DIO_REF_PORTC, seg_val_dec[count++]);
 		_delay_ms(1000);
 	}
 	return 0;

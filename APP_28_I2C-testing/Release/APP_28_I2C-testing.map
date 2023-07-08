@@ -455,7 +455,7 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  *(.data*)
  *(.rodata)
  *(.rodata*)
- .rodata.C.0.1229
+ .rodata.C.0.1242
                 0x00800174        0xd ./SRS/main.o
  .rodata.DIO_PINx_REF
                 0x00800181        0x8 ./DIO/DIO_program.o
@@ -497,19 +497,19 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  *(.bss*)
  .bss.I2C_buffered_data
                 0x0080019a        0x8 ./IIC/IIC_program.o
- .bss.data_frame_index.1463
+ .bss.data_frame_index.1476
                 0x008001a2        0x1 ./IIC/IIC_program.o
- .bss.data_frame_index.1434
+ .bss.data_frame_index.1447
                 0x008001a3        0x1 ./IIC/IIC_program.o
  .bss.copy_ptr_master_data_frame
                 0x008001a4        0x2 ./IIC/IIC_program.o
  .bss.err_handle
                 0x008001a6        0x1 ./IIC/IIC_program.o
- .bss.recived_data_index.1350
+ .bss.recived_data_index.1363
                 0x008001a7        0x1 ./IIC/IIC_program.o
- .bss.data_frame_index.1349
+ .bss.data_frame_index.1362
                 0x008001a8        0x1 ./IIC/IIC_program.o
- .bss.data_frame_index.1283
+ .bss.data_frame_index.1296
                 0x008001a9        0x1 ./IIC/IIC_program.o
  .bss.I2C_mode  0x008001aa        0x1 ./IIC/IIC_program.o
  *(COMMON)

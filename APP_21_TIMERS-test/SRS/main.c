@@ -26,17 +26,17 @@ void lde_toggle_2(void);
 int main(void){
 	// Setup section
 
-	DIO_void_set_pin_dir(PORTA, B1, OUTPUT);
-	DIO_void_set_pin(PORTA, B1);
+	DIO_void_set_pin_dir(DIO_REF_PORTA, B1, OUTPUT);
+	DIO_void_set_pin(DIO_REF_PORTA, B1);
 
-	DIO_void_set_pin_dir(PORTA, B2, OUTPUT);
-	DIO_void_set_pin(PORTA, B2);
+	DIO_void_set_pin_dir(DIO_REF_PORTA, B2, OUTPUT);
+	DIO_void_set_pin(DIO_REF_PORTA, B2);
 
 
-	DIO_void_set_pin_dir(PORTB, B3, OUTPUT);
+	DIO_void_set_pin_dir(DIO_REF_PORTB, B3, OUTPUT);
 	//DIO_void_clear_pin(PORTB, B3);
 
-	DIO_void_set_pin_dir(PORTD, B7, OUTPUT);
+	DIO_void_set_pin_dir(DIO_REF_PORTD, B7, OUTPUT);
 	//DIO_void_set_pin(PORTD, B7);
 
 	// Ttick= 8/8000000= 1us
@@ -71,7 +71,7 @@ int main(void){
 void lde_toggle_1(void){
 	static u8 ovf_counter= 0;
 	if(ovf_counter == 4){
-		DIO_void_toggle_pin(PORTA, B1);
+		DIO_void_toggle_pin(DIO_REF_PORTA, B1);
 		ovf_counter= 0;
 	}
 	else{
@@ -82,7 +82,7 @@ void lde_toggle_1(void){
 void lde_toggle_2(void){
 	static u8 ovf_counter= 0;
 	if(ovf_counter == 4){
-		DIO_void_toggle_pin(PORTA, B2);
+		DIO_void_toggle_pin(DIO_REF_PORTA, B2);
 		ovf_counter= 0;
 	}
 	else{

@@ -28,14 +28,14 @@
 
 
 int main(void){
-	DIO_void_set_port_dir(PORTC, OUTPUT);
+	DIO_void_set_port_dir(DIO_REF_PORTC, OUTPUT);
 	keypad_init();
 	s8 val_id;
 
 	while(1){
 		val_id = keypad_read();
 		if(-1 != val_id)
-			DIO_void_assign_port(PORTC, val_id);
+			DIO_void_assign_port(DIO_REF_PORTC, val_id);
 	}
 	return 0;
 }

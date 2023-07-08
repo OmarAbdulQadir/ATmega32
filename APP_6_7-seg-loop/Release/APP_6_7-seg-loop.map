@@ -280,7 +280,7 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  *(.data*)
  *(.rodata)
  *(.rodata*)
- .rodata.C.0.1292
+ .rodata.C.0.1305
                 0x00800060        0xa ./SRS/main.o
  .rodata.DIO_PINx_REF
                 0x0080006a        0x8 ./DIO/DIO_program.o

@@ -117,7 +117,7 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x1ae
+.text           0x00000000      0x1d8
  *(.vectors)
  .vectors       0x00000000       0x54 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -210,31 +210,28 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  .text.UART_void_transmit_str
                 0x000000ba       0x38 ./UART/UART_program.o
                 0x000000ba                UART_void_transmit_str
- .text.UART_u8_if_recived
-                0x000000f2        0x6 ./UART/UART_program.o
-                0x000000f2                UART_u8_if_recived
- .text.UART_u8_recive_char
-                0x000000f8        0xa ./UART/UART_program.o
-                0x000000f8                UART_u8_recive_char
+ .text.UART_void_set_Rx_callback
+                0x000000f2        0xa ./UART/UART_program.o
+                0x000000f2                UART_void_set_Rx_callback
  .text.__vector_13
-                0x00000102       0x24 ./UART/UART_program.o
-                0x00000102                __vector_13
+                0x000000fc       0x54 ./UART/UART_program.o
+                0x000000fc                __vector_13
  .text.__vector_14
-                0x00000126       0x14 ./UART/UART_program.o
-                0x00000126                __vector_14
+                0x00000150       0x14 ./UART/UART_program.o
+                0x00000150                __vector_14
  .text.__vector_15
-                0x0000013a       0x50 ./UART/UART_program.o
-                0x0000013a                __vector_15
- .text.main     0x0000018a       0x20 ./SRS/main.o
-                0x0000018a                main
- .text.libgcc   0x000001aa        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x000001aa        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x000001aa        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
-                0x000001aa                . = ALIGN (0x2)
+                0x00000164       0x50 ./UART/UART_program.o
+                0x00000164                __vector_15
+ .text.main     0x000001b4       0x20 ./SRS/main.o
+                0x000001b4                main
+ .text.libgcc   0x000001d4        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x000001d4        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x000001d4        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x000001d4                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000001aa        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x000001aa                exit
-                0x000001aa                _exit
+ .fini9         0x000001d4        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x000001d4                exit
+                0x000001d4                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -253,11 +250,11 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000001aa        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x000001d4        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000001ae                _etext = .
+                0x000001d8                _etext = .
 
-.data           0x00800060        0x6 load address 0x000001ae
+.data           0x00800060        0x6 load address 0x000001d8
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
@@ -287,16 +284,14 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  *(.bss*)
  .bss.UART_copy_ptr_str
                 0x00800066        0x2 ./UART/UART_program.o
- .bss.UART_recived_status
-                0x00800068        0x1 ./UART/UART_program.o
- .bss.UART_recived_byte
-                0x00800069        0x1 ./UART/UART_program.o
- .bss.str_index.1236
+ .bss.UART_Rx_callback
+                0x00800068        0x2 ./UART/UART_program.o
+ .bss.str_index.1287
                 0x0080006a        0x1 ./UART/UART_program.o
  *(COMMON)
                 0x0080006b                PROVIDE (__bss_end, .)
-                0x000001ae                __data_load_start = LOADADDR (.data)
-                0x000001b4                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000001d8                __data_load_start = LOADADDR (.data)
+                0x000001de                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080006b        0x0
                 0x0080006b                PROVIDE (__noinit_start, .)

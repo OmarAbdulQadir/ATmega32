@@ -19,7 +19,7 @@
 
 
 // Motor initiation
-MotorX_struct fan_motor= {PORTD, B2, B3, 100};
+MotorX_struct fan_motor= {DIO_REF_PORTD, B2, B3, 100};
 static u8 motor_state;
 
 void motor_slave_init(void){

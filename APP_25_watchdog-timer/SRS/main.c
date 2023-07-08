@@ -25,17 +25,17 @@
 
 int main(void){
 	// Setup section
-	DIO_void_set_pin_dir(PORTA, B0, OUTPUT);
-	DIO_void_set_pin(PORTA, B0);
+	DIO_void_set_pin_dir(DIO_REF_PORTA, B0, OUTPUT);
+	DIO_void_set_pin(DIO_REF_PORTA, B0);
 	_delay_ms(1000);
-	DIO_void_clear_pin(PORTA, B0);
+	DIO_void_clear_pin(DIO_REF_PORTA, B0);
 
 	WDT_void_start(time65_0_ms);
 
 	_delay_ms(30);
-	DIO_void_set_pin(PORTA, B0);
+	DIO_void_set_pin(DIO_REF_PORTA, B0);
 	_delay_ms(36);
-	DIO_void_clear_pin(PORTA, B0);
+	DIO_void_clear_pin(DIO_REF_PORTA, B0);
 
 	WDT_void_stop();
 

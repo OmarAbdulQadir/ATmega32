@@ -23,5 +23,6 @@ C_DEPS :=
 SUBDIRS := \
 DC_Motor \
 DIO \
+PWM \
 SRS \
 

@@ -8,7 +8,7 @@
 #ifndef INC_PATTERNS_H_
 #define INC_PATTERNS_H_
 
-#define __port_out_ PORTA
+#define __port_out_ DIO_REF_PORTA
 
 void flashing_led( );
 void lshift( );

@@ -19,33 +19,33 @@
 
 int main(void){
 
-	DIO_void_set_pin_dir(PORTC, forward_pin, OUTPUT);
-	DIO_void_set_pin_dir(PORTC, reverse_pin, OUTPUT);
+	DIO_void_set_pin_dir(DIO_REF_PORTC, forward_pin, OUTPUT);
+	DIO_void_set_pin_dir(DIO_REF_PORTC, reverse_pin, OUTPUT);
 
-	DIO_void_clear_pin(PORTC, forward_pin);
-	DIO_void_clear_pin(PORTC, reverse_pin);
+	DIO_void_clear_pin(DIO_REF_PORTC, forward_pin);
+	DIO_void_clear_pin(DIO_REF_PORTC, reverse_pin);
 
-	DIO_void_set_pin_in_pullUP(PORTC, forward_sw);
-	DIO_void_set_pin_in_pullUP(PORTC, reverse_sw);
+	DIO_void_set_pin_in_pullUP(DIO_REF_PORTC, forward_sw);
+	DIO_void_set_pin_in_pullUP(DIO_REF_PORTC, reverse_sw);
 
 	while(1){
-		u8 forward_sw_val = DIO_u8_get_pin(PORTC, forward_sw);
-		u8 reverse_sw_val = DIO_u8_get_pin(PORTC, reverse_sw);
+		u8 forward_sw_val = DIO_u8_get_pin(DIO_REF_PORTC, forward_sw);
+		u8 reverse_sw_val = DIO_u8_get_pin(DIO_REF_PORTC, reverse_sw);
 		if((forward_sw_val == HIGH) && (reverse_sw_val == LOW)){
-			DIO_void_clear_pin(PORTC, reverse_pin);
-			DIO_void_assign_pin(PORTC, forward_pin, HIGH);
+			DIO_void_clear_pin(DIO_REF_PORTC, reverse_pin);
+			DIO_void_assign_pin(DIO_REF_PORTC, forward_pin, HIGH);
 		}
 		else if((forward_sw_val == LOW) && (reverse_sw_val == HIGH)){
-			DIO_void_clear_pin(PORTC, forward_pin);
-			DIO_void_assign_pin(PORTC, reverse_pin, HIGH);
+			DIO_void_clear_pin(DIO_REF_PORTC, forward_pin);
+			DIO_void_assign_pin(DIO_REF_PORTC, reverse_pin, HIGH);
 		}
 		else if((forward_sw_val == HIGH) && (reverse_sw_val == HIGH)){
-			DIO_void_clear_pin(PORTC, forward_pin);
-			DIO_void_clear_pin(PORTC, reverse_pin);
+			DIO_void_clear_pin(DIO_REF_PORTC, forward_pin);
+			DIO_void_clear_pin(DIO_REF_PORTC, reverse_pin);
 		}
 		else{
-			DIO_void_clear_pin(PORTC, forward_pin);
-			DIO_void_clear_pin(PORTC, reverse_pin);
+			DIO_void_clear_pin(DIO_REF_PORTC, forward_pin);
+			DIO_void_clear_pin(DIO_REF_PORTC, reverse_pin);
 		}
 		/*
 		DIO_void_clear_pin(PORTC, forward_pin);

@@ -174,7 +174,7 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x267a
+.text           0x00000000     0x267c
  *(.vectors)
  .vectors       0x00000000       0x54 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -342,196 +342,202 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
                 0x00001218       0x52 ./TIMER/TIMER_program.o
                 0x00001218                __vector_7
  .text.__vector_5
-                0x0000126a       0x54 ./TIMER/TIMER_program.o
+                0x0000126a       0x52 ./TIMER/TIMER_program.o
                 0x0000126a                __vector_5
  .text.__vector_4
-                0x000012be       0x52 ./TIMER/TIMER_program.o
-                0x000012be                __vector_4
+                0x000012bc       0x52 ./TIMER/TIMER_program.o
+                0x000012bc                __vector_4
  .text.master_read_data_words
-                0x00001310       0xc8 ./SRS/Master.o
-                0x00001310                master_read_data_words
+                0x0000130e       0xc8 ./SRS/Master.o
+                0x0000130e                master_read_data_words
  .text.master_update_time
-                0x000013d8       0x1e ./SRS/Master.o
-                0x000013d8                master_update_time
+                0x000013d6       0x1e ./SRS/Master.o
+                0x000013d6                master_update_time
  .text.update_light_value
-                0x000013f6       0x96 ./SRS/light_Slave.o
-                0x000013f6                update_light_value
- .text.main     0x0000148c      0x316 ./SRS/main.o
-                0x0000148c                main
+                0x000013f4       0x96 ./SRS/light_Slave.o
+                0x000013f4                update_light_value
+ .text.main     0x0000148a      0x316 ./SRS/main.o
+                0x0000148a                main
  .text.update_motor
-                0x000017a2       0x36 ./SRS/motor_Slave.o
-                0x000017a2                update_motor
+                0x000017a0       0x36 ./SRS/motor_Slave.o
+                0x000017a0                update_motor
  .text.motor_slave_init
-                0x000017d8       0x1a ./SRS/motor_Slave.o
-                0x000017d8                motor_slave_init
+                0x000017d6       0x1a ./SRS/motor_Slave.o
+                0x000017d6                motor_slave_init
  .text.update_temprature_value
-                0x000017f2       0x90 ./SRS/temp_Slave.o
-                0x000017f2                update_temprature_value
+                0x000017f0       0x90 ./SRS/temp_Slave.o
+                0x000017f0                update_temprature_value
  .text.SPI_u8_slave_update
-                0x00001882        0x8 ./SPI/SPI_program.o
-                0x00001882                SPI_u8_slave_update
+                0x00001880        0x8 ./SPI/SPI_program.o
+                0x00001880                SPI_u8_slave_update
  .text.SPI_u8_recive
-                0x0000188a        0x6 ./SPI/SPI_program.o
-                0x0000188a                SPI_u8_recive
+                0x00001888        0x6 ./SPI/SPI_program.o
+                0x00001888                SPI_u8_recive
  .text.SPI_void_set_callback
-                0x00001890        0xa ./SPI/SPI_program.o
-                0x00001890                SPI_void_set_callback
+                0x0000188e        0xa ./SPI/SPI_program.o
+                0x0000188e                SPI_void_set_callback
  .text.__vector_12
-                0x0000189a       0x6c ./SPI/SPI_program.o
-                0x0000189a                __vector_12
+                0x00001898       0x6c ./SPI/SPI_program.o
+                0x00001898                __vector_12
  .text.SPI_void_init_slave
-                0x00001906       0x34 ./SPI/SPI_program.o
-                0x00001906                SPI_void_init_slave
+                0x00001904       0x34 ./SPI/SPI_program.o
+                0x00001904                SPI_void_init_slave
  .text.SPI_void_init_master
-                0x0000193a       0x66 ./SPI/SPI_program.o
-                0x0000193a                SPI_void_init_master
+                0x00001938       0x66 ./SPI/SPI_program.o
+                0x00001938                SPI_void_init_master
  .text.SPI_u8_master_transmit
-                0x000019a0       0x2c ./SPI/SPI_program.o
-                0x000019a0                SPI_u8_master_transmit
- .text.LCD_pow  0x000019cc       0x5e ./LCD/LCD_program.o
-                0x000019cc                LCD_pow
+                0x0000199e       0x2c ./SPI/SPI_program.o
+                0x0000199e                SPI_u8_master_transmit
+ .text.LCD_pow  0x000019ca       0x5e ./LCD/LCD_program.o
+                0x000019ca                LCD_pow
  .text.LCD_create_char
-                0x00001a2a        0x2 ./LCD/LCD_program.o
-                0x00001a2a                LCD_create_char
+                0x00001a28        0x2 ./LCD/LCD_program.o
+                0x00001a28                LCD_create_char
  .text.LCD_read_data_4bit
-                0x00001a2c       0xba ./LCD/LCD_program.o
-                0x00001a2c                LCD_read_data_4bit
+                0x00001a2a       0xba ./LCD/LCD_program.o
+                0x00001a2a                LCD_read_data_4bit
  .text.LCD_function_set_4bit
-                0x00001ae6      0x100 ./LCD/LCD_program.o
-                0x00001ae6                LCD_function_set_4bit
+                0x00001ae4      0x100 ./LCD/LCD_program.o
+                0x00001ae4                LCD_function_set_4bit
  .text.LCD_write_cmd_4bit
-                0x00001be6       0xe6 ./LCD/LCD_program.o
-                0x00001be6                LCD_write_cmd_4bit
- .text.LCD_on   0x00001ccc        0xe ./LCD/LCD_program.o
-                0x00001ccc                LCD_on
- .text.LCD_off  0x00001cda       0x1a ./LCD/LCD_program.o
-                0x00001cda                LCD_off
+                0x00001be4       0xe6 ./LCD/LCD_program.o
+                0x00001be4                LCD_write_cmd_4bit
+ .text.LCD_on   0x00001cca        0xe ./LCD/LCD_program.o
+                0x00001cca                LCD_on
+ .text.LCD_off  0x00001cd8       0x1a ./LCD/LCD_program.o
+                0x00001cd8                LCD_off
  .text.LCD_clear
-                0x00001cf4       0x26 ./LCD/LCD_program.o
-                0x00001cf4                LCD_clear
+                0x00001cf2       0x26 ./LCD/LCD_program.o
+                0x00001cf2                LCD_clear
  .text.LCD_set_cursor
-                0x00001d1a       0x1c ./LCD/LCD_program.o
-                0x00001d1a                LCD_set_cursor
+                0x00001d18       0x1c ./LCD/LCD_program.o
+                0x00001d18                LCD_set_cursor
  .text.LCD_init
-                0x00001d36       0x82 ./LCD/LCD_program.o
-                0x00001d36                LCD_init
+                0x00001d34       0x82 ./LCD/LCD_program.o
+                0x00001d34                LCD_init
  .text.LCD_write_data_4bit
-                0x00001db8       0xe6 ./LCD/LCD_program.o
-                0x00001db8                LCD_write_data_4bit
+                0x00001db6       0xe6 ./LCD/LCD_program.o
+                0x00001db6                LCD_write_data_4bit
  .text.LCD_write_char
-                0x00001e9e        0xc ./LCD/LCD_program.o
-                0x00001e9e                LCD_write_char
+                0x00001e9c        0xc ./LCD/LCD_program.o
+                0x00001e9c                LCD_write_char
  .text.LCD_write_s32_number
-                0x00001eaa       0xf2 ./LCD/LCD_program.o
-                0x00001eaa                LCD_write_s32_number
+                0x00001ea8       0xf2 ./LCD/LCD_program.o
+                0x00001ea8                LCD_write_s32_number
  .text.LCD_write_float
-                0x00001f9c       0xd0 ./LCD/LCD_program.o
-                0x00001f9c                LCD_write_float
+                0x00001f9a       0xd0 ./LCD/LCD_program.o
+                0x00001f9a                LCD_write_float
  .text.LCD_write_str
-                0x0000206c       0x26 ./LCD/LCD_program.o
-                0x0000206c                LCD_write_str
+                0x0000206a       0x26 ./LCD/LCD_program.o
+                0x0000206a                LCD_write_str
  .text.LCD_read_address_8bit
-                0x00002092       0x60 ./LCD/LCD_program.o
-                0x00002092                LCD_read_address_8bit
+                0x00002090       0x60 ./LCD/LCD_program.o
+                0x00002090                LCD_read_address_8bit
  .text.LCD_write_cmd_8bit
-                0x000020f2       0x40 ./LCD/LCD_program.o
-                0x000020f2                LCD_write_cmd_8bit
+                0x000020f0       0x40 ./LCD/LCD_program.o
+                0x000020f0                LCD_write_cmd_8bit
  .text.LCD_write_data_8bit
-                0x00002132       0x40 ./LCD/LCD_program.o
-                0x00002132                LCD_write_data_8bit
+                0x00002130       0x40 ./LCD/LCD_program.o
+                0x00002130                LCD_write_data_8bit
  .text.DIO_void_set_port_dir
-                0x00002172       0x16 ./DIO/DIO_program.o
-                0x00002172                DIO_void_set_port_dir
+                0x00002170       0x16 ./DIO/DIO_program.o
+                0x00002170                DIO_void_set_port_dir
  .text.DIO_void_set_port_in_pullUp
-                0x00002188       0x26 ./DIO/DIO_program.o
-                0x00002188                DIO_void_set_port_in_pullUp
+                0x00002186       0x26 ./DIO/DIO_program.o
+                0x00002186                DIO_void_set_port_in_pullUp
  .text.DIO_void_set_pin_dir
-                0x000021ae       0x52 ./DIO/DIO_program.o
-                0x000021ae                DIO_void_set_pin_dir
+                0x000021ac       0x52 ./DIO/DIO_program.o
+                0x000021ac                DIO_void_set_pin_dir
  .text.DIO_void_set_pin_in_pullUP
-                0x00002200       0x3c ./DIO/DIO_program.o
-                0x00002200                DIO_void_set_pin_in_pullUP
+                0x000021fe       0x3c ./DIO/DIO_program.o
+                0x000021fe                DIO_void_set_pin_in_pullUP
  .text.DIO_void_set_port
-                0x0000223c       0x18 ./DIO/DIO_program.o
-                0x0000223c                DIO_void_set_port
+                0x0000223a       0x18 ./DIO/DIO_program.o
+                0x0000223a                DIO_void_set_port
  .text.DIO_void_clear_port
-                0x00002254       0x16 ./DIO/DIO_program.o
-                0x00002254                DIO_void_clear_port
+                0x00002252       0x16 ./DIO/DIO_program.o
+                0x00002252                DIO_void_clear_port
  .text.DIO_void_toggle_port
-                0x0000226a       0x1a ./DIO/DIO_program.o
-                0x0000226a                DIO_void_toggle_port
+                0x00002268       0x1a ./DIO/DIO_program.o
+                0x00002268                DIO_void_toggle_port
  .text.DIO_void_assign_port
-                0x00002284       0x16 ./DIO/DIO_program.o
-                0x00002284                DIO_void_assign_port
+                0x00002282       0x16 ./DIO/DIO_program.o
+                0x00002282                DIO_void_assign_port
  .text.DIO_void_set_pin
-                0x0000229a       0x28 ./DIO/DIO_program.o
-                0x0000229a                DIO_void_set_pin
+                0x00002298       0x28 ./DIO/DIO_program.o
+                0x00002298                DIO_void_set_pin
  .text.DIO_void_clear_pin
-                0x000022c2       0x2a ./DIO/DIO_program.o
-                0x000022c2                DIO_void_clear_pin
+                0x000022c0       0x2a ./DIO/DIO_program.o
+                0x000022c0                DIO_void_clear_pin
  .text.DIO_void_toggle_pin
-                0x000022ec       0x28 ./DIO/DIO_program.o
-                0x000022ec                DIO_void_toggle_pin
+                0x000022ea       0x28 ./DIO/DIO_program.o
+                0x000022ea                DIO_void_toggle_pin
  .text.DIO_void_assign_pin
-                0x00002314       0x52 ./DIO/DIO_program.o
-                0x00002314                DIO_void_assign_pin
+                0x00002312       0x52 ./DIO/DIO_program.o
+                0x00002312                DIO_void_assign_pin
  .text.DIO_u8_get_port
-                0x00002366       0x16 ./DIO/DIO_program.o
-                0x00002366                DIO_u8_get_port
+                0x00002364       0x16 ./DIO/DIO_program.o
+                0x00002364                DIO_u8_get_port
  .text.DIO_u8_get_pin
-                0x0000237c       0x24 ./DIO/DIO_program.o
-                0x0000237c                DIO_u8_get_pin
+                0x0000237a       0x24 ./DIO/DIO_program.o
+                0x0000237a                DIO_u8_get_pin
  .text.DC_motor_void_CW
-                0x000023a0        0x2 ./DC_Motor/DC_Motor_program.o
-                0x000023a0                DC_motor_void_CW
+                0x0000239e        0x2 ./DC_Motor/DC_Motor_program.o
+                0x0000239e                DC_motor_void_CW
  .text.DC_motor_void_CCW
+                0x000023a0        0x2 ./DC_Motor/DC_Motor_program.o
+                0x000023a0                DC_motor_void_CCW
+ .text.DC_motor_void_CW_callback
                 0x000023a2        0x2 ./DC_Motor/DC_Motor_program.o
-                0x000023a2                DC_motor_void_CCW
+                0x000023a2                DC_motor_void_CW_callback
+ .text.DC_motor_void_CCW_callback
+                0x000023a4        0x2 ./DC_Motor/DC_Motor_program.o
+                0x000023a4                DC_motor_void_CCW_callback
  .text.DC_motor_void_stop
-                0x000023a4       0x30 ./DC_Motor/DC_Motor_program.o
-                0x000023a4                DC_motor_void_stop
+                0x000023a6       0x30 ./DC_Motor/DC_Motor_program.o
+                0x000023a6                DC_motor_void_stop
  .text.DC_motor_void_CCW_full_speed
-                0x000023d4       0x30 ./DC_Motor/DC_Motor_program.o
-                0x000023d4                DC_motor_void_CCW_full_speed
+                0x000023d6       0x30 ./DC_Motor/DC_Motor_program.o
+                0x000023d6                DC_motor_void_CCW_full_speed
  .text.DC_motor_void_CW_full_speed
-                0x00002404       0x30 ./DC_Motor/DC_Motor_program.o
-                0x00002404                DC_motor_void_CW_full_speed
+                0x00002406       0x30 ./DC_Motor/DC_Motor_program.o
+                0x00002406                DC_motor_void_CW_full_speed
  .text.DC_Motor_void_init
-                0x00002434       0x58 ./DC_Motor/DC_Motor_program.o
-                0x00002434                DC_Motor_void_init
+                0x00002436       0x58 ./DC_Motor/DC_Motor_program.o
+                0x00002436                DC_Motor_void_init
  .text.ADC_void_init
-                0x0000248c        0xa ./ADC/ADC_program.o
-                0x0000248c                ADC_void_init
+                0x0000248e        0xa ./ADC/ADC_program.o
+                0x0000248e                ADC_void_init
  .text.ADC_void_config
-                0x00002496       0x46 ./ADC/ADC_program.o
-                0x00002496                ADC_void_config
+                0x00002498       0x46 ./ADC/ADC_program.o
+                0x00002498                ADC_void_config
  .text.ADC_void_read_data
-                0x000024dc       0x14 ./ADC/ADC_program.o
-                0x000024dc                ADC_void_read_data
+                0x000024de       0x14 ./ADC/ADC_program.o
+                0x000024de                ADC_void_read_data
  .text.ADC_void_INIT_callback
-                0x000024f0        0xa ./ADC/ADC_program.o
-                0x000024f0                ADC_void_INIT_callback
+                0x000024f2        0xa ./ADC/ADC_program.o
+                0x000024f2                ADC_void_INIT_callback
  .text.__vector_16
-                0x000024fa       0x56 ./ADC/ADC_program.o
-                0x000024fa                __vector_16
- .text.libgcc   0x00002550       0x3e d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
-                0x00002550                __mulsi3
- .text.libgcc   0x0000258e       0x36 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
-                0x0000258e                __divmodsi4
- .text.libgcc   0x000025c4        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x000025c4        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x000025c4        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
- .text.libgcc   0x000025c4       0x44 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
-                0x000025c4                __udivmodsi4
- .text.libgcc   0x00002608       0x38 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
-                0x00002608                __prologue_saves__
- .text.libgcc   0x00002640       0x36 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
-                0x00002640                __epilogue_restores__
-                0x00002676                . = ALIGN (0x2)
+                0x000024fc       0x56 ./ADC/ADC_program.o
+                0x000024fc                __vector_16
+ .text.libgcc   0x00002552       0x3e d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+                0x00002552                __mulsi3
+ .text.libgcc   0x00002590       0x36 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+                0x00002590                __divmodsi4
+ .text.libgcc   0x000025c6        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x000025c6        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x000025c6        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x000025c6       0x44 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x000025c6                __udivmodsi4
+ .text.libgcc   0x0000260a       0x38 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
+                0x0000260a                __prologue_saves__
+ .text.libgcc   0x00002642       0x36 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
+                0x00002642                __epilogue_restores__
+                0x00002678                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00002676        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00002676                exit
-                0x00002676                _exit
+ .fini9         0x00002678        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00002678                exit
+                0x00002678                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -550,11 +556,11 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00002676        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00002678        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000267a                _etext = .
+                0x0000267c                _etext = .
 
-.data           0x00800060      0x14c load address 0x0000267a
+.data           0x00800060      0x14c load address 0x0000267c
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
@@ -599,7 +605,7 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  .data.fan_motor
                 0x00800190        0x2 ./SRS/motor_Slave.o
                 0x00800190                fan_motor
- .data.transmission_status.1208
+ .data.transmission_status.1221
                 0x00800192        0x1 ./SRS/temp_Slave.o
  *(.rodata)
  *(.rodata*)
@@ -659,17 +665,17 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
                 0x008001ac        0x2 ./UART/UART_program.o
  .bss.UART_Rx_callback
                 0x008001ae        0x2 ./UART/UART_program.o
- .bss.str_index.1274
+ .bss.str_index.1287
                 0x008001b0        0x1 ./UART/UART_program.o
  .bss.copy_ptr_temp_timer_config
                 0x008001b1        0x2 ./TIMER/TIMER_program.o
  .bss.call_back_function
                 0x008001b3        0xe ./TIMER/TIMER_program.o
- .bss.master_OVF_counter.1311
+ .bss.master_OVF_counter.1324
                 0x008001c1        0x1 ./SRS/Master.o
- .bss.master_trancive_status.1287
+ .bss.master_trancive_status.1300
                 0x008001c2        0x1 ./SRS/Master.o
- .bss.light_slave_OVF_counter.1240
+ .bss.light_slave_OVF_counter.1253
                 0x008001c3        0x1 ./SRS/light_Slave.o
  .bss.motor_state
                 0x008001c4        0x1 ./SRS/motor_Slave.o
@@ -687,8 +693,8 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
                 0x008001cc                real_temprature
                 0x008001d0                real_light
                 0x008001d1                PROVIDE (__bss_end, .)
-                0x0000267a                __data_load_start = LOADADDR (.data)
-                0x000027c6                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000267c                __data_load_start = LOADADDR (.data)
+                0x000027c8                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x008001d1        0x0
                 0x008001d1                PROVIDE (__noinit_start, .)

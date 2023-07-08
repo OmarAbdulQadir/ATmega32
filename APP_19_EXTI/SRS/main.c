@@ -15,8 +15,8 @@ void toggle_value(void);
 
 int main(void){
 	// Setup section
-	DIO_void_set_pin_in_pullUP(PORTB, B2);
-	DIO_void_set_pin_dir(PORTA, B1, OUTPUT);
+	DIO_void_set_pin_in_pullUP(DIO_REF_PORTB, B2);
+	DIO_void_set_pin_dir(DIO_REF_PORTA, B1, OUTPUT);
 
 
 	EXTI_init_config_struct EXTI_config = {disable, EXTI_falling_edge, disable, EXTI_falling_edge, enable, EXTI_INT2_falling_edge};
@@ -33,6 +33,6 @@ int main(void){
 
 
 void toggle_value(void){
-	DIO_void_toggle_pin(PORTA, B1);
+	DIO_void_toggle_pin(DIO_REF_PORTA, B1);
 }
 

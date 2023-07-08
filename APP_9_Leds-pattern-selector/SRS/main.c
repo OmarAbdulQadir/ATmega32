@@ -40,12 +40,12 @@ enum pattern{
 
 int main(void){
 
-	DIO_void_set_port_dir(PORTA, PORT_MAX);
-	DIO_void_set_port_dir(PORTC, INPUT);
-	DIO_void_clear_port(PORTA);
+	DIO_void_set_port_dir(DIO_REF_PORTA, PORT_MAX);
+	DIO_void_set_port_dir(DIO_REF_PORTC, INPUT);
+	DIO_void_clear_port(DIO_REF_PORTA);
 
 	while(1){
-		switch (DIO_u8_get_port(PORTC)){
+		switch (DIO_u8_get_port(DIO_REF_PORTC)){
 				case flasing_500_ms: flashing_led(); break;
 				case lshift_250_ms: lshift(); break;
 				case rshift_250_ms: rshift(); break;
@@ -55,7 +55,7 @@ int main(void){
 				case snake_300_ms: snake(); break;
 				case conv_div_300_ms:conv_div(); break;
 		}
-		DIO_void_clear_port(PORTA);
+		DIO_void_clear_port(DIO_REF_PORTA);
 	}
 	return 0;
 }

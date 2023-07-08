@@ -109,37 +109,37 @@ Disassembly of section .text:
   d6:	0f 93       	push	r16
   d8:	1f 93       	push	r17
   da:	00 e0       	ldi	r16, 0x00	; 0
-  dc:	83 e0       	ldi	r24, 0x03	; 3
+  dc:	80 e0       	ldi	r24, 0x00	; 0
   de:	60 2f       	mov	r22, r16
   e0:	0e 94 77 01 	call	0x2ee	; 0x2ee <DIO_void_clear_pin>
-  e4:	83 e0       	ldi	r24, 0x03	; 3
+  e4:	80 e0       	ldi	r24, 0x00	; 0
   e6:	64 e0       	ldi	r22, 0x04	; 4
   e8:	0e 94 d4 01 	call	0x3a8	; 0x3a8 <DIO_u8_get_pin>
   ec:	88 23       	and	r24, r24
   ee:	11 f4       	brne	.+4      	; 0xf4 <keypad_read+0x1e>
   f0:	14 e0       	ldi	r17, 0x04	; 4
   f2:	17 c0       	rjmp	.+46     	; 0x122 <keypad_read+0x4c>
-  f4:	83 e0       	ldi	r24, 0x03	; 3
+  f4:	80 e0       	ldi	r24, 0x00	; 0
   f6:	65 e0       	ldi	r22, 0x05	; 5
   f8:	0e 94 d4 01 	call	0x3a8	; 0x3a8 <DIO_u8_get_pin>
   fc:	88 23       	and	r24, r24
   fe:	11 f4       	brne	.+4      	; 0x104 <keypad_read+0x2e>
  100:	15 e0       	ldi	r17, 0x05	; 5
  102:	0f c0       	rjmp	.+30     	; 0x122 <keypad_read+0x4c>
- 104:	83 e0       	ldi	r24, 0x03	; 3
+ 104:	80 e0       	ldi	r24, 0x00	; 0
  106:	66 e0       	ldi	r22, 0x06	; 6
  108:	0e 94 d4 01 	call	0x3a8	; 0x3a8 <DIO_u8_get_pin>
  10c:	88 23       	and	r24, r24
  10e:	11 f4       	brne	.+4      	; 0x114 <keypad_read+0x3e>
  110:	16 e0       	ldi	r17, 0x06	; 6
  112:	07 c0       	rjmp	.+14     	; 0x122 <keypad_read+0x4c>
- 114:	83 e0       	ldi	r24, 0x03	; 3
+ 114:	80 e0       	ldi	r24, 0x00	; 0
  116:	67 e0       	ldi	r22, 0x07	; 7
  118:	0e 94 d4 01 	call	0x3a8	; 0x3a8 <DIO_u8_get_pin>
  11c:	88 23       	and	r24, r24
  11e:	a1 f4       	brne	.+40     	; 0x148 <keypad_read+0x72>
  120:	17 e0       	ldi	r17, 0x07	; 7
- 122:	83 e0       	ldi	r24, 0x03	; 3
+ 122:	80 e0       	ldi	r24, 0x00	; 0
  124:	61 2f       	mov	r22, r17
  126:	0e 94 d4 01 	call	0x3a8	; 0x3a8 <DIO_u8_get_pin>
  12a:	88 23       	and	r24, r24
@@ -157,7 +157,7 @@ Disassembly of section .text:
  142:	ff 4f       	sbci	r31, 0xFF	; 255
  144:	80 81       	ld	r24, Z
  146:	08 c0       	rjmp	.+16     	; 0x158 <keypad_read+0x82>
- 148:	83 e0       	ldi	r24, 0x03	; 3
+ 148:	80 e0       	ldi	r24, 0x00	; 0
  14a:	60 2f       	mov	r22, r16
  14c:	0e 94 63 01 	call	0x2c6	; 0x2c6 <DIO_void_set_pin>
  150:	0f 5f       	subi	r16, 0xFF	; 255
@@ -171,26 +171,26 @@ Disassembly of section .text:
 0000015e <keypad_init>:
  15e:	1f 93       	push	r17
  160:	10 e0       	ldi	r17, 0x00	; 0
- 162:	83 e0       	ldi	r24, 0x03	; 3
+ 162:	80 e0       	ldi	r24, 0x00	; 0
  164:	61 2f       	mov	r22, r17
  166:	4f ef       	ldi	r20, 0xFF	; 255
  168:	0e 94 ed 00 	call	0x1da	; 0x1da <DIO_void_set_pin_dir>
- 16c:	83 e0       	ldi	r24, 0x03	; 3
+ 16c:	80 e0       	ldi	r24, 0x00	; 0
  16e:	61 2f       	mov	r22, r17
  170:	0e 94 63 01 	call	0x2c6	; 0x2c6 <DIO_void_set_pin>
  174:	1f 5f       	subi	r17, 0xFF	; 255
  176:	14 30       	cpi	r17, 0x04	; 4
  178:	a1 f7       	brne	.-24     	; 0x162 <keypad_init+0x4>
- 17a:	83 e0       	ldi	r24, 0x03	; 3
+ 17a:	80 e0       	ldi	r24, 0x00	; 0
  17c:	64 e0       	ldi	r22, 0x04	; 4
  17e:	0e 94 16 01 	call	0x22c	; 0x22c <DIO_void_set_pin_in_pullUP>
- 182:	83 e0       	ldi	r24, 0x03	; 3
+ 182:	80 e0       	ldi	r24, 0x00	; 0
  184:	65 e0       	ldi	r22, 0x05	; 5
  186:	0e 94 16 01 	call	0x22c	; 0x22c <DIO_void_set_pin_in_pullUP>
- 18a:	83 e0       	ldi	r24, 0x03	; 3
+ 18a:	80 e0       	ldi	r24, 0x00	; 0
  18c:	66 e0       	ldi	r22, 0x06	; 6
  18e:	0e 94 16 01 	call	0x22c	; 0x22c <DIO_void_set_pin_in_pullUP>
- 192:	83 e0       	ldi	r24, 0x03	; 3
+ 192:	80 e0       	ldi	r24, 0x00	; 0
  194:	67 e0       	ldi	r22, 0x07	; 7
  196:	0e 94 16 01 	call	0x22c	; 0x22c <DIO_void_set_pin_in_pullUP>
  19a:	1f 91       	pop	r17

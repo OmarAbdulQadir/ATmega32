@@ -14,7 +14,7 @@
 #define KEYPAD_CONFIG_H
 		
 	/* Port configuration */
-	#define port_keypad_ PORTA
+	#define port_keypad_ DIO_REF_PORTA
 	
 	/* Key pad Configuration */
 	// Number of columns

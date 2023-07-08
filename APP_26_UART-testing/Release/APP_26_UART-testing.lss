@@ -3,11 +3,11 @@ APP_26_UART-testing.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000001ae  00000000  00000000  00000094  2**1
+  0 .text         000001d8  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000006  00800060  000001ae  00000242  2**0
+  1 .data         00000006  00800060  000001d8  0000026c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000005  00800066  00800066  00000248  2**0
+  2 .bss          00000005  00800066  00800066  00000272  2**0
                   ALLOC
 
 Disassembly of section .text:
@@ -26,9 +26,9 @@ Disassembly of section .text:
   28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
-  34:	0c 94 81 00 	jmp	0x102	; 0x102 <__vector_13>
-  38:	0c 94 93 00 	jmp	0x126	; 0x126 <__vector_14>
-  3c:	0c 94 9d 00 	jmp	0x13a	; 0x13a <__vector_15>
+  34:	0c 94 7e 00 	jmp	0xfc	; 0xfc <__vector_13>
+  38:	0c 94 a8 00 	jmp	0x150	; 0x150 <__vector_14>
+  3c:	0c 94 b2 00 	jmp	0x164	; 0x164 <__vector_15>
   40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
@@ -47,7 +47,7 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	ee ea       	ldi	r30, 0xAE	; 174
+  66:	e8 ed       	ldi	r30, 0xD8	; 216
   68:	f1 e0       	ldi	r31, 0x01	; 1
   6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
 
@@ -73,8 +73,8 @@ Disassembly of section .text:
   80:	ab 36       	cpi	r26, 0x6B	; 107
   82:	b1 07       	cpc	r27, r17
   84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
-  86:	0e 94 c5 00 	call	0x18a	; 0x18a <main>
-  8a:	0c 94 d5 00 	jmp	0x1aa	; 0x1aa <_exit>
+  86:	0e 94 da 00 	call	0x1b4	; 0x1b4 <main>
+  8a:	0c 94 ea 00 	jmp	0x1d4	; 0x1d4 <_exit>
 
 0000008e <__bad_interrupt>:
   8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -128,102 +128,122 @@ Disassembly of section .text:
   ec:	20 93 6a 00 	sts	0x006A, r18
   f0:	08 95       	ret
 
-000000f2 <UART_u8_if_recived>:
-  f2:	80 91 68 00 	lds	r24, 0x0068
-  f6:	08 95       	ret
+000000f2 <UART_void_set_Rx_callback>:
+  f2:	90 93 69 00 	sts	0x0069, r25
+  f6:	80 93 68 00 	sts	0x0068, r24
+  fa:	08 95       	ret
 
-000000f8 <UART_u8_recive_char>:
-  f8:	10 92 68 00 	sts	0x0068, r1
-  fc:	80 91 69 00 	lds	r24, 0x0069
- 100:	08 95       	ret
+000000fc <__vector_13>:
+  fc:	1f 92       	push	r1
+  fe:	0f 92       	push	r0
+ 100:	0f b6       	in	r0, 0x3f	; 63
+ 102:	0f 92       	push	r0
+ 104:	11 24       	eor	r1, r1
+ 106:	2f 93       	push	r18
+ 108:	3f 93       	push	r19
+ 10a:	4f 93       	push	r20
+ 10c:	5f 93       	push	r21
+ 10e:	6f 93       	push	r22
+ 110:	7f 93       	push	r23
+ 112:	8f 93       	push	r24
+ 114:	9f 93       	push	r25
+ 116:	af 93       	push	r26
+ 118:	bf 93       	push	r27
+ 11a:	ef 93       	push	r30
+ 11c:	ff 93       	push	r31
+ 11e:	e0 91 68 00 	lds	r30, 0x0068
+ 122:	f0 91 69 00 	lds	r31, 0x0069
+ 126:	30 97       	sbiw	r30, 0x00	; 0
+ 128:	11 f0       	breq	.+4      	; 0x12e <__vector_13+0x32>
+ 12a:	8c b1       	in	r24, 0x0c	; 12
+ 12c:	09 95       	icall
+ 12e:	ff 91       	pop	r31
+ 130:	ef 91       	pop	r30
+ 132:	bf 91       	pop	r27
+ 134:	af 91       	pop	r26
+ 136:	9f 91       	pop	r25
+ 138:	8f 91       	pop	r24
+ 13a:	7f 91       	pop	r23
+ 13c:	6f 91       	pop	r22
+ 13e:	5f 91       	pop	r21
+ 140:	4f 91       	pop	r20
+ 142:	3f 91       	pop	r19
+ 144:	2f 91       	pop	r18
+ 146:	0f 90       	pop	r0
+ 148:	0f be       	out	0x3f, r0	; 63
+ 14a:	0f 90       	pop	r0
+ 14c:	1f 90       	pop	r1
+ 14e:	18 95       	reti
 
-00000102 <__vector_13>:
- 102:	1f 92       	push	r1
- 104:	0f 92       	push	r0
- 106:	0f b6       	in	r0, 0x3f	; 63
- 108:	0f 92       	push	r0
- 10a:	11 24       	eor	r1, r1
- 10c:	8f 93       	push	r24
- 10e:	81 e0       	ldi	r24, 0x01	; 1
- 110:	80 93 68 00 	sts	0x0068, r24
- 114:	8c b1       	in	r24, 0x0c	; 12
- 116:	80 93 69 00 	sts	0x0069, r24
- 11a:	8f 91       	pop	r24
- 11c:	0f 90       	pop	r0
- 11e:	0f be       	out	0x3f, r0	; 63
- 120:	0f 90       	pop	r0
- 122:	1f 90       	pop	r1
- 124:	18 95       	reti
+00000150 <__vector_14>:
+ 150:	1f 92       	push	r1
+ 152:	0f 92       	push	r0
+ 154:	0f b6       	in	r0, 0x3f	; 63
+ 156:	0f 92       	push	r0
+ 158:	11 24       	eor	r1, r1
+ 15a:	0f 90       	pop	r0
+ 15c:	0f be       	out	0x3f, r0	; 63
+ 15e:	0f 90       	pop	r0
+ 160:	1f 90       	pop	r1
+ 162:	18 95       	reti
 
-00000126 <__vector_14>:
- 126:	1f 92       	push	r1
- 128:	0f 92       	push	r0
- 12a:	0f b6       	in	r0, 0x3f	; 63
- 12c:	0f 92       	push	r0
- 12e:	11 24       	eor	r1, r1
- 130:	0f 90       	pop	r0
- 132:	0f be       	out	0x3f, r0	; 63
- 134:	0f 90       	pop	r0
- 136:	1f 90       	pop	r1
- 138:	18 95       	reti
+00000164 <__vector_15>:
+ 164:	1f 92       	push	r1
+ 166:	0f 92       	push	r0
+ 168:	0f b6       	in	r0, 0x3f	; 63
+ 16a:	0f 92       	push	r0
+ 16c:	11 24       	eor	r1, r1
+ 16e:	2f 93       	push	r18
+ 170:	3f 93       	push	r19
+ 172:	4f 93       	push	r20
+ 174:	5f 93       	push	r21
+ 176:	6f 93       	push	r22
+ 178:	7f 93       	push	r23
+ 17a:	8f 93       	push	r24
+ 17c:	9f 93       	push	r25
+ 17e:	af 93       	push	r26
+ 180:	bf 93       	push	r27
+ 182:	ef 93       	push	r30
+ 184:	ff 93       	push	r31
+ 186:	80 91 66 00 	lds	r24, 0x0066
+ 18a:	90 91 67 00 	lds	r25, 0x0067
+ 18e:	0e 94 5d 00 	call	0xba	; 0xba <UART_void_transmit_str>
+ 192:	ff 91       	pop	r31
+ 194:	ef 91       	pop	r30
+ 196:	bf 91       	pop	r27
+ 198:	af 91       	pop	r26
+ 19a:	9f 91       	pop	r25
+ 19c:	8f 91       	pop	r24
+ 19e:	7f 91       	pop	r23
+ 1a0:	6f 91       	pop	r22
+ 1a2:	5f 91       	pop	r21
+ 1a4:	4f 91       	pop	r20
+ 1a6:	3f 91       	pop	r19
+ 1a8:	2f 91       	pop	r18
+ 1aa:	0f 90       	pop	r0
+ 1ac:	0f be       	out	0x3f, r0	; 63
+ 1ae:	0f 90       	pop	r0
+ 1b0:	1f 90       	pop	r1
+ 1b2:	18 95       	reti
 
-0000013a <__vector_15>:
- 13a:	1f 92       	push	r1
- 13c:	0f 92       	push	r0
- 13e:	0f b6       	in	r0, 0x3f	; 63
- 140:	0f 92       	push	r0
- 142:	11 24       	eor	r1, r1
- 144:	2f 93       	push	r18
- 146:	3f 93       	push	r19
- 148:	4f 93       	push	r20
- 14a:	5f 93       	push	r21
- 14c:	6f 93       	push	r22
- 14e:	7f 93       	push	r23
- 150:	8f 93       	push	r24
- 152:	9f 93       	push	r25
- 154:	af 93       	push	r26
- 156:	bf 93       	push	r27
- 158:	ef 93       	push	r30
- 15a:	ff 93       	push	r31
- 15c:	80 91 66 00 	lds	r24, 0x0066
- 160:	90 91 67 00 	lds	r25, 0x0067
- 164:	0e 94 5d 00 	call	0xba	; 0xba <UART_void_transmit_str>
- 168:	ff 91       	pop	r31
- 16a:	ef 91       	pop	r30
- 16c:	bf 91       	pop	r27
- 16e:	af 91       	pop	r26
- 170:	9f 91       	pop	r25
- 172:	8f 91       	pop	r24
- 174:	7f 91       	pop	r23
- 176:	6f 91       	pop	r22
- 178:	5f 91       	pop	r21
- 17a:	4f 91       	pop	r20
- 17c:	3f 91       	pop	r19
- 17e:	2f 91       	pop	r18
- 180:	0f 90       	pop	r0
- 182:	0f be       	out	0x3f, r0	; 63
- 184:	0f 90       	pop	r0
- 186:	1f 90       	pop	r1
- 188:	18 95       	reti
+000001b4 <main>:
+ 1b4:	0e 94 49 00 	call	0x92	; 0x92 <UART_void_init>
+ 1b8:	80 e1       	ldi	r24, 0x10	; 16
+ 1ba:	97 e2       	ldi	r25, 0x27	; 39
+ 1bc:	28 ec       	ldi	r18, 0xC8	; 200
+ 1be:	30 e0       	ldi	r19, 0x00	; 0
+ 1c0:	f9 01       	movw	r30, r18
+ 1c2:	31 97       	sbiw	r30, 0x01	; 1
+ 1c4:	f1 f7       	brne	.-4      	; 0x1c2 <main+0xe>
+ 1c6:	01 97       	sbiw	r24, 0x01	; 1
+ 1c8:	d9 f7       	brne	.-10     	; 0x1c0 <main+0xc>
+ 1ca:	80 e6       	ldi	r24, 0x60	; 96
+ 1cc:	90 e0       	ldi	r25, 0x00	; 0
+ 1ce:	0e 94 5d 00 	call	0xba	; 0xba <UART_void_transmit_str>
+ 1d2:	ff cf       	rjmp	.-2      	; 0x1d2 <main+0x1e>
 
-0000018a <main>:
- 18a:	0e 94 49 00 	call	0x92	; 0x92 <UART_void_init>
- 18e:	80 e1       	ldi	r24, 0x10	; 16
- 190:	97 e2       	ldi	r25, 0x27	; 39
- 192:	28 ec       	ldi	r18, 0xC8	; 200
- 194:	30 e0       	ldi	r19, 0x00	; 0
- 196:	f9 01       	movw	r30, r18
- 198:	31 97       	sbiw	r30, 0x01	; 1
- 19a:	f1 f7       	brne	.-4      	; 0x198 <main+0xe>
- 19c:	01 97       	sbiw	r24, 0x01	; 1
- 19e:	d9 f7       	brne	.-10     	; 0x196 <main+0xc>
- 1a0:	80 e6       	ldi	r24, 0x60	; 96
- 1a2:	90 e0       	ldi	r25, 0x00	; 0
- 1a4:	0e 94 5d 00 	call	0xba	; 0xba <UART_void_transmit_str>
- 1a8:	ff cf       	rjmp	.-2      	; 0x1a8 <main+0x1e>
+000001d4 <_exit>:
+ 1d4:	f8 94       	cli
 
-000001aa <_exit>:
- 1aa:	f8 94       	cli
-
-000001ac <__stop_program>:
- 1ac:	ff cf       	rjmp	.-2      	; 0x1ac <__stop_program>
+000001d6 <__stop_program>:
+ 1d6:	ff cf       	rjmp	.-2      	; 0x1d6 <__stop_program>

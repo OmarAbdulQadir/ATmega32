@@ -18,7 +18,7 @@ int main(void ){
 	LCD_init();
 	LCD_write_str("Val= ");
 
-	DIO_void_set_pin_dir(PORTA, B0, INPUT);
+	DIO_void_set_pin_dir(DIO_REF_PORTA, B0, INPUT);
 
 	ADC_config_struct Congif= {0, 7, 0, 0, 0};
 	ADC_void_init();

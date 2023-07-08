@@ -171,7 +171,7 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1f3e
+.text           0x00000000     0x1efe
  *(.vectors)
  .vectors       0x00000000       0x54 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -301,147 +301,147 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
                 0x00000cae                main
  .text.LCD_pow  0x00000d90       0x5e ./LCD/LCD_program.o
                 0x00000d90                LCD_pow
- .text.LCD_read_data_4bit
-                0x00000dee       0xba ./LCD/LCD_program.o
-                0x00000dee                LCD_read_data_4bit
- .text.LCD_read_address_8bit
-                0x00000ea8       0x60 ./LCD/LCD_program.o
-                0x00000ea8                LCD_read_address_8bit
- .text.LCD_function_set_4bit
-                0x00000f08      0x100 ./LCD/LCD_program.o
-                0x00000f08                LCD_function_set_4bit
- .text.LCD_write_cmd_4bit
-                0x00001008       0xe6 ./LCD/LCD_program.o
-                0x00001008                LCD_write_cmd_4bit
- .text.LCD_write_data_4bit
-                0x000010ee       0xe6 ./LCD/LCD_program.o
-                0x000010ee                LCD_write_data_4bit
- .text.LCD_write_cmd_8bit
-                0x000011d4       0x40 ./LCD/LCD_program.o
-                0x000011d4                LCD_write_cmd_8bit
- .text.LCD_on   0x00001214        0xe ./LCD/LCD_program.o
-                0x00001214                LCD_on
- .text.LCD_off  0x00001222       0x1a ./LCD/LCD_program.o
-                0x00001222                LCD_off
- .text.LCD_clear
-                0x0000123c       0x26 ./LCD/LCD_program.o
-                0x0000123c                LCD_clear
- .text.LCD_set_cursor
-                0x00001262       0x1c ./LCD/LCD_program.o
-                0x00001262                LCD_set_cursor
- .text.LCD_init
-                0x0000127e       0x64 ./LCD/LCD_program.o
-                0x0000127e                LCD_init
- .text.LCD_write_data_8bit
-                0x000012e2       0x40 ./LCD/LCD_program.o
-                0x000012e2                LCD_write_data_8bit
- .text.LCD_write_char
-                0x00001322        0xc ./LCD/LCD_program.o
-                0x00001322                LCD_write_char
- .text.LCD_write_s32_number
-                0x0000132e       0xf2 ./LCD/LCD_program.o
-                0x0000132e                LCD_write_s32_number
- .text.LCD_write_float
-                0x00001420       0xd0 ./LCD/LCD_program.o
-                0x00001420                LCD_write_float
- .text.LCD_write_str
-                0x000014f0       0x26 ./LCD/LCD_program.o
-                0x000014f0                LCD_write_str
  .text.LCD_create_char
-                0x00001516       0x60 ./LCD/LCD_program.o
-                0x00001516                LCD_create_char
+                0x00000dee        0x2 ./LCD/LCD_program.o
+                0x00000dee                LCD_create_char
+ .text.LCD_read_data_4bit
+                0x00000df0       0xba ./LCD/LCD_program.o
+                0x00000df0                LCD_read_data_4bit
+ .text.LCD_function_set_4bit
+                0x00000eaa      0x100 ./LCD/LCD_program.o
+                0x00000eaa                LCD_function_set_4bit
+ .text.LCD_write_cmd_4bit
+                0x00000faa       0xe6 ./LCD/LCD_program.o
+                0x00000faa                LCD_write_cmd_4bit
+ .text.LCD_on   0x00001090        0xe ./LCD/LCD_program.o
+                0x00001090                LCD_on
+ .text.LCD_off  0x0000109e       0x1a ./LCD/LCD_program.o
+                0x0000109e                LCD_off
+ .text.LCD_clear
+                0x000010b8       0x26 ./LCD/LCD_program.o
+                0x000010b8                LCD_clear
+ .text.LCD_set_cursor
+                0x000010de       0x1c ./LCD/LCD_program.o
+                0x000010de                LCD_set_cursor
+ .text.LCD_init
+                0x000010fa       0x82 ./LCD/LCD_program.o
+                0x000010fa                LCD_init
+ .text.LCD_write_data_4bit
+                0x0000117c       0xe6 ./LCD/LCD_program.o
+                0x0000117c                LCD_write_data_4bit
+ .text.LCD_write_char
+                0x00001262        0xc ./LCD/LCD_program.o
+                0x00001262                LCD_write_char
+ .text.LCD_write_s32_number
+                0x0000126e       0xf2 ./LCD/LCD_program.o
+                0x0000126e                LCD_write_s32_number
+ .text.LCD_write_float
+                0x00001360       0xd0 ./LCD/LCD_program.o
+                0x00001360                LCD_write_float
+ .text.LCD_write_str
+                0x00001430       0x26 ./LCD/LCD_program.o
+                0x00001430                LCD_write_str
+ .text.LCD_read_address_8bit
+                0x00001456       0x60 ./LCD/LCD_program.o
+                0x00001456                LCD_read_address_8bit
+ .text.LCD_write_cmd_8bit
+                0x000014b6       0x40 ./LCD/LCD_program.o
+                0x000014b6                LCD_write_cmd_8bit
+ .text.LCD_write_data_8bit
+                0x000014f6       0x40 ./LCD/LCD_program.o
+                0x000014f6                LCD_write_data_8bit
  .text.keypad_set_map
-                0x00001576       0x36 ./KEYPAD/KEYPAD_program.o
-                0x00001576                keypad_set_map
+                0x00001536       0x36 ./KEYPAD/KEYPAD_program.o
+                0x00001536                keypad_set_map
  .text.keypad_read
-                0x000015ac       0x88 ./KEYPAD/KEYPAD_program.o
-                0x000015ac                keypad_read
+                0x0000156c       0x88 ./KEYPAD/KEYPAD_program.o
+                0x0000156c                keypad_read
  .text.keypad_init
-                0x00001634       0x40 ./KEYPAD/KEYPAD_program.o
-                0x00001634                keypad_init
+                0x000015f4       0x40 ./KEYPAD/KEYPAD_program.o
+                0x000015f4                keypad_init
  .text.DIO_void_set_port_dir
-                0x00001674       0x16 ./DIO/DIO_program.o
-                0x00001674                DIO_void_set_port_dir
+                0x00001634       0x16 ./DIO/DIO_program.o
+                0x00001634                DIO_void_set_port_dir
  .text.DIO_void_set_port_in_pullUp
-                0x0000168a       0x26 ./DIO/DIO_program.o
-                0x0000168a                DIO_void_set_port_in_pullUp
+                0x0000164a       0x26 ./DIO/DIO_program.o
+                0x0000164a                DIO_void_set_port_in_pullUp
  .text.DIO_void_set_pin_dir
-                0x000016b0       0x52 ./DIO/DIO_program.o
-                0x000016b0                DIO_void_set_pin_dir
+                0x00001670       0x52 ./DIO/DIO_program.o
+                0x00001670                DIO_void_set_pin_dir
  .text.DIO_void_set_pin_in_pullUP
-                0x00001702       0x3c ./DIO/DIO_program.o
-                0x00001702                DIO_void_set_pin_in_pullUP
+                0x000016c2       0x3c ./DIO/DIO_program.o
+                0x000016c2                DIO_void_set_pin_in_pullUP
  .text.DIO_void_set_port
-                0x0000173e       0x18 ./DIO/DIO_program.o
-                0x0000173e                DIO_void_set_port
+                0x000016fe       0x18 ./DIO/DIO_program.o
+                0x000016fe                DIO_void_set_port
  .text.DIO_void_clear_port
-                0x00001756       0x16 ./DIO/DIO_program.o
-                0x00001756                DIO_void_clear_port
+                0x00001716       0x16 ./DIO/DIO_program.o
+                0x00001716                DIO_void_clear_port
  .text.DIO_void_toggle_port
-                0x0000176c       0x1a ./DIO/DIO_program.o
-                0x0000176c                DIO_void_toggle_port
+                0x0000172c       0x1a ./DIO/DIO_program.o
+                0x0000172c                DIO_void_toggle_port
  .text.DIO_void_assign_port
-                0x00001786       0x16 ./DIO/DIO_program.o
-                0x00001786                DIO_void_assign_port
+                0x00001746       0x16 ./DIO/DIO_program.o
+                0x00001746                DIO_void_assign_port
  .text.DIO_void_set_pin
-                0x0000179c       0x28 ./DIO/DIO_program.o
-                0x0000179c                DIO_void_set_pin
+                0x0000175c       0x28 ./DIO/DIO_program.o
+                0x0000175c                DIO_void_set_pin
  .text.DIO_void_clear_pin
-                0x000017c4       0x2a ./DIO/DIO_program.o
-                0x000017c4                DIO_void_clear_pin
+                0x00001784       0x2a ./DIO/DIO_program.o
+                0x00001784                DIO_void_clear_pin
  .text.DIO_void_toggle_pin
-                0x000017ee       0x28 ./DIO/DIO_program.o
-                0x000017ee                DIO_void_toggle_pin
+                0x000017ae       0x28 ./DIO/DIO_program.o
+                0x000017ae                DIO_void_toggle_pin
  .text.DIO_void_assign_pin
-                0x00001816       0x52 ./DIO/DIO_program.o
-                0x00001816                DIO_void_assign_pin
+                0x000017d6       0x52 ./DIO/DIO_program.o
+                0x000017d6                DIO_void_assign_pin
  .text.DIO_u8_get_port
-                0x00001868       0x16 ./DIO/DIO_program.o
-                0x00001868                DIO_u8_get_port
+                0x00001828       0x16 ./DIO/DIO_program.o
+                0x00001828                DIO_u8_get_port
  .text.DIO_u8_get_pin
-                0x0000187e       0x24 ./DIO/DIO_program.o
-                0x0000187e                DIO_u8_get_pin
- .text.libgcc   0x000018a2       0x3e d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
-                0x000018a2                __mulsi3
- .text.libgcc   0x000018e0       0x26 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
-                0x000018e0                __divmodhi4
-                0x000018e0                _div
- .text.libgcc   0x00001906       0x36 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
-                0x00001906                __divmodsi4
- .text.libgcc   0x0000193c        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x0000193c        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x0000193c        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
- .text.libgcc   0x0000193c       0x28 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
-                0x0000193c                __udivmodhi4
- .text.libgcc   0x00001964       0x44 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
-                0x00001964                __udivmodsi4
- .text.libgcc   0x000019a8       0x38 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
-                0x000019a8                __prologue_saves__
- .text.libgcc   0x000019e0       0x36 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
-                0x000019e0                __epilogue_restores__
+                0x0000183e       0x24 ./DIO/DIO_program.o
+                0x0000183e                DIO_u8_get_pin
+ .text.libgcc   0x00001862       0x3e d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+                0x00001862                __mulsi3
+ .text.libgcc   0x000018a0       0x26 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
+                0x000018a0                __divmodhi4
+                0x000018a0                _div
+ .text.libgcc   0x000018c6       0x36 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+                0x000018c6                __divmodsi4
+ .text.libgcc   0x000018fc        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x000018fc        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x000018fc        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x000018fc       0x28 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+                0x000018fc                __udivmodhi4
+ .text.libgcc   0x00001924       0x44 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x00001924                __udivmodsi4
+ .text.libgcc   0x00001968       0x38 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
+                0x00001968                __prologue_saves__
+ .text.libgcc   0x000019a0       0x36 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
+                0x000019a0                __epilogue_restores__
  .text.avr-libc
-                0x00001a16       0x2a d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(printf.o)
-                0x00001a16                printf
+                0x000019d6       0x2a d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(printf.o)
+                0x000019d6                printf
  .text.avr-libc
-                0x00001a40      0x3ba d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
-                0x00001a40                vfprintf
+                0x00001a00      0x3ba d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                0x00001a00                vfprintf
  .text.avr-libc
-                0x00001dfa       0x16 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
-                0x00001dfa                strnlen_P
+                0x00001dba       0x16 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+                0x00001dba                strnlen_P
  .text.avr-libc
-                0x00001e10       0x16 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strnlen.o)
-                0x00001e10                strnlen
+                0x00001dd0       0x16 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strnlen.o)
+                0x00001dd0                strnlen
  .text.avr-libc
-                0x00001e26       0x58 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(fputc.o)
-                0x00001e26                fputc
+                0x00001de6       0x58 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(fputc.o)
+                0x00001de6                fputc
  .text.avr-libc
-                0x00001e7e       0xbc d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
-                0x00001e7e                __ultoa_invert
-                0x00001f3a                . = ALIGN (0x2)
+                0x00001e3e       0xbc d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
+                0x00001e3e                __ultoa_invert
+                0x00001efa                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001f3a        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00001f3a                exit
-                0x00001f3a                _exit
+ .fini9         0x00001efa        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00001efa                exit
+                0x00001efa                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -460,11 +460,11 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001f3a        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00001efa        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001f3e                _etext = .
+                0x00001efe                _etext = .
 
-.data           0x00800060      0x174 load address 0x00001f3e
+.data           0x00800060      0x174 load address 0x00001efe
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
@@ -557,25 +557,25 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  .bss           0x008001d4        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(iob.o)
  .bss           0x008001d4        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
  *(.bss*)
- .bss.operation.1230
+ .bss.operation.1243
                 0x008001d4        0x1 ./SRS/clc.o
- .bss.op2_sign.1229
+ .bss.op2_sign.1242
                 0x008001d5        0x1 ./SRS/clc.o
- .bss.op1_sign.1228
+ .bss.op1_sign.1241
                 0x008001d6        0x1 ./SRS/clc.o
- .bss.op_flag2.1227
+ .bss.op_flag2.1240
                 0x008001d7        0x1 ./SRS/clc.o
- .bss.op_flag1.1226
+ .bss.op_flag1.1239
                 0x008001d8        0x1 ./SRS/clc.o
- .bss.op2.1225  0x008001d9        0x2 ./SRS/clc.o
- .bss.op1.1224  0x008001db        0x2 ./SRS/clc.o
+ .bss.op2.1238  0x008001d9        0x2 ./SRS/clc.o
+ .bss.op1.1237  0x008001db        0x2 ./SRS/clc.o
  .bss.res       0x008001dd        0x2 ./SRS/clc.o
  *(COMMON)
  COMMON         0x008001df        0x6 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(iob.o)
                 0x008001df                __iob
                 0x008001e5                PROVIDE (__bss_end, .)
-                0x00001f3e                __data_load_start = LOADADDR (.data)
-                0x000020b2                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00001efe                __data_load_start = LOADADDR (.data)
+                0x00002072                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x008001e5        0x0
                 0x008001e5                PROVIDE (__noinit_start, .)

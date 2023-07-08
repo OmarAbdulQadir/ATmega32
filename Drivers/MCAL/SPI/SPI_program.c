@@ -34,15 +34,15 @@ void SPI_void_init_master(void ){
 	 */
 	/* Set pins direction */
 	// Set clk Direction
-	DIO_void_set_pin_dir(PORTB, B7, OUTPUT);
+	DIO_void_set_pin_dir(DIO_REF_PORTB, B7, OUTPUT);
 	// Set MISO Direction
-	DIO_void_set_pin_dir(PORTB, B6, INPUT);
+	DIO_void_set_pin_dir(DIO_REF_PORTB, B6, INPUT);
 	// Set MOSI Direction
-	DIO_void_set_pin_dir(PORTB, B5, OUTPUT);
+	DIO_void_set_pin_dir(DIO_REF_PORTB, B5, OUTPUT);
 	// Set SS Direction
 	for(u8 i= 0; i < SPI_no_SS; i++){
-		DIO_void_set_pin_dir(PORTB, 4-i, OUTPUT);
-		DIO_void_set_pin(PORTB, 4-i);
+		DIO_void_set_pin_dir(DIO_REF_PORTB, 4-i, OUTPUT);
+		DIO_void_set_pin(DIO_REF_PORTB, 4-i);
 	}
 	// Set control register
 	SPI_SPCR = ((SPCR_master_mask) | (SPI_data_order << SPI_DORD) | (SPI_clk_polarity << SPI_CPOL) | (SPI_clk_phase << SPI_CPHA) | (SPI_clk_rate));
@@ -60,7 +60,7 @@ u8 SPI_u8_master_transmit(u8 copy_slave_id, u8 copy_u8_data){
 	 *
 	 */
 	// Pull down the selected slave
-	DIO_void_clear_pin(PORTB, copy_slave_id);
+	DIO_void_clear_pin(DIO_REF_PORTB, copy_slave_id);
 	// Assign the data to the data register
 	SPI_SPDR= copy_u8_data;
 	// Save the current channel to pull the slave up when finishing
@@ -79,13 +79,13 @@ void SPI_void_init_slave(void ){
 	 */
 	/* Set pins direction */
 	// Set clk Direction
-	DIO_void_set_pin_dir(PORTB, B7, INPUT);
+	DIO_void_set_pin_dir(DIO_REF_PORTB, B7, INPUT);
 	// Set MISO Direction
-	DIO_void_set_pin_dir(PORTB, B6, OUTPUT);
+	DIO_void_set_pin_dir(DIO_REF_PORTB, B6, OUTPUT);
 	// Set MOSI Direction
-	DIO_void_set_pin_dir(PORTB, B5, INPUT);
+	DIO_void_set_pin_dir(DIO_REF_PORTB, B5, INPUT);
 	// Set SS pin direction
-	DIO_void_set_pin_dir(PORTB, B4, INPUT);
+	DIO_void_set_pin_dir(DIO_REF_PORTB, B4, INPUT);
 	// Set control register
 	SPI_SPCR = ((SPCR_slave_mask) | (SPI_data_order << SPI_DORD) | (SPI_clk_polarity << SPI_CPOL) | (SPI_clk_phase << SPI_CPHA));
 	// Global interrupt enable
@@ -122,7 +122,7 @@ void __vector_12(void){
 	 *
 	 */
 	if (get_bit(SPI_SPCR, 4) == SPI_enable){
-		DIO_void_set_pin(PORTB, Current_channel);
+		DIO_void_set_pin(DIO_REF_PORTB, Current_channel);
 		Last_byte= SPI_SPDR;
 	}
 	else{
