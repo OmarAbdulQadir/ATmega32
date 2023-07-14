@@ -10,3 +10,5 @@ This Repo consists of four main folder types:
   5. APP_x_app-name_SIM: Simulation folder contains simulation files created with proteus simulation.
 
 At last, there is a file called Template_prog containing template main and template make file for manual use (without SDK).
+
+By: Eng. Omar Abdul Qadir
