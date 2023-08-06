@@ -1,7 +1,7 @@
 /*******************************************************************/
 /***               Date: 03/6/2023	Day: Saturday	             ***/
 /*** 	 ADC driver for the microcontroller ATMega 32			 ***/
-/***     Created By: Omar Abdul Qadir	 Version= 1.0            ***/
+/***     Created By: Omar Abdul Qadir	 Version= 1.1            ***/
 /*******************************************************************/
 /***         Note: All the data in the file is readable,         ***/
 /***     And any editing will affect the controller's behavior,  ***/

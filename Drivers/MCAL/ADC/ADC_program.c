@@ -1,7 +1,7 @@
 /*******************************************************************/
 /***               Date: 03/6/2023	Day: Saturday	             ***/
 /*** 	 ADC driver for the microcontroller ATMega 32			 ***/
-/***     Created By: Omar Abdul Qadir	 Version= 1.0            ***/
+/***     Created By: Omar Abdul Qadir	 Version= 1.1            ***/
 /*******************************************************************/
 /***         Note: All the data in the file is readable,         ***/
 /***     And any editing will affect the controller's behavior,  ***/
@@ -65,11 +65,22 @@ void ADC_void_config(ADC_config_struct* ptr_config){
 	agn_bit(ADC_ADCSRA, ADC_ADATE_pin, ptr_config -> ADATE);
 
 	// Configure the ADC interrupt enable bit
+	agn_bit(ADC_ADCSRA, ADC_ADIE_pin, ptr_config -> ADIE);
 
 	// Configure the Global interupt bit
-
+	agn_bit(ADC_SREG, ADC_Global_INT, ptr_config -> ADIE);
 }
 
+void ADC_void_start_conv(void){
+	/*
+	 *	Function to make the ADC start converstion
+	 *	No inputs to the function.
+	 *
+	 *	No return from the function.
+	 */
+	// Enable ADC start conversion bit
+	agn_bit(ADC_ADCSRA, ADC_ADSC_pin, ADC_ADSC);
+}
 
 void ADC_void_read_data(u16* ptr_result){
 	/*

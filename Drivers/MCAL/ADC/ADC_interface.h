@@ -1,7 +1,7 @@
 /*******************************************************************/
 /***               Date: 03/6/2023	Day: Saturday	             ***/
 /*** 	 ADC driver for the microcontroller ATMega 32			 ***/
-/***     Created By: Omar Abdul Qadir	 Version= 1.0            ***/
+/***     Created By: Omar Abdul Qadir	 Version= 1.1            ***/
 /*******************************************************************/
 /***         Note: All the data in the file is readable,         ***/
 /***     And any editing will affect the controller's behavior,  ***/
@@ -22,13 +22,19 @@
 		u8 ADIE: 1;		// ADC interrupt enable bit
 	}ADC_config_struct;
 	
-	//enums for each field
+	//Reference selection macro
+	// Reference voltage selection High pin value
+	#define ADC_REFS1		0
+	// Reference voltage selection Low pin value
+	#define ADC_REFS0		1
 
 	/* Global functions decleration */
 	// ADC Initiation
 	void ADC_void_init(void );
-	// ADc setting configurations
+	// ADC setting configurations
 	void ADC_void_config(ADC_config_struct* );
+	// ADC start converstion
+	void ADC_void_start_conv(void);
 	// ADC read analog data
 	void ADC_void_read_data(u16 * );
 	// ADC set callback function for the ISR if interrupt is enabled

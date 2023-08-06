@@ -12,7 +12,6 @@
 // Standard libraries section
 #include "../../../LIB/STD_TYPES.h"
 #include "../../../LIB/BIT_MATH.h"
-#include "../DIO/DIO_interface.h"
 
 // Private libraries section
 #include "UART_private.h"

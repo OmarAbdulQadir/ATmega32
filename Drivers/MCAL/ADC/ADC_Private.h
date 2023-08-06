@@ -1,7 +1,7 @@
 /*******************************************************************/
 /***               Date: 03/6/2023	Day: Saturday	             ***/
 /*** 	 ADC driver for the microcontroller ATMega 32			 ***/
-/***     Created By: Omar Abdul Qadir	 Version= 1.0            ***/
+/***     Created By: Omar Abdul Qadir	 Version= 1.1            ***/
 /*******************************************************************/
 /***         Note: All the data in the file is readable,         ***/
 /***     And any editing will affect the controller's behavior,  ***/
@@ -13,10 +13,6 @@
 #define ADC_PRIVATE_H_
 
 	/* ADCMUX register pins */
-	// Reference voltage selection High pin value
-	#define ADC_REFS1		0
-	// Reference voltage selection Low pin value
-	#define ADC_REFS0		1
 	// Left adjust pin value
 	#define ADC_ADLAR		0
 
