@@ -1,0 +1,36 @@
+	   LCD driver for the microcontroller ATMega 32
+	    Created By: Omar Abdul Qadir   Version= 1.0
+		Date: 12/5/2023,	Day: Friday
+
+
+Note: All the data in the file is readable, And any editing will affect the controller's behavior.
+So It's not recommended to edit any data, Unless you are sure of what is the effect on behaviors.
+
+
+1. Basic Driver function:
+	a. The driver interfaces with the LCD in both modes 4 bits mode and 8 bits mode.
+	
+2. Configuration macros:
+	1. _LCD_interface_: LCD interfacing mode its value could be (_4bit_interface >> for 4 bits mode) or (_8bit_interface >> for 8 bits mode).
+	2.  lcd_data_port: The port group that data pins is connected to.
+	3.  lcd_ctrl_port: The port group that control pins is connected to.
+	4.  lcd_EN: The pin that enable pin is connected to.
+	5.  lcd_RW: The pin that Read/Write pin is connected to.
+	6.  lcd_RS: The pin that Register select pin is connected to.
+	7.  lcd_N: Number of lines used (0 >> for 1 line), and (1 >> for 2 lines).
+	8.  lcd_F: Number of dots per digit (0 >> for 5X7 dots), and (1 >> for 8X10 dots).
+	9.  lcd_D: Display Back light state (0 >> for off), and (1 >> for on).
+	10. lcd_C: Cursor state (0 >> off), and (1 >> on).
+	11. lcd_B: Cursor Blinking (0 >> off), and (1 >> on).
+
+3. List of driver functions:
+	I.    void LCD_init(void )
+	II.   void LCD_set_cursor(u8, u8 )
+	III.  void LCD_clear(void )
+	IV.   void LCD_off(void )
+	V.    void LCD_on(void )
+	VI.   void LCD_create_char(u8*, u8 )
+	VII.  void LCD_write_char(u8 )
+	VIII. void LCD_write_str(u8* )
+	IX.   void LCD_wtire_s32_number(s32 )
+	X.    void LCD_write_float(f32, u8 )

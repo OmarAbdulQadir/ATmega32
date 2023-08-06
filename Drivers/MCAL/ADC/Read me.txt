@@ -1,0 +1,26 @@
+	   ADC driver for the microcontroller ATMega 32
+	    Created By: Omar Abdul Qadir   Version= 1.0
+		Date: 03/6/2023,	Day: Saturday
+
+
+Note: All the data in the file is readable, And any editing will affect the controller's behavior.
+So It's not recommended to edit any data, Unless you are sure of what is the effect on behaviors.
+
+
+1. Basic Driver function:
+	a. Enable and configure the ADC perepheral.
+	b. Get the ADc value using one of two modes polling or interupting.
+	
+2. Structs and configurations:
+	1. ADC_config= {MUX, ADPS, ADATE, ADTS, ADIE}
+		a. MUX: Analog channel and gain selection bits
+		b. ADPS: ADC prescaler select bits
+		c. ADATE: ADC auto trigger enable bit
+		d. ADTS: ADC trigger selection bits
+		e. ADIE: ADC interrupt enable bit
+
+3. List of driver functions:
+	I.   void ADC_void_init(void )
+	II.  void ADC_void_config(ADC_config* )
+	III. void ADC_void_read_data(u16 * )
+	IV.  void ADC_void_INIT_callback(void (*ptr_callback_function)(u16) )
