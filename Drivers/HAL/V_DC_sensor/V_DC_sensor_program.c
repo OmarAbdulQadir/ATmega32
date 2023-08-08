@@ -24,7 +24,7 @@
 #define V_DC_sensor_Prescaler	0
 #define V_DC_sensor_ADATE		0
 #define V_DC_sensor_ADTS		0
-#define V_DC_sensor_ADIE		1
+#define V_DC_sensor_ADIE		0
 #define V_DC_sensor_Val_flour	0
 #define V_DC_sensor_ADC_MAX		1024.0
 
@@ -51,6 +51,7 @@ f64 Vsensor_voidClcVolt(void ){
 	 */
 	u16 voltageAccumulator = V_DC_sensor_Val_flour;
 	u16 Voltage_ADC_Data = V_DC_sensor_Val_flour;
+	ADC_void_config(&V_DC_sensor_config);
 	for(u8 acc_counter= V_DC_sensor_Val_flour; acc_counter < Vsensor_Acc; acc_counter++){
 		ADC_void_read_data(&Voltage_ADC_Data);
 		voltageAccumulator += Voltage_ADC_Data;

@@ -20,7 +20,7 @@ Linker script and memory map
 
 LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
 LOAD ./SRC/main.o
-LOAD ./EEPROM/EEPROM_program.o
+LOAD ./EEP/EEP_program.o
 LOAD ./DIO/DIO_program.o
 LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a
@@ -192,7 +192,7 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
                 0x0000007e                __vector_18
                 0x0000007e                __vector_20
  .text          0x00000082        0x0 ./SRC/main.o
- .text          0x00000082        0x0 ./EEPROM/EEPROM_program.o
+ .text          0x00000082        0x0 ./EEP/EEP_program.o
  .text          0x00000082        0x0 ./DIO/DIO_program.o
  .text          0x00000082        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  .text          0x00000082        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
@@ -201,10 +201,10 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  .text.main     0x00000082       0x56 ./SRC/main.o
                 0x00000082                main
  .text.EEPROM_write_data
-                0x000000d8       0x18 ./EEPROM/EEPROM_program.o
+                0x000000d8       0x18 ./EEP/EEP_program.o
                 0x000000d8                EEPROM_write_data
  .text.EEPROM_read_data
-                0x000000f0       0x18 ./EEPROM/EEPROM_program.o
+                0x000000f0       0x18 ./EEP/EEP_program.o
                 0x000000f0                EEPROM_read_data
  .text.DIO_void_set_port_dir
                 0x00000108       0x16 ./DIO/DIO_program.o
@@ -282,7 +282,7 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  *(.data)
  .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
  .data          0x00800060        0x0 ./SRC/main.o
- .data          0x00800060        0x0 ./EEPROM/EEPROM_program.o
+ .data          0x00800060        0x0 ./EEP/EEP_program.o
  .data          0x00800060        0x0 ./DIO/DIO_program.o
  .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
@@ -305,7 +305,7 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  *(.bss)
  .bss           0x00800078        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
  .bss           0x00800078        0x0 ./SRC/main.o
- .bss           0x00800078        0x0 ./EEPROM/EEPROM_program.o
+ .bss           0x00800078        0x0 ./EEP/EEP_program.o
  .bss           0x00800078        0x0 ./DIO/DIO_program.o
  .bss           0x00800078        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  .bss           0x00800078        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)

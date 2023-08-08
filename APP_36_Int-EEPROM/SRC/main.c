@@ -9,7 +9,7 @@
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
 
-#include "../../Drivers/MCAL/EEPROM/EEPROM_interface.h"
+#include "../../Drivers/MCAL/EEP/EEP_interface.h"
 #include "../../Drivers/MCAL/DIO/DIO_interface.h"
 
 

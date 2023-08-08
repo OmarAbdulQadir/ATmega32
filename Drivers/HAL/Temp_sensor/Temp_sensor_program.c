@@ -29,7 +29,7 @@
 #define Temp_sensor_ADC_max		1024.0
 
 //Global variables
-ADC_config_struct A_DC_sensor_config = {Temp_ADC_def_ch, Temp_sensor_Prescaler, Temp_sensor_ADATE, Temp_sensor_ADTS, Temp_sensor_ADIE};
+ADC_config_struct Temp_sensor_config = {Temp_ADC_def_ch, Temp_sensor_Prescaler, Temp_sensor_ADATE, Temp_sensor_ADTS, Temp_sensor_ADIE};
 
 
 /* Implementing of the driver functions */
@@ -39,7 +39,7 @@ void Temp_sensor_voidInit(u8 copy_u8_ADC_ch){
 	 *
 	 */
 	if((copy_u8_ADC_ch <= Temp_ADC_max_ch)){
-		A_DC_sensor_config.MUX = copy_u8_ADC_ch;
+		Temp_sensor_config.MUX = copy_u8_ADC_ch;
 	}
 	else{
 
@@ -54,7 +54,7 @@ f64 Temp_sensor_voidClcTemp(void ){
 	 */
 	u16 currentAccumulator = Temp_sensor_Val_flour;
 	u16 current_ADC_data = Temp_sensor_Val_flour;
-	ADC_void_config(&A_DC_sensor_config);
+	ADC_void_config(&Temp_sensor_config);
 	for(u8 acc_counter= Temp_sensor_Val_flour; acc_counter < Temp_sensor_Acc; acc_counter++){
 		ADC_void_read_data(&current_ADC_data);
 		currentAccumulator+= current_ADC_data;

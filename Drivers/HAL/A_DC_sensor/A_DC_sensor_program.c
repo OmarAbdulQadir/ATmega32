@@ -25,7 +25,6 @@
 #define A_DC_sensor_ADIE		0
 #define A_DC_sensor_Val_flour	0
 #define A_DC_sensor_ADC_max		1024.0
-#define NULL 					(void *) 0
 
 //Global variables
 ADC_config_struct A_DC_sensor_config = {Amp_A0_1, A_DC_sensor_Prescaler, A_DC_sensor_ADATE, A_DC_sensor_ADTS, A_DC_sensor_ADIE};
