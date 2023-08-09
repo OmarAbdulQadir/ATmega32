@@ -21,10 +21,13 @@
 
 
 // Global variables and structs
+/* I2C working mode */
 static u8 I2C_mode;
+/* Data frame used for transceiving data */
 static u8 I2C_buffered_data[8]= { 0 };
+/* Variable for handling and storing Errors */
 static u8 err_handle = I2C_no_err;
-
+/* Master communication frame */
 static u8* copy_ptr_master_data_frame = NULL;
 
 enum I2C_mode{
@@ -164,7 +167,7 @@ void I2C_master_transmit_respond(void ){
 		// Master mode:: data byte transmitted followed by acknowledged
 		case (I2C_DB_t_ack):
 			// Chaeck for termination states if the next move is stop condition or tha maxmum frame bytes has been reached.
-			if((copy_ptr_master_data_frame[data_frame_index] == I2C_end_frame) || (data_frame_index > I2C_max_frame)){
+			if((copy_ptr_master_data_frame[data_frame_index] == I2C_end_frame) || (data_frame_index > I2C_max_frame+2)){
 				// Send stop condition
 				set_bit(I2C_TWCR, I2C_TWCR_TWSTO);
 				// Reset I2C mode flag
@@ -195,7 +198,7 @@ void I2C_master_transmit_respond(void ){
 			}
 			else if(copy_ptr_master_data_frame[data_frame_index] == I2C_251_None){
 			}
-			// if the noext byte is not termintion or any other condition then its data to be send
+			// if the next byte is not termination or any other condition then its data to be send
 			else{
 				// Load the data byte
 				I2C_TWDR = copy_ptr_master_data_frame[data_frame_index];
@@ -312,7 +315,7 @@ void I2C_master_recive_respond(void ){
 		break;
 		// Master Recive mode:: repeated start condition acknowledged
 		case (I2C_RS_cond_ack):
-			// Load SLA+W in the data register
+			// Load SLA+R in the data register
 			I2C_TWDR = copy_ptr_master_data_frame[data_frame_index];
 			// Clear start condition bit
 			clr_bit(I2C_TWCR, I2C_TWCR_TWSTA);
@@ -323,9 +326,15 @@ void I2C_master_recive_respond(void ){
 		break;
 		// Master mode:: SLA+R reccived followed by acknowledged
 		case (I2C_SLA_R_ack):
-			// Save data size
+			// check data size
 			if (--copy_ptr_master_data_frame[data_frame_index] > I2C_D_frame_max)
 				copy_ptr_master_data_frame[data_frame_index] = I2C_D_frame_max;
+			if (copy_ptr_master_data_frame[data_frame_index] == 0){
+				// Increment the frame index
+				data_frame_index++;
+				// sent not acknowledged in the next recive
+				clr_bit(I2C_TWCR, I2C_TWCR_TWEA);
+			}
 			// Clearing TWI interrupt flage
 			set_bit(I2C_TWCR, I2C_TWCR_TWINT);
 		break;
@@ -339,6 +348,7 @@ void I2C_master_recive_respond(void ){
 				set_bit(I2C_TWCR, I2C_TWCR_TWINT);
 			}
 			else{
+				// Increment the frame index
 				data_frame_index++;
 				// sent not acknowledged in the next recive
 				clr_bit(I2C_TWCR, I2C_TWCR_TWEA);
@@ -389,8 +399,12 @@ void I2C_master_recive_respond(void ){
 				I2C_mode = I2C_silent;
 				// Reset the frame index
 				data_frame_index = I2C_S_frame;
+				// Reset recived data frame
+				recived_data_index = I2C_S_frame;
 				// Reset the frame pointer
 				copy_ptr_master_data_frame = NULL;
+				// sent acknowledged in the next recive
+				set_bit(I2C_TWCR, I2C_TWCR_TWEA);
 				// Send stop condition
 				set_bit(I2C_TWCR, I2C_TWCR_TWSTO);
 				// Clearing TWI interrupt flage
@@ -404,8 +418,12 @@ void I2C_master_recive_respond(void ){
 				copy_ptr_master_data_frame += ++data_frame_index;
 				// Reset the frame index
 				data_frame_index = I2C_S_frame;
+				// Reset recived data frame
+				recived_data_index = I2C_S_frame;
 				// Set I2C mode flag to master mode R/W
 				I2C_mode = ((get_bit(copy_ptr_master_data_frame[data_frame_index], 0) == 0) ? I2C_master_transmit : I2C_master_recive);
+				// sent acknowledged in the next recive
+				set_bit(I2C_TWCR, I2C_TWCR_TWEA);
 				// Send repeated start
 				set_bit(I2C_TWCR, I2C_TWCR_TWSTA);
 				// Clearing TWI interrupt flage
@@ -598,7 +616,7 @@ u8* I2C_u8_ptr_get_buffered_frame(void ){
 }
 
 
-void I2C_u8_ptr_set_buffered_frame(u8* copy_ptr_buffered_data_frame){
+void I2C_u8_void_set_buffered_frame(u8* copy_ptr_buffered_data_frame){
 	/*
 	 *
 	 */

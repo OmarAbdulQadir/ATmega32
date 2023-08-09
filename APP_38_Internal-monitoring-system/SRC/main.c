@@ -5,7 +5,6 @@
  *      Author: Omar A.Qadir
  */
 
-#include <util/delay.h>
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
 
@@ -15,6 +14,7 @@
 #include "../../Drivers/HAL/A_DC_sensor/A_DC_sensor_interface.h"
 #include "../../Drivers/HAL/V_DC_sensor/V_DC_sensor_interface.h"
 #include "../../Drivers/HAL/Temp_sensor/Temp_sensor_interface.h"
+#include "../../Drivers/HAL/RTC/RTC_interface.h"
 
 void APP_voidUpdateLCD(u8, f64 );
 

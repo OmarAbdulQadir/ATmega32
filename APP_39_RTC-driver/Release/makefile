@@ -9,6 +9,7 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include SRC/subdir.mk
+-include RTC/subdir.mk
 -include LCD/subdir.mk
 -include IIC/subdir.mk
 -include DIO/subdir.mk
@@ -47,6 +48,12 @@ BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ART
 LSS += \
 APP_39_RTC-driver.lss \
 
+FLASH_IMAGE += \
+APP_39_RTC-driver.hex \
+
+EEPROM_IMAGE += \
+APP_39_RTC-driver.eep \
+
 SIZEDUMMY += \
 sizedummy \
 
@@ -71,6 +78,18 @@ APP_39_RTC-driver.lss: APP_39_RTC-driver.elf makefile objects.mk $(OPTIONAL_TOOL
 	@echo 'Finished building: $@'
 	@echo ' '
 
+APP_39_RTC-driver.hex: APP_39_RTC-driver.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+	@echo 'Create Flash image (ihex format)'
+	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex APP_39_RTC-driver.elf  "APP_39_RTC-driver.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
+APP_39_RTC-driver.eep: APP_39_RTC-driver.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+	@echo 'Create eeprom image (ihex format)'
+	-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex APP_39_RTC-driver.elf  "APP_39_RTC-driver.eep"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 sizedummy: APP_39_RTC-driver.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: Print Size'
 	-avr-size --format=avr --mcu=atmega32 APP_39_RTC-driver.elf
@@ -79,10 +98,10 @@ sizedummy: APP_39_RTC-driver.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 
 # Other Targets
 clean:
-	-$(RM) $(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) APP_39_RTC-driver.elf
+	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(EEPROM_IMAGE)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) APP_39_RTC-driver.elf
 	-@echo ' '
 
-secondary-outputs: $(LSS) $(SIZEDUMMY)
+secondary-outputs: $(LSS) $(FLASH_IMAGE) $(EEPROM_IMAGE) $(SIZEDUMMY)
 
 .PHONY: all clean dependents main-build
 
