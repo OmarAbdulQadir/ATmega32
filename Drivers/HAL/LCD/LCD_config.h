@@ -24,9 +24,9 @@
 	/* Ports definition */
 	// "For 8 bit connection" All port B0-B7 is connected to LCD D0-D7 respectively
 	// "For 4 bit connection" All port B4-B7 is connected to LCD D4-D7 respectively
-	#define lcd_data_port 	DIO_REF_PORTC
+	#define lcd_data_port 	DIO_REF_PORTA
 	// Control pins is connected to the same port and defined below
-	#define lcd_ctrl_port 	DIO_REF_PORTC
+	#define lcd_ctrl_port 	DIO_REF_PORTA
 
 	/* Control pins definition */
 	// Enable pin

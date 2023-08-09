@@ -1,7 +1,7 @@
 /*******************************************************************/
 /***               Date: 23/6/2023	Day: Friday		             ***/
 /***  	IIC protocol driver for the microcontroller ATMega 32 	 ***/
-/***     Created By: Omar Abdul Qadir	 Version= 2.0            ***/
+/***     Created By: Omar Abdul Qadir	 Version= 1.0            ***/
 /*******************************************************************/
 /***         Note: All the data in the file is readable,         ***/
 /***     And any editing will affect the controller's behavior,  ***/
@@ -36,14 +36,14 @@ enum I2C_mode{
 };
 
 enum I2C_master_status_messages{
-	I2C_S_cond_ack = 0x08,					// Master mode:: start condition acknowledged
-	I2C_RS_cond_ack = 0x10,					// Master mode:: repeated start condition acknowledged
-	I2C_SLA_W_ack = 0x18,					// Master mode:: SLA+W recived followed by acknowledged
-	I2C_SLA_R_ack = 0x40,					// Master mode:: SLA+R recived followed by acknowledged
+	I2C_S_cond_ack = 0x08,					// Master Transmit mode:: start condition acknowledged
+	I2C_RS_cond_ack = 0x10,					// Master Recive mode:: start condition acknowledged
+	I2C_SLA_W_ack = 0x18,					// Slave mode:: write condition acknowledged
+	I2C_SLA_R_ack = 0x40,					// Slave mode:: read condition acknowledged
 	I2C_DB_t_ack = 0x28,					// Master mode:: data byte transmitted followed by acknowledged
 	I2C_DB_r_ack = 0x50,					// Master mode:: data byte recived followed by acknowledged
-	I2C_SLA_W_nack = 0x20,					// Master mode:: SLA+W recived followed by not acknowledged
-	I2C_SLA_R_nack = 0x48,					// Master mode:: SLA+R recived followed by not acknowledged
+	I2C_SLA_W_nack = 0x20,					// Slave mode:: write condition not acknowledged
+	I2C_SLA_R_nack = 0x48,					// Slave mode:: read condition not acknowledged
 	I2C_DB_t_nack = 0x30,					// Master mode:: data byte transmitted followed by not acknowledged
 	I2C_DB_r_nack = 0x58,					// Master mode:: data byte recived followed by not acknowledged
 	I2C_Arb_lost = 0x38,					// Master mode:: arbitration lost
@@ -130,7 +130,6 @@ void I2C_master_transmit_respond(void ){
 	 */
 	static u8 data_frame_index = I2C_S_frame;
 	switch(I2C_get_status_word()){
-		// Master Transmit mode:: start condition acknowledged
 		case (I2C_S_cond_ack):
 			// Load SLA+W in the data register
 			I2C_TWDR = copy_ptr_master_data_frame[data_frame_index];
@@ -141,7 +140,6 @@ void I2C_master_transmit_respond(void ){
 			// Clearing TWI interrupt flage
 			set_bit(I2C_TWCR, I2C_TWCR_TWINT);
 		break;
-		// Master Recive mode:: start condition acknowledged
 		case (I2C_RS_cond_ack):
 			// Load SLA+W in the data register
 			I2C_TWDR = copy_ptr_master_data_frame[data_frame_index];
@@ -152,7 +150,6 @@ void I2C_master_transmit_respond(void ){
 			// Clearing TWI interrupt flage
 			set_bit(I2C_TWCR, I2C_TWCR_TWINT);
 		break;
-		// Slave mode:: write condition acknowledged
 		case (I2C_SLA_W_ack):
 			// Load the first data byte
 			I2C_TWDR = copy_ptr_master_data_frame[data_frame_index];
@@ -161,9 +158,7 @@ void I2C_master_transmit_respond(void ){
 			// Clearing TWI interrupt flage
 			set_bit(I2C_TWCR, I2C_TWCR_TWINT);
 		break;
-		// Master mode:: data byte transmitted followed by acknowledged
 		case (I2C_DB_t_ack):
-			// Chaeck for termination states if the next move is stop condition or tha maxmum frame bytes has been reached.
 			if((copy_ptr_master_data_frame[data_frame_index] == I2C_end_frame) || (data_frame_index > I2C_max_frame)){
 				// Send stop condition
 				set_bit(I2C_TWCR, I2C_TWCR_TWSTO);
@@ -176,7 +171,6 @@ void I2C_master_transmit_respond(void ){
 				// Clearing TWI interrupt flage
 				set_bit(I2C_TWCR, I2C_TWCR_TWINT);
 			}
-			// Check if the next byte is indecator to repeated start or not
 			else if(copy_ptr_master_data_frame[data_frame_index] == I2C_repeated_start){
 				// Reset the frame pointer pointing to the new address
 				copy_ptr_master_data_frame += ++data_frame_index;
@@ -195,7 +189,6 @@ void I2C_master_transmit_respond(void ){
 			}
 			else if(copy_ptr_master_data_frame[data_frame_index] == I2C_251_None){
 			}
-			// if the noext byte is not termintion or any other condition then its data to be send
 			else{
 				// Load the data byte
 				I2C_TWDR = copy_ptr_master_data_frame[data_frame_index];
@@ -205,9 +198,7 @@ void I2C_master_transmit_respond(void ){
 				set_bit(I2C_TWCR, I2C_TWCR_TWINT);
 			}
 		break;
-		// Master mode:: SLA+W recived followed by not acknowledged
 		case (I2C_SLA_W_nack):
-			// Update Error code to resend the SLA+W
 			if(err_handle == I2C_no_err){
 				// Resend SLA+W
 				err_handle = I2C_20_R0;
@@ -218,7 +209,6 @@ void I2C_master_transmit_respond(void ){
 				// Clearing TWI interrupt flage
 				set_bit(I2C_TWCR, I2C_TWCR_TWINT);
 			}
-			// Update Error code to repeated start sent
 			else if(err_handle == I2C_20_R0){
 				// Send repeated start
 				err_handle = I2C_20_R1;
@@ -227,7 +217,6 @@ void I2C_master_transmit_respond(void ){
 				// Send repeated start
 				set_bit(I2C_TWCR, I2C_TWCR_TWSTA);
 			}
-			// Update Error code to stop communication as slave does not respond
 			else if(err_handle == I2C_20_R1){
 				// Send stop codondition
 				err_handle = I2C_20_R2;
@@ -243,7 +232,6 @@ void I2C_master_transmit_respond(void ){
 				set_bit(I2C_TWCR, I2C_TWCR_TWINT);
 			}
 		break;
-		// Updete Error code to resend the data byte
 		case (I2C_DB_t_nack):
 			if(err_handle == I2C_no_err){
 				// Resend the data byte (n)
@@ -255,7 +243,6 @@ void I2C_master_transmit_respond(void ){
 				// Clearing TWI interrupt flage
 				set_bit(I2C_TWCR, I2C_TWCR_TWINT);
 			}
-			// Update Error code to retpeated start sent
 			else if(err_handle == I2C_30_R0){
 				// Send repeated start
 				err_handle = I2C_30_R1;
@@ -264,7 +251,6 @@ void I2C_master_transmit_respond(void ){
 				// Send repeated start
 				set_bit(I2C_TWCR, I2C_TWCR_TWSTA);
 			}
-			// Update Error code to stop communication as slave does not respond
 			else if(err_handle == I2C_30_R1){
 				// Send stop condition
 				err_handle = I2C_30_R2;
@@ -299,7 +285,6 @@ void I2C_master_recive_respond(void ){
 	static u8 data_frame_index = I2C_S_frame;
 	static u8 recived_data_index = I2C_D_frame_St;
 	switch (I2C_get_status_word()){
-		// Master mode:: Start condition sent
 		case (I2C_S_cond_ack):
 			// Load SLA+W in the data register
 			I2C_TWDR = copy_ptr_master_data_frame[data_frame_index];
@@ -310,7 +295,6 @@ void I2C_master_recive_respond(void ){
 			// Clearing TWI interrupt flage
 			set_bit(I2C_TWCR, I2C_TWCR_TWINT);
 		break;
-		// Master Recive mode:: repeated start condition acknowledged
 		case (I2C_RS_cond_ack):
 			// Load SLA+W in the data register
 			I2C_TWDR = copy_ptr_master_data_frame[data_frame_index];
@@ -321,7 +305,6 @@ void I2C_master_recive_respond(void ){
 			// Clearing TWI interrupt flage
 			set_bit(I2C_TWCR, I2C_TWCR_TWINT);
 		break;
-		// Master mode:: SLA+R reccived followed by acknowledged
 		case (I2C_SLA_R_ack):
 			// Save data size
 			if (--copy_ptr_master_data_frame[data_frame_index] > I2C_D_frame_max)
@@ -329,21 +312,49 @@ void I2C_master_recive_respond(void ){
 			// Clearing TWI interrupt flage
 			set_bit(I2C_TWCR, I2C_TWCR_TWINT);
 		break;
-		// Master mode:: data byte recived follwed by acknowledged
 		case (I2C_DB_r_ack):
-			// Recive current data byte
-			I2C_buffered_data[recived_data_index++] = I2C_TWDR;
-			// Check the next move if its recived data or not
 			if ((copy_ptr_master_data_frame[data_frame_index] - recived_data_index) > I2C_D_frame_St){
+				// Recive current data byte
+				I2C_buffered_data[recived_data_index++] = I2C_TWDR;
 				// Clearing TWI interrupt flage
 				set_bit(I2C_TWCR, I2C_TWCR_TWINT);
 			}
-			else{
-				data_frame_index++;
-				// sent not acknowledged in the next recive
-				clr_bit(I2C_TWCR, I2C_TWCR_TWEA);
+			else if(copy_ptr_master_data_frame[++data_frame_index] == I2C_end_frame){
+				// Recive current data byte
+				I2C_buffered_data[recived_data_index++] = I2C_TWDR;
+				// Reset I2C mode flag
+				I2C_mode = I2C_silent;
+				// Reset the frame index
+				data_frame_index = I2C_S_frame;
+				// Reset the frame pointer
+				copy_ptr_master_data_frame = NULL;
+				// Send stop condition
+				set_bit(I2C_TWCR, I2C_TWCR_TWSTO);
 				// Clearing TWI interrupt flage
 				set_bit(I2C_TWCR, I2C_TWCR_TWINT);
+			}
+			else if(copy_ptr_master_data_frame[data_frame_index] == I2C_repeated_start){
+				// Recive current data byte
+				I2C_buffered_data[recived_data_index++] = I2C_TWDR;
+				// Reset the frame pointer pointing to the new address
+				copy_ptr_master_data_frame += ++data_frame_index;
+				// Reset the frame index
+				data_frame_index = I2C_S_frame;
+				// Set I2C mode flag to master mode R/W
+				I2C_mode = ((get_bit(copy_ptr_master_data_frame[data_frame_index], 0) == 0) ? I2C_master_transmit : I2C_master_recive);
+				// Send repeated start
+				set_bit(I2C_TWCR, I2C_TWCR_TWSTA);
+				// Clearing TWI interrupt flage
+				set_bit(I2C_TWCR, I2C_TWCR_TWINT);
+			}
+			else if(copy_ptr_master_data_frame[data_frame_index] == I2C_253_None){
+
+			}
+			else if(copy_ptr_master_data_frame[data_frame_index] == I2C_252_None){
+
+			}
+			else if(copy_ptr_master_data_frame[data_frame_index] == I2C_251_None){
+
 			}
 		break;
 		case (I2C_SLA_R_nack):
@@ -381,23 +392,13 @@ void I2C_master_recive_respond(void ){
 			}
 		break;
 		case (I2C_DB_r_nack):
-			// check if its the end of frame code
-			if(copy_ptr_master_data_frame[data_frame_index] == I2C_end_frame){
-				// Recive current data byte
-				I2C_buffered_data[recived_data_index++] = I2C_TWDR;
-				// Reset I2C mode flag
-				I2C_mode = I2C_silent;
-				// Reset the frame index
-				data_frame_index = I2C_S_frame;
-				// Reset the frame pointer
-				copy_ptr_master_data_frame = NULL;
-				// Send stop condition
-				set_bit(I2C_TWCR, I2C_TWCR_TWSTO);
-				// Clearing TWI interrupt flage
-				set_bit(I2C_TWCR, I2C_TWCR_TWINT);
+			if(err_handle == I2C_no_err){
+				// Recive again the Data byte (n)
+				err_handle = I2C_58_R0;
 			}
-			// check if its the repeated start code
-			else if(copy_ptr_master_data_frame[data_frame_index] == I2C_repeated_start){
+			else if(err_handle == I2C_58_R0){
+				// Send repeated start condition
+				err_handle = I2C_58_R1;
 				// Recive current data byte
 				I2C_buffered_data[recived_data_index++] = I2C_TWDR;
 				// Reset the frame pointer pointing to the new address
@@ -408,20 +409,20 @@ void I2C_master_recive_respond(void ){
 				I2C_mode = ((get_bit(copy_ptr_master_data_frame[data_frame_index], 0) == 0) ? I2C_master_transmit : I2C_master_recive);
 				// Send repeated start
 				set_bit(I2C_TWCR, I2C_TWCR_TWSTA);
+			}
+			else if (err_handle == I2C_58_R1){
+				// Send stop condition
+				err_handle = I2C_58_R2;
+				// Send stop condition
+				set_bit(I2C_TWCR, I2C_TWCR_TWSTO);
+				// Reset I2C mode flag
+				I2C_mode = I2C_silent;
+				// Reset the frame index
+				data_frame_index = I2C_S_frame;
+				// Reset the frame pointer
+				copy_ptr_master_data_frame = NULL;
 				// Clearing TWI interrupt flage
 				set_bit(I2C_TWCR, I2C_TWCR_TWINT);
-			}
-			else if(copy_ptr_master_data_frame[data_frame_index] == I2C_253_None){
-
-			}
-			else if(copy_ptr_master_data_frame[data_frame_index] == I2C_252_None){
-
-			}
-			else if(copy_ptr_master_data_frame[data_frame_index] == I2C_251_None){
-
-			}
-			else{
-			
 			}
 		break;
 		default:

@@ -9,9 +9,7 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include SRC/subdir.mk
--include LCD/subdir.mk
 -include IIC/subdir.mk
--include DIO/subdir.mk
 -include subdir.mk
 -include objects.mk
 
@@ -38,20 +36,14 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := APP_28_I2C-testing
+BUILD_ARTIFACT_NAME := APP_39_RTC-driver
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 LSS += \
-APP_28_I2C-testing.lss \
-
-FLASH_IMAGE += \
-APP_28_I2C-testing.hex \
-
-EEPROM_IMAGE += \
-APP_28_I2C-testing.eep \
+APP_39_RTC-driver.lss \
 
 SIZEDUMMY += \
 sizedummy \
@@ -61,46 +53,34 @@ sizedummy \
 all: main-build
 
 # Main-build Target
-main-build: APP_28_I2C-testing.elf secondary-outputs
+main-build: APP_39_RTC-driver.elf secondary-outputs
 
 # Tool invocations
-APP_28_I2C-testing.elf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+APP_39_RTC-driver.elf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
-	avr-gcc -Wl,-Map,APP_28_I2C-testing.map -mmcu=atmega32 -o "APP_28_I2C-testing.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	avr-gcc -Wl,-Map,APP_39_RTC-driver.map -mmcu=atmega32 -o "APP_39_RTC-driver.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-APP_28_I2C-testing.lss: APP_28_I2C-testing.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+APP_39_RTC-driver.lss: APP_39_RTC-driver.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: AVR Create Extended Listing'
-	-avr-objdump -h -S APP_28_I2C-testing.elf  >"APP_28_I2C-testing.lss"
+	-avr-objdump -h -S APP_39_RTC-driver.elf  >"APP_39_RTC-driver.lss"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-APP_28_I2C-testing.hex: APP_28_I2C-testing.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
-	@echo 'Create Flash image (ihex format)'
-	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex APP_28_I2C-testing.elf  "APP_28_I2C-testing.hex"
-	@echo 'Finished building: $@'
-	@echo ' '
-
-APP_28_I2C-testing.eep: APP_28_I2C-testing.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
-	@echo 'Create eeprom image (ihex format)'
-	-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex APP_28_I2C-testing.elf  "APP_28_I2C-testing.eep"
-	@echo 'Finished building: $@'
-	@echo ' '
-
-sizedummy: APP_28_I2C-testing.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+sizedummy: APP_39_RTC-driver.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: Print Size'
-	-avr-size --format=avr --mcu=atmega32 APP_28_I2C-testing.elf
+	-avr-size --format=avr --mcu=atmega32 APP_39_RTC-driver.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(EEPROM_IMAGE)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) APP_28_I2C-testing.elf
+	-$(RM) $(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) APP_39_RTC-driver.elf
 	-@echo ' '
 
-secondary-outputs: $(LSS) $(FLASH_IMAGE) $(EEPROM_IMAGE) $(SIZEDUMMY)
+secondary-outputs: $(LSS) $(SIZEDUMMY)
 
 .PHONY: all clean dependents main-build
 

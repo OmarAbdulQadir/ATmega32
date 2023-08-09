@@ -7,6 +7,7 @@
 
 
 // Libraries section
+#include <util/delay.h>
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
 
@@ -29,7 +30,7 @@
 int main(void ){
 	// Setup section
 
-	u8 I2C_test_frame[]= {0xA0, 0x00, 254, 0xA1, 2, 254, 0xA0, 0x00, 0x21, 0x22, 0x23, 0x24, 255};
+	u8 I2C_test_frame[]= {0xA0, 0x00, 254, 0xA1, 5, 254, 0xA0, 0x00, 0x21, 0x22, 0x23, 0x24, 255};
 	/*
 	 * Testing frame with EEPROM
 	 * 0xA0: SLA+W
@@ -47,7 +48,7 @@ int main(void ){
 	I2C_void_master_start_comm(I2C_test_frame);
 
 	LCD_init();
-	LCD_write_str("Starting...");
+	LCD_write_str((u8*)"Starting...");
 
 	LCD_clear();
 	u8* rec_frame = I2C_u8_ptr_get_buffered_frame();
