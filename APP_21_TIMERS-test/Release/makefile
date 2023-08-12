@@ -9,7 +9,7 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include TIMER/subdir.mk
--include SRS/subdir.mk
+-include SRC/subdir.mk
 -include DIO/subdir.mk
 -include subdir.mk
 -include objects.mk

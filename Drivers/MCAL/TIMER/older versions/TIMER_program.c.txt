@@ -1,0 +1,187 @@
+/*******************************************************************/
+/***               Date: 09/6/2023	Day: Friday		             ***/
+/*** 	 TIMER driver for the microcontroller ATMega 32			 ***/
+/***     Created By: Omar Abdul Qadir	 Version= 1.0            ***/
+/*******************************************************************/
+/***         Note: All the data in the file is readable,         ***/
+/***     And any editing will affect the controller's behavior,  ***/
+/***          So It's not recommended to edit any data,          ***/
+/***   Unless you are sure of what is the effect on behaviors.   ***/
+/*******************************************************************/
+
+//Standard libraries Section
+#include "../../../LIB/BIT_MATH.h"
+#include "../../../LIB/STD_TYPES.h"
+
+//Private libraries Section
+#include "TIMER_Register.h"
+#include "TIMER_Private.h"
+#include "TIMER_interface.h"
+
+
+//Global variables
+// Call back function container
+static void (*call_back_function[7])(void);
+// pointer to temporary configuration struct
+static const timer_config* copy_ptr_temp_timer_config = NULL;
+
+
+/* Implementing of the driver functions */
+void TIMER_init(timer_config* ptr_timer_config){
+	/*
+	 *
+	 */
+	copy_ptr_temp_timer_config = ptr_timer_config;
+}
+
+void TIMER_set_callback(u8 copy_int_ref, void (*copy_ptr_call_back_function)(void) ){
+	/*
+	 *
+	 */
+	if((copy_int_ref >= 0)&&(copy_int_ref <= 6))
+		call_back_function[copy_int_ref] = copy_ptr_call_back_function;
+}
+
+void TIMER_config(void ){
+	/*
+	 *
+	 */
+	if (copy_ptr_temp_timer_config != NULL){
+		if((copy_ptr_temp_timer_config -> WGM) <= TIMER0_sep){
+			// Set preload value of the TCNT register (1)
+			TIMER_TCNT0 = *((u8*)(copy_ptr_temp_timer_config -> preload));
+			// Set preload value of the OCR or ICR register (2)
+			TIMER_OCR0 = *(((u8*)(copy_ptr_temp_timer_config -> preload))+1);
+			// Reset timer control register (3)
+			TIMER_TCCR0 &= TIMER0_TCCR_Reset;
+			// Reset timer interrupt mask register (timer 0 interrupt bits) (4)
+			TIMER_TIMSK &= TIMER0_TIMSK_Reset;
+			// Set wave form generation mode (5)
+			// Enable the interrupt bit (6)
+			if((copy_ptr_temp_timer_config -> WGM) == 0){
+				// Normal mode 
+				TIMER_TCCR0 |= ((get_bit(TIMER0_NORM, 1) << TIMER_WGM01) | (get_bit(TIMER0_NORM, 0) << TIMER_WGM00));	//0b0000000
+				// In normal mode the overflow interrupt is enabled
+				TIMER_TIMSK |= ((TIMER_DISABLE << TIMER_OCIE0) | (TIMER_ENABLE << TIMER_TOIE0));	//0bxxxxxx01
+			}
+			else{
+				// Clear timer on compare mode
+				TIMER_TCCR0 |= ((get_bit(TIMER0_CTC, 1) << TIMER_WGM01) | (get_bit(TIMER0_CTC, 0) << TIMER_WGM00));	//0b00001000
+				// In compare match mode the compare match interrupt is enabled
+				TIMER_TIMSK |= ((TIMER_ENABLE << TIMER_OCIE0) | (TIMER_DISABLE << TIMER_TOIE0));	//0bxxxxxx10
+			}
+			// Set output compare mode (7)
+			TIMER_TCCR0 |= ((copy_ptr_temp_timer_config -> COM) << TIMER_COM00);
+			// Set prescaler value (8)
+			TIMER_TCCR0 |= (copy_ptr_temp_timer_config -> CS);
+			// Enable Global interrupt (9)
+			TIMER_SREG |= (TIMER_ENABLE << TIMER_Glob_Init_bit);
+		}
+		else if(((copy_ptr_temp_timer_config -> WGM) > TIMER0_sep) && ((copy_ptr_temp_timer_config -> WGM) <= TIMER1_sep)){
+
+		}
+		else{
+			// Set preload value of the TCNT register (1)
+			TIMER_TCNT2 = *((u8*)(copy_ptr_temp_timer_config -> preload));
+			// Set preload value of the OCR or ICR register (2)
+			TIMER_OCR2 = *(((u8*)(copy_ptr_temp_timer_config -> preload))+1);
+			// Reset timer control register (3)
+			TIMER_TCCR2 &= TIMER2_TCCR_Reset;
+			// Reset timer interrupt mask register (timer 2 interrupt bits) (4)
+			TIMER_TIMSK &= TIMER2_TIMSK_Reset;
+			// Set wave form generation mode (5)
+			// Enable the interrupt bit (6)
+			if((copy_ptr_temp_timer_config -> WGM) == 5){
+				// Normal mode
+				TIMER_TCCR2 |= ((get_bit(TIMER2_NORM, 1) << TIMER_WGM21) | (get_bit(TIMER2_NORM, 0) << TIMER_WGM20));
+				// In normal mode the overflow interrupt is enabled
+				TIMER_TIMSK |= ((TIMER_DISABLE << TIMER_OCIE2) | (TIMER_ENABLE << TIMER_TOIE2));
+			}
+			else{
+				// Clear timer on compare mode
+				TIMER_TCCR2 |= ((get_bit(TIMER2_CTC, 1) << TIMER_WGM21) | (get_bit(TIMER2_CTC, 0) << TIMER_WGM20));
+				// In compare match mode the compare match interrupt is enabled
+				TIMER_TIMSK |= ((TIMER_ENABLE << TIMER_OCIE2) | (TIMER_DISABLE << TIMER_TOIE2));
+			}
+			// Set output compare mode (7)
+			TIMER_TCCR2 |= ((copy_ptr_temp_timer_config -> COM) << TIMER_COM20);
+			// Set prescaler value (8)
+			TIMER_TCCR2 |= (copy_ptr_temp_timer_config -> CS);
+			// Enable Global interrupt (9)
+			TIMER_SREG |= (TIMER_ENABLE << TIMER_Glob_Init_bit);
+		}
+	}
+}
+
+void TIMER_stop(u8 copy_u8TimerID ){
+	/*
+	 *
+	 */
+	if (copy_ptr_temp_timer_config != NULL){
+		if((copy_ptr_temp_timer_config -> WGM) <= TIMER0_sep){
+			TIMER_TCCR0 &= TIMER_STOP_MASK;
+		}
+		else if(((copy_ptr_temp_timer_config -> WGM) > TIMER0_sep) && ((copy_ptr_temp_timer_config -> WGM) <= TIMER1_sep)){
+			
+		}
+		else{
+			TIMER_TCCR2 &= TIMER_STOP_MASK;
+		}
+	}
+}
+
+void __vector_11(void){
+	/*
+	 *
+	 */
+	if(call_back_function[ref_TIMER0_OVF] != NULL)
+		call_back_function[ref_TIMER0_OVF]();
+}
+
+void __vector_10(void){
+	/*
+	 *
+	 */
+	if(call_back_function[ref_TIMER0_COMP] != NULL)
+		call_back_function[ref_TIMER0_COMP]();
+}
+
+void __vector_9(void){
+	/*
+	 *
+	 */
+	if(call_back_function[ref_TIMER1_OVF] != NULL)
+		call_back_function[ref_TIMER1_OVF]();
+}
+
+void __vector_8(void){
+	/*
+	 *
+	 */
+	if(call_back_function[ref_TIMER1_COMPB] != NULL)
+		call_back_function[ref_TIMER1_COMPB]();
+}
+
+void __vector_7(void){
+	/*
+	 *
+	 */
+	if(call_back_function[ref_TIMER1_COMPA] != NULL)
+		call_back_function[ref_TIMER1_COMPA]();
+}
+
+void __vector_5(void){
+	/*
+	 *
+	 */
+	if(call_back_function[ref_TIMER2_OVF] != NULL)
+		call_back_function[ref_TIMER2_OVF]();
+}
+
+void __vector_4(void){
+	/*
+	 *
+	 */
+	if(call_back_function[ref_TIMER2_COMP] != NULL)
+		call_back_function[ref_TIMER2_COMP]();
+}

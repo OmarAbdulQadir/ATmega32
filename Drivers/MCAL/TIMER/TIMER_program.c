@@ -1,7 +1,7 @@
 /*******************************************************************/
 /***               Date: 09/6/2023	Day: Friday		             ***/
 /*** 	 TIMER driver for the microcontroller ATMega 32			 ***/
-/***     Created By: Omar Abdul Qadir	 Version= 1.0            ***/
+/***     Created By: Omar Abdul Qadir	 Version= 2.0            ***/
 /*******************************************************************/
 /***         Note: All the data in the file is readable,         ***/
 /***     And any editing will affect the controller's behavior,  ***/
@@ -9,179 +9,318 @@
 /***   Unless you are sure of what is the effect on behaviors.   ***/
 /*******************************************************************/
 
-//Standard libraries Section
+/* Standard libraries Section */
 #include "../../../LIB/BIT_MATH.h"
 #include "../../../LIB/STD_TYPES.h"
 
-//Private libraries Section
+
+/* Helper Drivers Section */
+#include "../DIO/DIO_interface.h"
+
+
+/* Private libraries Section */
 #include "TIMER_Register.h"
 #include "TIMER_Private.h"
 #include "TIMER_interface.h"
 
 
-//Global variables
-// Call back function container
-static void (*call_back_function[7])(void);
-// pointer to temporary configuration struct
-static timer_config* copy_ptr_temp_timer_config = NULL;
+/* Global variables */
+// Timers occupation flag (0: disabled, 1: clear, 2: Occupied by delay mS function, 3: Occupied by delay uS function 4: Occupied by counter function, 5: Occupied by PWM function)
+u8 Timerx_occupation_flag[3] = {TIMER_ENABLE, TIMER_ENABLE, TIMER_ENABLE};
+// Delay variables
+static delay_t Delay_base[2];
 
 
-/* Implementing of the driver functions */
-void TIMER_init(timer_config* ptr_timer_config){
+/* Delay functions Implementation */
+u8 TIMER_u8Delay_mS(u8 copy_u8TimerID, u16 copy_DelayTime_mS, void (*ptr_callback)(void) ){
 	/*
 	 *
 	 */
-	copy_ptr_temp_timer_config = ptr_timer_config;
+	if((copy_u8TimerID <= TIMER1ID) && (copy_DelayTime_mS >= MIN_TIME) && (copy_DelayTime_mS <= MAX_TIME) && (Timerx_occupation_flag[copy_u8TimerID] == TIMER_Clear)){
+		if(copy_u8TimerID != TIMER1ID){
+			Delay_base[copy_u8TimerID].Delay_OVF = 0;
+			Delay_base[copy_u8TimerID].Delay_RestTime = 0;
+			Delay_base[copy_u8TimerID].ptr_callback_t = NULL;
+			// Raise the occupation flag
+			Timerx_occupation_flag[copy_u8TimerID] = TIMER_Delay_mS;
+			// Calculate number of ticks
+			f64 clc_NO_Tics = ((f64)copy_DelayTime_mS * Mills_to_Nano) / Mills_TickTime;
+			// Calulate the rest of the nano second
+			Delay_base[copy_u8TimerID].Delay_RestTime = ((copy_DelayTime_mS * Mills_to_Nano) - ((u32)clc_NO_Tics * Mills_TickTime));
+			// Calulate the number of OVF
+			Delay_base[copy_u8TimerID].Delay_OVF = (((u32)clc_NO_Tics / OVF_MAX) + 1);
+			// Caculate the preload value
+			u8 clc_PreloadValue = (OVF_MAX - ((u32)clc_NO_Tics % OVF_MAX));
+			// Set parameters for callback
+			Delay_base[copy_u8TimerID].ptr_callback_t = ptr_callback;
+			// Create the control register value container
+			if(copy_u8TimerID == TIMER0ID){
+				// Set preload value
+				TIMER0_TCNT = clc_PreloadValue;
+				// Enable intrrupt
+				TIMER_TIMSK &= TIMER0_TIMSK_Reset;
+				TIMER_TIMSK |= TIMER_ENABLE;
+				// Enable Global Interrupt
+				TIMER_SREG |= TIMER_ENABLE << TIMER_Glob_Init_bit;
+				// Reset timer configurations
+				TIMER0_TCCR = TIMER_TCCR_Reset;
+				// Set Prescaller to 1024
+				TIMER0_TCCR |= TIMER_1024PRE;
+			}
+			else{
+				// Set preload value
+				TIMER2_TCNT = clc_PreloadValue;
+				// Enable intrrupt
+				TIMER_TIMSK &= TIMER2_TIMSK_Reset;
+				TIMER_TIMSK |= TIMER_ENABLE << TIMER_TOIE2;
+				// Enable Global Interrupt
+				TIMER_SREG |= TIMER_ENABLE << TIMER_Glob_Init_bit;
+				// Reset timer configurations
+				TIMER2_TCCR = TIMER_TCCR_Reset;
+				// Set Prescaller to 1024
+				TIMER2_TCCR |= TIMER2_1024PRE;
+			}
+			return 1;
+		}
+		else{
+
+			return 1;
+		}
+	}
+	else{
+		return 0;
+	}
 }
 
-void TIMER_set_callback(u8 copy_int_ref, void (*copy_ptr_call_back_function)(void) ){
+u8 TIMER_u8Delay_uS(u8 copy_u8TimerID, u16 copy_DelayTime_uS, void (*ptr_callback)(void) ){
 	/*
 	 *
 	 */
-	if((copy_int_ref >= 0)&&(copy_int_ref <= 6))
-		call_back_function[copy_int_ref] = copy_ptr_call_back_function;
+	if((copy_u8TimerID <= TIMER1ID) && (copy_DelayTime_uS >= MIN_TIME) && (copy_DelayTime_uS <= MAX_TIME) && (Timerx_occupation_flag[copy_u8TimerID] == TIMER_Clear)){
+		if(copy_u8TimerID != TIMER1ID){
+			Delay_base[copy_u8TimerID].Delay_OVF = 0;
+			Delay_base[copy_u8TimerID].Delay_RestTime = 0;
+			Delay_base[copy_u8TimerID].ptr_callback_t = NULL;
+			// Raise the occupation flag
+			Timerx_occupation_flag[copy_u8TimerID] = TIMER_Delay_uS;
+			// Calulate the number of OVF
+			Delay_base[copy_u8TimerID].Delay_OVF = ((copy_DelayTime_uS / OVF_MAX) + 1);
+			// Caculate the preload value
+			u8 clc_PreloadValue = (OVF_MAX - (copy_DelayTime_uS % OVF_MAX));
+			// Set parameters for callback
+			Delay_base[copy_u8TimerID].ptr_callback_t = ptr_callback;
+			// Create the control register value container
+			// Set the confguration to (WGM: Normal, COM: Normal)
+			if(copy_u8TimerID == TIMER0ID){
+				// Set preload value
+				TIMER0_TCNT = clc_PreloadValue;
+				// Enable intrrupt
+				TIMER_TIMSK &= TIMER0_TIMSK_Reset;
+				TIMER_TIMSK |= TIMER_ENABLE;
+				// Enable Global Interrupt
+				TIMER_SREG |= TIMER_ENABLE << TIMER_Glob_Init_bit;
+				// Reset timer configurations
+				TIMER0_TCCR = TIMER_TCCR_Reset;
+				// Set Prescaller to 8
+				TIMER0_TCCR |= TIMER_8PRE;
+			}
+			else{
+				// Set preload value
+				TIMER2_TCNT = clc_PreloadValue;
+				// Enable intrrupt
+				TIMER_TIMSK &= TIMER2_TIMSK_Reset;
+				TIMER_TIMSK |= TIMER_ENABLE << TIMER_TOIE2;
+				// Enable Global Interrupt
+				TIMER_SREG |= TIMER_ENABLE << TIMER_Glob_Init_bit;
+				// Reset timer configurations
+				TIMER2_TCCR = TIMER_TCCR_Reset;
+				// Set Prescaller to 8
+				TIMER2_TCCR |= TIMER2_8PRE;
+			}
+			return 1;
+		}
+		else{
+
+			return 1;
+		}
+	}
+	else{
+		return 0;
+	}
 }
 
-void TIMER_config(void ){
+void TIMER_vDelay_Callback(u8 copy_u8TimerID ){
 	/*
 	 *
 	 */
-	if (copy_ptr_temp_timer_config != NULL){
-		if((copy_ptr_temp_timer_config -> WGM) <= TIMER0_sep){
-			// Set preload value of the TCNT register (1)
-			TIMER_TCNT0 = *((u8*)(copy_ptr_temp_timer_config -> preload));
-			// Set preload value of the OCR or ICR register (2)
-			TIMER_OCR0 = *(((u8*)(copy_ptr_temp_timer_config -> preload))+1);
-			// Reset timer control register (3)
-			TIMER_TCCR0 &= TIMER0_TCCR_Reset;
-			// Reset timer interrupt mask register (timer 0 interrupt bits) (4)
+	// // Decrement the OVF counter then check the over flow counter if zero then delay in mS is finished
+	if((--(Delay_base[copy_u8TimerID].Delay_OVF)) == 0){
+		// Check the rest time in uS in case of mS delay if zero ther total delay is finished
+		if((Delay_base[copy_u8TimerID].Delay_RestTime) == 0){
+			// Clear the ossupation flag
+			Timerx_occupation_flag[copy_u8TimerID] = TIMER_Clear;
+			// Call the function
+			(Delay_base[copy_u8TimerID].ptr_callback_t)();
+			// Clear timer data
+			TIMERx_vClear(copy_u8TimerID);
+		}
+		// In case of false continue the delay in uS
+		else{
+			// Clear the ossupation flag
+			Timerx_occupation_flag[copy_u8TimerID] = TIMER_Clear;
+			// Call the uS delay function
+			TIMER_u8Delay_uS(copy_u8TimerID, (Delay_base[copy_u8TimerID].Delay_RestTime), (Delay_base[copy_u8TimerID].ptr_callback_t));
+		}
+	}
+	// In case of false then decrement the OVF counter and continue
+	else{
+
+	}
+}
+
+void TIMERx_vClear(u8 copy_u8TimerID){
+	/*
+	 *
+	 */
+	// Disable the tmer interrupt
+	switch(copy_u8TimerID){
+		case TIMER0ID:
+			// Reset timer configurations
+			TIMER0_TCCR = TIMER_TCCR_Reset;
+			// Disable intrrupt
 			TIMER_TIMSK &= TIMER0_TIMSK_Reset;
-			// Set wave form generation mode (5)
-			// Enable the interrupt bit (6)
-			if((copy_ptr_temp_timer_config -> WGM) == 0){
-				// Normal mode 
-				TIMER_TCCR0 |= ((get_bit(TIMER0_NORM, 1) << TIMER_WGM01) | (get_bit(TIMER0_NORM, 0) << TIMER_WGM00));	//0b0000000
-				// In normal mode the overflow interrupt is enabled
-				TIMER_TIMSK |= ((TIMER_DISABLE << TIMER_OCIE0) | (TIMER_ENABLE << TIMER_TOIE0));	//0bxxxxxx01
-			}
-			else{
-				// Clear timer on compare mode
-				TIMER_TCCR0 |= ((get_bit(TIMER0_CTC, 1) << TIMER_WGM01) | (get_bit(TIMER0_CTC, 0) << TIMER_WGM00));	//0b00001000
-				// In compare match mode the compare match interrupt is enabled
-				TIMER_TIMSK |= ((TIMER_ENABLE << TIMER_OCIE0) | (TIMER_DISABLE << TIMER_TOIE0));	//0bxxxxxx10
-			}
-			// Set output compare mode (7)
-			TIMER_TCCR0 |= ((copy_ptr_temp_timer_config -> COM) << TIMER_COM00);
-			// Set prescaler value (8)
-			TIMER_TCCR0 |= (copy_ptr_temp_timer_config -> CS);
-			// Enable Global interrupt (9)
-			TIMER_SREG |= (TIMER_ENABLE << TIMER_Glob_Init_bit);
-		}
-		else if(((copy_ptr_temp_timer_config -> WGM) > TIMER0_sep) && ((copy_ptr_temp_timer_config -> WGM) <= TIMER1_sep)){
-
-		}
-		else{
-			// Set preload value of the TCNT register (1)
-			TIMER_TCNT2 = *((u8*)(copy_ptr_temp_timer_config -> preload));
-			// Set preload value of the OCR or ICR register (2)
-			TIMER_OCR2 = *(((u8*)(copy_ptr_temp_timer_config -> preload))+1);
-			// Reset timer control register (3)
-			TIMER_TCCR2 &= TIMER2_TCCR_Reset;
-			// Reset timer interrupt mask register (timer 2 interrupt bits) (4)
+			break;
+		case TIMER2ID:
+			// Reset timer configurations
+			TIMER2_TCCR = TIMER_TCCR_Reset;
+			// Disable intrrupt
 			TIMER_TIMSK &= TIMER2_TIMSK_Reset;
-			// Set wave form generation mode (5)
-			// Enable the interrupt bit (6)
-			if((copy_ptr_temp_timer_config -> WGM) == 5){
-				// Normal mode
-				TIMER_TCCR2 |= ((get_bit(TIMER2_NORM, 1) << TIMER_WGM21) | (get_bit(TIMER2_NORM, 0) << TIMER_WGM20));
-				// In normal mode the overflow interrupt is enabled
-				TIMER_TIMSK |= ((TIMER_DISABLE << TIMER_OCIE2) | (TIMER_ENABLE << TIMER_TOIE2));
-			}
-			else{
-				// Clear timer on compare mode
-				TIMER_TCCR2 |= ((get_bit(TIMER2_CTC, 1) << TIMER_WGM21) | (get_bit(TIMER2_CTC, 0) << TIMER_WGM20));
-				// In compare match mode the compare match interrupt is enabled
-				TIMER_TIMSK |= ((TIMER_ENABLE << TIMER_OCIE2) | (TIMER_DISABLE << TIMER_TOIE2));
-			}
-			// Set output compare mode (7)
-			TIMER_TCCR2 |= ((copy_ptr_temp_timer_config -> COM) << TIMER_COM20);
-			// Set prescaler value (8)
-			TIMER_TCCR2 |= (copy_ptr_temp_timer_config -> CS);
-			// Enable Global interrupt (9)
-			TIMER_SREG |= (TIMER_ENABLE << TIMER_Glob_Init_bit);
-		}
+			break;
+		default:
+			break;
 	}
 }
 
-void TIMER_stop(void ){
+
+/* Periodic functions decleration */
+u8 TIMER_u8CreatePeriodicTask(u8 copy_u8TimerID, u16 copy_TimePeriod_mS, void (*ptr_callback)(void) ){
 	/*
 	 *
 	 */
-	if (copy_ptr_temp_timer_config != NULL){
-		if((copy_ptr_temp_timer_config -> WGM) <= TIMER0_sep){
-			TIMER_TCCR0 &= TIMER_STOP_MASK;
-		}
-		else if(((copy_ptr_temp_timer_config -> WGM) > TIMER0_sep) && ((copy_ptr_temp_timer_config -> WGM) <= TIMER1_sep)){
-			
-		}
-		else{
-			TIMER_TCCR2 &= TIMER_STOP_MASK;
-		}
-	}
+
+	return 0;
 }
 
+
+/* Counter functions Implementation */
+u8   TIMER_u8CounterStart (u8 copy_u8TimerID, u8 copy_u8TimerPrescaler, u32* ptr_return_variable){
+	/*
+	 *
+	 */
+
+	return 0;
+}
+
+u8 TIMER_u8CounterStop  (void ){
+	/*
+	 *
+	 */
+	return 0;
+}
+
+
+/* PWM functions Implementation */
+
+
+/* Timer ISR Implementation */
+// ISR of Timer/Counter0 Overflow
 void __vector_11(void){
 	/*
 	 *
 	 */
-	if(call_back_function[ref_TIMER0_OVF] != NULL)
-		call_back_function[ref_TIMER0_OVF]();
+	switch(Timerx_occupation_flag[TIMER0ID]){
+		case TIMER_Clear:
+			TIMERx_vClear(TIMER0ID);
+			break;
+		case TIMER_Delay_mS:
+			TIMER_vDelay_Callback(TIMER0ID);
+			break;
+		case TIMER_Delay_uS:
+			TIMER_vDelay_Callback(TIMER0ID);
+			break;
+		case TIMER_Counter:
+
+			break;
+		case TIMER_PWM:
+
+			break;
+		default:
+			break;
+	}
 }
 
+// ISR of Timer/Counter0 Compare Match
 void __vector_10(void){
 	/*
 	 *
 	 */
-	if(call_back_function[ref_TIMER0_COMP] != NULL)
-		call_back_function[ref_TIMER0_COMP]();
+
 }
 
+// ISR of Timer/Counter1 Overflow
 void __vector_9(void){
 	/*
 	 *
 	 */
-	if(call_back_function[ref_TIMER1_OVF] != NULL)
-		call_back_function[ref_TIMER1_OVF]();
+
 }
 
+// ISR of Timer/Counter1 Match A Compare Match
 void __vector_8(void){
 	/*
 	 *
 	 */
-	if(call_back_function[ref_TIMER1_COMPB] != NULL)
-		call_back_function[ref_TIMER1_COMPB]();
+
 }
 
+// ISR of Timer/Counter1 Match B Compare Match
 void __vector_7(void){
 	/*
 	 *
 	 */
-	if(call_back_function[ref_TIMER1_COMPA] != NULL)
-		call_back_function[ref_TIMER1_COMPA]();
+
 }
 
+// ISR of Timer/Counter2 Overflow
 void __vector_5(void){
 	/*
 	 *
 	 */
-	if(call_back_function[ref_TIMER2_OVF] != NULL)
-		call_back_function[ref_TIMER2_OVF]();
+	switch(Timerx_occupation_flag[TIMER2ID]){
+		case TIMER_Clear:
+			TIMERx_vClear(TIMER2ID);
+			break;
+		case TIMER_Delay_mS:
+			TIMER_vDelay_Callback(TIMER2ID);
+			break;
+		case TIMER_Delay_uS:
+			TIMER_vDelay_Callback(TIMER2ID);
+			break;
+		case TIMER_Counter:
+
+			break;
+		case TIMER_PWM:
+
+			break;
+		default:
+			break;
+	}
 }
 
+// ISR of Timer/Counter2 Compare Match
 void __vector_4(void){
 	/*
 	 *
 	 */
-	if(call_back_function[ref_TIMER2_COMP] != NULL)
-		call_back_function[ref_TIMER2_COMP]();
+
 }

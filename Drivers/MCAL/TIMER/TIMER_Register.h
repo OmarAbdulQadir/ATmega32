@@ -18,22 +18,22 @@
 	#define TIMER_SREG		*((volatile u8* ) 0x5F)
 
 	/* Timer 0 Registers */
-	#define TIMER_TCCR0		*((volatile u8* ) 0x53)
-	#define TIMER_TCNT0		*((volatile u8* ) 0x52)
-	#define TIMER_OCR0		*((volatile u8* ) 0x5C)
+	#define TIMER0_TCCR		*((volatile u8* ) 0x53)
+	#define TIMER0_TCNT		*((volatile u8* ) 0x52)
+	#define TIMER0_OCR		*((volatile u8* ) 0x5C)
 
 	/* Timer 1 Registers */
-	#define TIMER_TCCR1A	*((volatile u8* ) 0x4F)
-	#define TIMER_TCCR1B	*((volatile u8* ) 0x4E)
-	#define TIMER_TCNT1		*((volatile u16*) 0x4C)
-	#define TIMER_OCR1A		*((volatile u16*) 0x4A)
-	#define TIMER_OCR1B		*((volatile u16*) 0x48)
-	#define TIMER_ICR1		*((volatile u16*) 0x46)
+	#define TIMER1_TCCR1A	*((volatile u8* ) 0x4F)
+	#define TIMER1_TCCR1B	*((volatile u8* ) 0x4E)
+	#define TIMER1_TCNT1	*((volatile u16*) 0x4C)
+	#define TIMER1_OCR1A	*((volatile u16*) 0x4A)
+	#define TIMER1_OCR1B	*((volatile u16*) 0x48)
+	#define TIMER1_ICR1		*((volatile u16*) 0x46)
 
 	/* Timer 2 Registers */
-	#define TIMER_TCCR2		*((volatile u8* ) 0x45)
-	#define TIMER_TCNT2		*((volatile u8* ) 0x44)
-	#define TIMER_OCR2		*((volatile u8* ) 0x43)
-	#define TIMER_ASSR2		*((volatile u8* ) 0x42)
+	#define TIMER2_TCCR		*((volatile u8* ) 0x45)
+	#define TIMER2_TCNT		*((volatile u8* ) 0x44)
+	#define TIMER2_OCR		*((volatile u8* ) 0x43)
+	#define TIMER2_ASSR2	*((volatile u8* ) 0x42)
 
 #endif /* end TIMER_REGISTER_H */
