@@ -13,10 +13,11 @@
 #define TIMER_PRIVATE_H
 
 	typedef struct{
-		u16 Delay_OVF;
-		u16 Delay_RestTime;
+		u16 TIMER_OVF;
+		u16 TIMER_RestTime;
+		u16 TIMER_Preload;
 		void (*ptr_callback_t)(void);
-	}delay_t;
+	}TIMER_t;
 
 	/* Private macros */
 	// Bottom value
@@ -141,11 +142,14 @@
 	#define	TIMER_Delay_uS		3
 	#define TIMER_Counter		4
 	#define	TIMER_PWM			5
+	#define TIMER_Ptask			6
 
 
 	/* Callback functions decleration */
 	// Callback function for delay task handling
 	void TIMER_vDelay_Callback(u8 );
+	// Callback function for delay task handling
+	void TIMER_vPtask_Callback(u8 );
 	// Clear timer from delay configurations
 	void TIMERx_vClear(u8 );
 
@@ -154,6 +158,8 @@
 	void __vector_4(void)__attribute__((signal));
 	// ISR of Timer/Counter2 Overflow
 	void __vector_5(void)__attribute__((signal));
+	// ISR of Timer/Counter1 Input capture unit
+	void __vector_6(void)__attribute__((signal));
 	// ISR of Timer/Counter1 Match B Compare Match
 	void __vector_7(void)__attribute__((signal));
 	// ISR of Timer/Counter1 Match A Compare Match

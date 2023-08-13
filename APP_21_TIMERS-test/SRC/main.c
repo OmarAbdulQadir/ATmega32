@@ -30,10 +30,15 @@ int main(void){
 	DIO_void_set_pin_dir(DIO_REF_PORTA, B1, OUTPUT);
 	DIO_void_clear_pin(DIO_REF_PORTA, B1);
 
-	_delay_ms(5000);
+	DIO_void_set_pin_dir(DIO_REF_PORTA, B2, OUTPUT);
+	DIO_void_clear_pin(DIO_REF_PORTA, B2);
 
-	TIMER_u8Delay_uS(TIMER0ID, 1000, lde_toggle_1);
-	TIMER_u8Delay_uS(TIMER2ID, 60000, lde_toggle_2);
+	//_delay_ms(5000);
+
+	TIMER_u8Delay_mS(TIMER2ID, 5000, lde_toggle_2);
+	//TIMER_u8Delay_uS(TIMER0ID, 60000, lde_toggle_1);
+
+	TIMER_u8CreatePeriodicTask(TIMER0ID, 100, lde_toggle_1);
 
 	while(1){
 		// Loop section
@@ -42,11 +47,11 @@ int main(void){
 }
 
 void lde_toggle_1(void){
-
 	DIO_void_toggle_pin(DIO_REF_PORTA, B1);
 }
 
 void lde_toggle_2(void){
-	DIO_void_toggle_pin(DIO_REF_PORTA, B1);
+	//DIO_void_toggle_pin(DIO_REF_PORTA, B1);
+	TIMER_u8deletePeriodicTask(TIMER0ID);
 }
 

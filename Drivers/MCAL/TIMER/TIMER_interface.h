@@ -47,12 +47,15 @@
 
 	/* Periodic functions decleration */
 	u8 TIMER_u8CreatePeriodicTask(u8, u16, void (*ptr_callback)(void) );
+	u8 TIMER_u8deletePeriodicTask(u8 );
 
 	/* Counter functions decleration */
-	u8 TIMER_u8CounterStart (u8, u8, u32* );
-	u8 TIMER_u8CounterStop  (void );
+	u8 TIMER_u8CounterStart(u8, u8, u32* );
+	u8 TIMER_u8CounterStop (void );
 
 	/* PWM functions decleration */
+
+	/* Timer 1 ICU functions decleration */
 
 
 
