@@ -16,9 +16,10 @@
 	   functions will not be acurate in case of changing the sys frequency */
 
 	/* Timers IDs */
-	#define TIMER0ID		0						// Timer 0 ID
-	#define TIMER1ID		2						// Timer 1 ID
-	#define TIMER2ID		1						// Timer 2 ID
+	#define TIMER0ID				0				// Timer 0 ID
+	#define TIMER1ID				2				// Timer 1 ID
+	#define TIMER2ID				1				// Timer 2 ID
+	#define TIMER1ID_OC1B			3				// Timer 1 ID OC2 PWM
 
 	/* Timer 0/1 Prescaler value */
 	#define TIMER_1PRE				1				// Prescaler 1 clk
@@ -51,12 +52,17 @@
 
 	/* Counter functions decleration */
 	u8 TIMER_u8CounterStart(u8, u8, u32* );
-	u8 TIMER_u8CounterStop (void );
+	u8 TIMER_u8CounterStop (u8 );
 
 	/* PWM functions decleration */
+	u8 TIMER_u8FastPWM(u8, u8, u8 );
+	u8 TIMER_u8PhaseCorrectPWM(u8, u8, u8);
+	//u8 TIMER_u8PinJoinPWM(u8, u8, u8);
+	u8 TIMER_u8StopPWM(u8 );
 
 	/* Timer 1 ICU functions decleration */
-
+	u8 TIMER_u8StartICU(u8 , f64*, f64*);
+	u8 TIMER_u8StopICU(void );
 
 
 #endif /* end TIMER_INTERFACE_H */

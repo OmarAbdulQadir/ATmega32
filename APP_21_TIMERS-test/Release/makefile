@@ -10,6 +10,7 @@ RM := rm -rf
 -include sources.mk
 -include TIMER/subdir.mk
 -include SRC/subdir.mk
+-include LCD/subdir.mk
 -include DIO/subdir.mk
 -include subdir.mk
 -include objects.mk

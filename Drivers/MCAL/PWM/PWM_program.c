@@ -85,7 +85,7 @@ u8 PWM_stop(u8 copr_timer_id){
 	 */
 	if (copr_timer_id == PWM_TIMER0){
 		// Clear the prescaler bits to stop the timer 0
-		PWM_TCNT0 &= PWM_STOP_MASK;
+		PWM_TCCR0 &= PWM_STOP_MASK;
 		// Retuen success code
 		return 0;
 	}

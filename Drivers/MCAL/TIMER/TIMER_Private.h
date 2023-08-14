@@ -45,7 +45,7 @@
 	// Maxmum delay time
 	#define MAX_TIME			65535
 	//
-	#define Mills_to_Nano		1000
+	#define Mills_to_Micro		1000
 	//
 	#define Mills_TickTime		128
 	//
@@ -143,6 +143,7 @@
 	#define TIMER_Counter		4
 	#define	TIMER_PWM			5
 	#define TIMER_Ptask			6
+	#define TIMER_ICU			7
 
 
 	/* Callback functions decleration */
@@ -150,30 +151,24 @@
 	void TIMER_vDelay_Callback(u8 );
 	// Callback function for delay task handling
 	void TIMER_vPtask_Callback(u8 );
+	// Callback function for counter task handling
+	void TIMER_vCounter_callback(u8 );
+	// Callback function for PWM task handling
+	void TIMER_vPWM_callback(u8 );
+	// Callback function for ICU task handling
+	void TIMER_vICU_callback(void );
 	// Clear timer from delay configurations
 	void TIMERx_vClear(u8 );
 
 	/* Private functions decleration */
-	// ISR of Timer/Counter2 Compare Match
-	void __vector_4(void)__attribute__((signal));
 	// ISR of Timer/Counter2 Overflow
-	void __vector_5(void)__attribute__((signal));
+	void __vector_5 (void)__attribute__((signal));
 	// ISR of Timer/Counter1 Input capture unit
-	void __vector_6(void)__attribute__((signal));
-	// ISR of Timer/Counter1 Match B Compare Match
-	void __vector_7(void)__attribute__((signal));
-	// ISR of Timer/Counter1 Match A Compare Match
-	void __vector_8(void)__attribute__((signal));
+	void __vector_6 (void)__attribute__((signal));
 	// ISR of Timer/Counter1 Overflow
-	void __vector_9(void)__attribute__((signal));
-	// ISR of Timer/Counter0 Compare Match
-	void __vector_10(void)__attribute__((signal));
+	void __vector_9 (void)__attribute__((signal));
 	// ISR of Timer/Counter0 Overflow
 	void __vector_11(void)__attribute__((signal));
 
 
 #endif /* end TIMER_PRIVATE_H */
-
-
-
-
