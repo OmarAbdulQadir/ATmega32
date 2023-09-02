@@ -15,8 +15,8 @@
 	
 	
 	// EEPROM write data on specific location
-	void EEPROM_write_data(u16, u8 );
+	void EEP_write_data(u16, u8 );
 	// EEPROM read data from specific location
-	u8 EEPROM_read_data(u16 );
+	u8 EEP_read_data(u16 );
 
 #endif	//end EEP_INTERFACE_H

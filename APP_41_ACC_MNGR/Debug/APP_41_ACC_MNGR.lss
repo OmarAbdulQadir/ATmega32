@@ -1,0 +1,973 @@
+
+APP_41_ACC_MNGR.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000005c6  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000020  00800060  000005c6  0000063a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .stab         000008f4  00000000  00000000  0000065c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000a45  00000000  00000000  00000f50  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   8:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  10:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  14:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  18:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  1c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  20:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  24:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  28:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  2c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  30:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  38:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  3c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  40:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  44:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  48:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  4c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  50:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e6 ec       	ldi	r30, 0xC6	; 198
+  68:	f5 e0       	ldi	r31, 0x05	; 5
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+  70:	a0 38       	cpi	r26, 0x80	; 128
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+  76:	0e 94 41 00 	call	0x82	; 0x82 <main>
+  7a:	0c 94 e1 02 	jmp	0x5c2	; 0x5c2 <_exit>
+
+0000007e <__bad_interrupt>:
+  7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000082 <main>:
+ *  Created on: Sep 1, 2023
+ *      Author: Omar A.Qadir
+ */
+
+
+int main(void){
+  82:	df 93       	push	r29
+  84:	cf 93       	push	r28
+  86:	cd b7       	in	r28, 0x3d	; 61
+  88:	de b7       	in	r29, 0x3e	; 62
+  8a:	ff cf       	rjmp	.-2      	; 0x8a <main+0x8>
+
+0000008c <DIO_void_set_port_dir>:
+
+
+/* Implementing of the driver functions */
+/* Set direction of PORTx functions */
+void DIO_void_set_port_dir(u8 copy_u8_port_id, u8 port_dir_copy)
+{
+  8c:	df 93       	push	r29
+  8e:	cf 93       	push	r28
+  90:	00 d0       	rcall	.+0      	; 0x92 <DIO_void_set_port_dir+0x6>
+  92:	cd b7       	in	r28, 0x3d	; 61
+  94:	de b7       	in	r29, 0x3e	; 62
+  96:	89 83       	std	Y+1, r24	; 0x01
+  98:	6a 83       	std	Y+2, r22	; 0x02
+	 *						1: for output pin
+	 *	
+	 *	Function does not return any output, yet it affects the 
+	 *	PORT Direction Register DDRx
+	 */
+	*(DIO_DDRx_REF[copy_u8_port_id]) = port_dir_copy;
+  9a:	89 81       	ldd	r24, Y+1	; 0x01
+  9c:	88 2f       	mov	r24, r24
+  9e:	90 e0       	ldi	r25, 0x00	; 0
+  a0:	88 0f       	add	r24, r24
+  a2:	99 1f       	adc	r25, r25
+  a4:	fc 01       	movw	r30, r24
+  a6:	e8 59       	subi	r30, 0x98	; 152
+  a8:	ff 4f       	sbci	r31, 0xFF	; 255
+  aa:	01 90       	ld	r0, Z+
+  ac:	f0 81       	ld	r31, Z
+  ae:	e0 2d       	mov	r30, r0
+  b0:	8a 81       	ldd	r24, Y+2	; 0x02
+  b2:	80 83       	st	Z, r24
+}
+  b4:	0f 90       	pop	r0
+  b6:	0f 90       	pop	r0
+  b8:	cf 91       	pop	r28
+  ba:	df 91       	pop	r29
+  bc:	08 95       	ret
+
+000000be <DIO_void_set_port_in_pullUp>:
+
+
+void DIO_void_set_port_in_pullUp(u8 copy_u8_port_id)
+{
+  be:	df 93       	push	r29
+  c0:	cf 93       	push	r28
+  c2:	0f 92       	push	r0
+  c4:	cd b7       	in	r28, 0x3d	; 61
+  c6:	de b7       	in	r29, 0x3e	; 62
+  c8:	89 83       	std	Y+1, r24	; 0x01
+	 *												  	 (3, PORTD)
+	 *	
+	 *	Function does not return any output, yet it affects the 
+	 *	PORT Direction Register DDRx
+	 */
+	*(DIO_DDRx_REF[copy_u8_port_id]) = INPUT;
+  ca:	89 81       	ldd	r24, Y+1	; 0x01
+  cc:	88 2f       	mov	r24, r24
+  ce:	90 e0       	ldi	r25, 0x00	; 0
+  d0:	88 0f       	add	r24, r24
+  d2:	99 1f       	adc	r25, r25
+  d4:	fc 01       	movw	r30, r24
+  d6:	e8 59       	subi	r30, 0x98	; 152
+  d8:	ff 4f       	sbci	r31, 0xFF	; 255
+  da:	01 90       	ld	r0, Z+
+  dc:	f0 81       	ld	r31, Z
+  de:	e0 2d       	mov	r30, r0
+  e0:	10 82       	st	Z, r1
+	*(DIO_PORTx_REF[copy_u8_port_id]) = PORT_MAX;
+  e2:	89 81       	ldd	r24, Y+1	; 0x01
+  e4:	88 2f       	mov	r24, r24
+  e6:	90 e0       	ldi	r25, 0x00	; 0
+  e8:	88 0f       	add	r24, r24
+  ea:	99 1f       	adc	r25, r25
+  ec:	fc 01       	movw	r30, r24
+  ee:	e0 59       	subi	r30, 0x90	; 144
+  f0:	ff 4f       	sbci	r31, 0xFF	; 255
+  f2:	01 90       	ld	r0, Z+
+  f4:	f0 81       	ld	r31, Z
+  f6:	e0 2d       	mov	r30, r0
+  f8:	8f ef       	ldi	r24, 0xFF	; 255
+  fa:	80 83       	st	Z, r24
+}
+  fc:	0f 90       	pop	r0
+  fe:	cf 91       	pop	r28
+ 100:	df 91       	pop	r29
+ 102:	08 95       	ret
+
+00000104 <DIO_void_set_pin_dir>:
+
+
+/* Set direction of PINx functions */
+void DIO_void_set_pin_dir(u8 copy_u8_port_id, u8 copy_u8_pin_num, u8 pin_dir_copy)
+{
+ 104:	df 93       	push	r29
+ 106:	cf 93       	push	r28
+ 108:	00 d0       	rcall	.+0      	; 0x10a <DIO_void_set_pin_dir+0x6>
+ 10a:	0f 92       	push	r0
+ 10c:	cd b7       	in	r28, 0x3d	; 61
+ 10e:	de b7       	in	r29, 0x3e	; 62
+ 110:	89 83       	std	Y+1, r24	; 0x01
+ 112:	6a 83       	std	Y+2, r22	; 0x02
+ 114:	4b 83       	std	Y+3, r20	; 0x03
+	 *				   1: for output pin
+	 *
+	 * Function does not return any output, yet it affects the 
+	 * pin in the PORT Direction Register DDRx
+	 */	
+	agn_bit(*(DIO_DDRx_REF[copy_u8_port_id]), copy_u8_pin_num, pin_dir_copy);
+ 116:	8b 81       	ldd	r24, Y+3	; 0x03
+ 118:	88 23       	and	r24, r24
+ 11a:	29 f1       	breq	.+74     	; 0x166 <DIO_void_set_pin_dir+0x62>
+ 11c:	89 81       	ldd	r24, Y+1	; 0x01
+ 11e:	88 2f       	mov	r24, r24
+ 120:	90 e0       	ldi	r25, 0x00	; 0
+ 122:	88 0f       	add	r24, r24
+ 124:	99 1f       	adc	r25, r25
+ 126:	fc 01       	movw	r30, r24
+ 128:	e8 59       	subi	r30, 0x98	; 152
+ 12a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 12c:	a0 81       	ld	r26, Z
+ 12e:	b1 81       	ldd	r27, Z+1	; 0x01
+ 130:	89 81       	ldd	r24, Y+1	; 0x01
+ 132:	88 2f       	mov	r24, r24
+ 134:	90 e0       	ldi	r25, 0x00	; 0
+ 136:	88 0f       	add	r24, r24
+ 138:	99 1f       	adc	r25, r25
+ 13a:	fc 01       	movw	r30, r24
+ 13c:	e8 59       	subi	r30, 0x98	; 152
+ 13e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 140:	01 90       	ld	r0, Z+
+ 142:	f0 81       	ld	r31, Z
+ 144:	e0 2d       	mov	r30, r0
+ 146:	80 81       	ld	r24, Z
+ 148:	48 2f       	mov	r20, r24
+ 14a:	8a 81       	ldd	r24, Y+2	; 0x02
+ 14c:	28 2f       	mov	r18, r24
+ 14e:	30 e0       	ldi	r19, 0x00	; 0
+ 150:	81 e0       	ldi	r24, 0x01	; 1
+ 152:	90 e0       	ldi	r25, 0x00	; 0
+ 154:	02 2e       	mov	r0, r18
+ 156:	02 c0       	rjmp	.+4      	; 0x15c <DIO_void_set_pin_dir+0x58>
+ 158:	88 0f       	add	r24, r24
+ 15a:	99 1f       	adc	r25, r25
+ 15c:	0a 94       	dec	r0
+ 15e:	e2 f7       	brpl	.-8      	; 0x158 <DIO_void_set_pin_dir+0x54>
+ 160:	84 2b       	or	r24, r20
+ 162:	8c 93       	st	X, r24
+ 164:	25 c0       	rjmp	.+74     	; 0x1b0 <DIO_void_set_pin_dir+0xac>
+ 166:	89 81       	ldd	r24, Y+1	; 0x01
+ 168:	88 2f       	mov	r24, r24
+ 16a:	90 e0       	ldi	r25, 0x00	; 0
+ 16c:	88 0f       	add	r24, r24
+ 16e:	99 1f       	adc	r25, r25
+ 170:	fc 01       	movw	r30, r24
+ 172:	e8 59       	subi	r30, 0x98	; 152
+ 174:	ff 4f       	sbci	r31, 0xFF	; 255
+ 176:	a0 81       	ld	r26, Z
+ 178:	b1 81       	ldd	r27, Z+1	; 0x01
+ 17a:	89 81       	ldd	r24, Y+1	; 0x01
+ 17c:	88 2f       	mov	r24, r24
+ 17e:	90 e0       	ldi	r25, 0x00	; 0
+ 180:	88 0f       	add	r24, r24
+ 182:	99 1f       	adc	r25, r25
+ 184:	fc 01       	movw	r30, r24
+ 186:	e8 59       	subi	r30, 0x98	; 152
+ 188:	ff 4f       	sbci	r31, 0xFF	; 255
+ 18a:	01 90       	ld	r0, Z+
+ 18c:	f0 81       	ld	r31, Z
+ 18e:	e0 2d       	mov	r30, r0
+ 190:	80 81       	ld	r24, Z
+ 192:	48 2f       	mov	r20, r24
+ 194:	8a 81       	ldd	r24, Y+2	; 0x02
+ 196:	28 2f       	mov	r18, r24
+ 198:	30 e0       	ldi	r19, 0x00	; 0
+ 19a:	81 e0       	ldi	r24, 0x01	; 1
+ 19c:	90 e0       	ldi	r25, 0x00	; 0
+ 19e:	02 2e       	mov	r0, r18
+ 1a0:	02 c0       	rjmp	.+4      	; 0x1a6 <DIO_void_set_pin_dir+0xa2>
+ 1a2:	88 0f       	add	r24, r24
+ 1a4:	99 1f       	adc	r25, r25
+ 1a6:	0a 94       	dec	r0
+ 1a8:	e2 f7       	brpl	.-8      	; 0x1a2 <DIO_void_set_pin_dir+0x9e>
+ 1aa:	80 95       	com	r24
+ 1ac:	84 23       	and	r24, r20
+ 1ae:	8c 93       	st	X, r24
+}
+ 1b0:	0f 90       	pop	r0
+ 1b2:	0f 90       	pop	r0
+ 1b4:	0f 90       	pop	r0
+ 1b6:	cf 91       	pop	r28
+ 1b8:	df 91       	pop	r29
+ 1ba:	08 95       	ret
+
+000001bc <DIO_void_set_pin_in_pullUP>:
+
+
+void DIO_void_set_pin_in_pullUP(u8 copy_u8_port_id, u8 copy_u8_pin_num)
+{
+ 1bc:	df 93       	push	r29
+ 1be:	cf 93       	push	r28
+ 1c0:	00 d0       	rcall	.+0      	; 0x1c2 <DIO_void_set_pin_in_pullUP+0x6>
+ 1c2:	cd b7       	in	r28, 0x3d	; 61
+ 1c4:	de b7       	in	r29, 0x3e	; 62
+ 1c6:	89 83       	std	Y+1, r24	; 0x01
+ 1c8:	6a 83       	std	Y+2, r22	; 0x02
+	 *												  	 (3, PORTD)
+	 *	
+	 *	Function does not return any output, yet it affects the 
+	 *	pin in the PORT Direction Register DDRx					  
+	 */
+	clr_bit(*(DIO_DDRx_REF[copy_u8_port_id]), copy_u8_pin_num);
+ 1ca:	89 81       	ldd	r24, Y+1	; 0x01
+ 1cc:	88 2f       	mov	r24, r24
+ 1ce:	90 e0       	ldi	r25, 0x00	; 0
+ 1d0:	88 0f       	add	r24, r24
+ 1d2:	99 1f       	adc	r25, r25
+ 1d4:	fc 01       	movw	r30, r24
+ 1d6:	e8 59       	subi	r30, 0x98	; 152
+ 1d8:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1da:	a0 81       	ld	r26, Z
+ 1dc:	b1 81       	ldd	r27, Z+1	; 0x01
+ 1de:	89 81       	ldd	r24, Y+1	; 0x01
+ 1e0:	88 2f       	mov	r24, r24
+ 1e2:	90 e0       	ldi	r25, 0x00	; 0
+ 1e4:	88 0f       	add	r24, r24
+ 1e6:	99 1f       	adc	r25, r25
+ 1e8:	fc 01       	movw	r30, r24
+ 1ea:	e8 59       	subi	r30, 0x98	; 152
+ 1ec:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1ee:	01 90       	ld	r0, Z+
+ 1f0:	f0 81       	ld	r31, Z
+ 1f2:	e0 2d       	mov	r30, r0
+ 1f4:	80 81       	ld	r24, Z
+ 1f6:	48 2f       	mov	r20, r24
+ 1f8:	8a 81       	ldd	r24, Y+2	; 0x02
+ 1fa:	28 2f       	mov	r18, r24
+ 1fc:	30 e0       	ldi	r19, 0x00	; 0
+ 1fe:	81 e0       	ldi	r24, 0x01	; 1
+ 200:	90 e0       	ldi	r25, 0x00	; 0
+ 202:	02 c0       	rjmp	.+4      	; 0x208 <DIO_void_set_pin_in_pullUP+0x4c>
+ 204:	88 0f       	add	r24, r24
+ 206:	99 1f       	adc	r25, r25
+ 208:	2a 95       	dec	r18
+ 20a:	e2 f7       	brpl	.-8      	; 0x204 <DIO_void_set_pin_in_pullUP+0x48>
+ 20c:	80 95       	com	r24
+ 20e:	84 23       	and	r24, r20
+ 210:	8c 93       	st	X, r24
+	set_bit(*(DIO_PORTx_REF[copy_u8_port_id]), copy_u8_pin_num);
+ 212:	89 81       	ldd	r24, Y+1	; 0x01
+ 214:	88 2f       	mov	r24, r24
+ 216:	90 e0       	ldi	r25, 0x00	; 0
+ 218:	88 0f       	add	r24, r24
+ 21a:	99 1f       	adc	r25, r25
+ 21c:	fc 01       	movw	r30, r24
+ 21e:	e0 59       	subi	r30, 0x90	; 144
+ 220:	ff 4f       	sbci	r31, 0xFF	; 255
+ 222:	a0 81       	ld	r26, Z
+ 224:	b1 81       	ldd	r27, Z+1	; 0x01
+ 226:	89 81       	ldd	r24, Y+1	; 0x01
+ 228:	88 2f       	mov	r24, r24
+ 22a:	90 e0       	ldi	r25, 0x00	; 0
+ 22c:	88 0f       	add	r24, r24
+ 22e:	99 1f       	adc	r25, r25
+ 230:	fc 01       	movw	r30, r24
+ 232:	e0 59       	subi	r30, 0x90	; 144
+ 234:	ff 4f       	sbci	r31, 0xFF	; 255
+ 236:	01 90       	ld	r0, Z+
+ 238:	f0 81       	ld	r31, Z
+ 23a:	e0 2d       	mov	r30, r0
+ 23c:	80 81       	ld	r24, Z
+ 23e:	48 2f       	mov	r20, r24
+ 240:	8a 81       	ldd	r24, Y+2	; 0x02
+ 242:	28 2f       	mov	r18, r24
+ 244:	30 e0       	ldi	r19, 0x00	; 0
+ 246:	81 e0       	ldi	r24, 0x01	; 1
+ 248:	90 e0       	ldi	r25, 0x00	; 0
+ 24a:	02 2e       	mov	r0, r18
+ 24c:	02 c0       	rjmp	.+4      	; 0x252 <DIO_void_set_pin_in_pullUP+0x96>
+ 24e:	88 0f       	add	r24, r24
+ 250:	99 1f       	adc	r25, r25
+ 252:	0a 94       	dec	r0
+ 254:	e2 f7       	brpl	.-8      	; 0x24e <DIO_void_set_pin_in_pullUP+0x92>
+ 256:	84 2b       	or	r24, r20
+ 258:	8c 93       	st	X, r24
+}
+ 25a:	0f 90       	pop	r0
+ 25c:	0f 90       	pop	r0
+ 25e:	cf 91       	pop	r28
+ 260:	df 91       	pop	r29
+ 262:	08 95       	ret
+
+00000264 <DIO_void_set_port>:
+
+
+/* Assign Value to output PORTx functions */
+void DIO_void_set_port(u8 copy_u8_port_id)
+{
+ 264:	df 93       	push	r29
+ 266:	cf 93       	push	r28
+ 268:	0f 92       	push	r0
+ 26a:	cd b7       	in	r28, 0x3d	; 61
+ 26c:	de b7       	in	r29, 0x3e	; 62
+ 26e:	89 83       	std	Y+1, r24	; 0x01
+	 *													 (3, PORTD)
+	 *	
+	 *	Function does not return any output, yet it affects the 
+	 *	PORT output Register PORTx							       
+	 */
+	*(DIO_PORTx_REF[copy_u8_port_id]) = PORT_MAX;
+ 270:	89 81       	ldd	r24, Y+1	; 0x01
+ 272:	88 2f       	mov	r24, r24
+ 274:	90 e0       	ldi	r25, 0x00	; 0
+ 276:	88 0f       	add	r24, r24
+ 278:	99 1f       	adc	r25, r25
+ 27a:	fc 01       	movw	r30, r24
+ 27c:	e0 59       	subi	r30, 0x90	; 144
+ 27e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 280:	01 90       	ld	r0, Z+
+ 282:	f0 81       	ld	r31, Z
+ 284:	e0 2d       	mov	r30, r0
+ 286:	8f ef       	ldi	r24, 0xFF	; 255
+ 288:	80 83       	st	Z, r24
+}
+ 28a:	0f 90       	pop	r0
+ 28c:	cf 91       	pop	r28
+ 28e:	df 91       	pop	r29
+ 290:	08 95       	ret
+
+00000292 <DIO_void_clear_port>:
+
+
+void DIO_void_clear_port(u8 copy_u8_port_id)
+{
+ 292:	df 93       	push	r29
+ 294:	cf 93       	push	r28
+ 296:	0f 92       	push	r0
+ 298:	cd b7       	in	r28, 0x3d	; 61
+ 29a:	de b7       	in	r29, 0x3e	; 62
+ 29c:	89 83       	std	Y+1, r24	; 0x01
+	 *													 (3, PORTD)
+	 *	
+	 *	Function does not return any output, yet it affects the 
+	 *	PORT output Register PORTx							       
+	 */
+	*(DIO_PORTx_REF[copy_u8_port_id]) = LOW;
+ 29e:	89 81       	ldd	r24, Y+1	; 0x01
+ 2a0:	88 2f       	mov	r24, r24
+ 2a2:	90 e0       	ldi	r25, 0x00	; 0
+ 2a4:	88 0f       	add	r24, r24
+ 2a6:	99 1f       	adc	r25, r25
+ 2a8:	fc 01       	movw	r30, r24
+ 2aa:	e0 59       	subi	r30, 0x90	; 144
+ 2ac:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2ae:	01 90       	ld	r0, Z+
+ 2b0:	f0 81       	ld	r31, Z
+ 2b2:	e0 2d       	mov	r30, r0
+ 2b4:	10 82       	st	Z, r1
+}
+ 2b6:	0f 90       	pop	r0
+ 2b8:	cf 91       	pop	r28
+ 2ba:	df 91       	pop	r29
+ 2bc:	08 95       	ret
+
+000002be <DIO_void_toggle_port>:
+
+
+void DIO_void_toggle_port(u8 copy_u8_port_id)
+{
+ 2be:	df 93       	push	r29
+ 2c0:	cf 93       	push	r28
+ 2c2:	0f 92       	push	r0
+ 2c4:	cd b7       	in	r28, 0x3d	; 61
+ 2c6:	de b7       	in	r29, 0x3e	; 62
+ 2c8:	89 83       	std	Y+1, r24	; 0x01
+	 *													 (3, PORTD)
+	 *	
+	 *	Function does not return any output, yet it affects the 
+	 *	PORT output Register PORTx							       
+	 */
+	*(DIO_PORTx_REF[copy_u8_port_id]) ^= PORT_MAX;
+ 2ca:	89 81       	ldd	r24, Y+1	; 0x01
+ 2cc:	88 2f       	mov	r24, r24
+ 2ce:	90 e0       	ldi	r25, 0x00	; 0
+ 2d0:	88 0f       	add	r24, r24
+ 2d2:	99 1f       	adc	r25, r25
+ 2d4:	fc 01       	movw	r30, r24
+ 2d6:	e0 59       	subi	r30, 0x90	; 144
+ 2d8:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2da:	a0 81       	ld	r26, Z
+ 2dc:	b1 81       	ldd	r27, Z+1	; 0x01
+ 2de:	89 81       	ldd	r24, Y+1	; 0x01
+ 2e0:	88 2f       	mov	r24, r24
+ 2e2:	90 e0       	ldi	r25, 0x00	; 0
+ 2e4:	88 0f       	add	r24, r24
+ 2e6:	99 1f       	adc	r25, r25
+ 2e8:	fc 01       	movw	r30, r24
+ 2ea:	e0 59       	subi	r30, 0x90	; 144
+ 2ec:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2ee:	01 90       	ld	r0, Z+
+ 2f0:	f0 81       	ld	r31, Z
+ 2f2:	e0 2d       	mov	r30, r0
+ 2f4:	80 81       	ld	r24, Z
+ 2f6:	80 95       	com	r24
+ 2f8:	8c 93       	st	X, r24
+}
+ 2fa:	0f 90       	pop	r0
+ 2fc:	cf 91       	pop	r28
+ 2fe:	df 91       	pop	r29
+ 300:	08 95       	ret
+
+00000302 <DIO_void_assign_port>:
+
+
+void DIO_void_assign_port(u8 copy_u8_port_id, u8 port_val)
+{
+ 302:	df 93       	push	r29
+ 304:	cf 93       	push	r28
+ 306:	00 d0       	rcall	.+0      	; 0x308 <DIO_void_assign_port+0x6>
+ 308:	cd b7       	in	r28, 0x3d	; 61
+ 30a:	de b7       	in	r29, 0x3e	; 62
+ 30c:	89 83       	std	Y+1, r24	; 0x01
+ 30e:	6a 83       	std	Y+2, r22	; 0x02
+	 *												  	 (3, PORTD)
+	 *	
+	 *	Function does not return any output, yet it affects the 
+	 *	PORT output Register PORTx							       
+	 */
+	*(DIO_PORTx_REF[copy_u8_port_id]) = port_val;
+ 310:	89 81       	ldd	r24, Y+1	; 0x01
+ 312:	88 2f       	mov	r24, r24
+ 314:	90 e0       	ldi	r25, 0x00	; 0
+ 316:	88 0f       	add	r24, r24
+ 318:	99 1f       	adc	r25, r25
+ 31a:	fc 01       	movw	r30, r24
+ 31c:	e0 59       	subi	r30, 0x90	; 144
+ 31e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 320:	01 90       	ld	r0, Z+
+ 322:	f0 81       	ld	r31, Z
+ 324:	e0 2d       	mov	r30, r0
+ 326:	8a 81       	ldd	r24, Y+2	; 0x02
+ 328:	80 83       	st	Z, r24
+}
+ 32a:	0f 90       	pop	r0
+ 32c:	0f 90       	pop	r0
+ 32e:	cf 91       	pop	r28
+ 330:	df 91       	pop	r29
+ 332:	08 95       	ret
+
+00000334 <DIO_void_set_pin>:
+
+
+/* Assign Value to output PINx functions */
+void DIO_void_set_pin(u8 copy_u8_port_id, u8 copy_u8_pin_num)
+{
+ 334:	df 93       	push	r29
+ 336:	cf 93       	push	r28
+ 338:	00 d0       	rcall	.+0      	; 0x33a <DIO_void_set_pin+0x6>
+ 33a:	cd b7       	in	r28, 0x3d	; 61
+ 33c:	de b7       	in	r29, 0x3e	; 62
+ 33e:	89 83       	std	Y+1, r24	; 0x01
+ 340:	6a 83       	std	Y+2, r22	; 0x02
+	 *		copy_u8_pin_num>> pin number that needed to be set 0-7
+	 *	
+	 *	Function does not return any output, yet it affects 
+	 *	given pin of the PORT output Register PORTx				   
+	 */
+	set_bit(*(DIO_PORTx_REF[copy_u8_port_id]), copy_u8_pin_num);
+ 342:	89 81       	ldd	r24, Y+1	; 0x01
+ 344:	88 2f       	mov	r24, r24
+ 346:	90 e0       	ldi	r25, 0x00	; 0
+ 348:	88 0f       	add	r24, r24
+ 34a:	99 1f       	adc	r25, r25
+ 34c:	fc 01       	movw	r30, r24
+ 34e:	e0 59       	subi	r30, 0x90	; 144
+ 350:	ff 4f       	sbci	r31, 0xFF	; 255
+ 352:	a0 81       	ld	r26, Z
+ 354:	b1 81       	ldd	r27, Z+1	; 0x01
+ 356:	89 81       	ldd	r24, Y+1	; 0x01
+ 358:	88 2f       	mov	r24, r24
+ 35a:	90 e0       	ldi	r25, 0x00	; 0
+ 35c:	88 0f       	add	r24, r24
+ 35e:	99 1f       	adc	r25, r25
+ 360:	fc 01       	movw	r30, r24
+ 362:	e0 59       	subi	r30, 0x90	; 144
+ 364:	ff 4f       	sbci	r31, 0xFF	; 255
+ 366:	01 90       	ld	r0, Z+
+ 368:	f0 81       	ld	r31, Z
+ 36a:	e0 2d       	mov	r30, r0
+ 36c:	80 81       	ld	r24, Z
+ 36e:	48 2f       	mov	r20, r24
+ 370:	8a 81       	ldd	r24, Y+2	; 0x02
+ 372:	28 2f       	mov	r18, r24
+ 374:	30 e0       	ldi	r19, 0x00	; 0
+ 376:	81 e0       	ldi	r24, 0x01	; 1
+ 378:	90 e0       	ldi	r25, 0x00	; 0
+ 37a:	02 2e       	mov	r0, r18
+ 37c:	02 c0       	rjmp	.+4      	; 0x382 <DIO_void_set_pin+0x4e>
+ 37e:	88 0f       	add	r24, r24
+ 380:	99 1f       	adc	r25, r25
+ 382:	0a 94       	dec	r0
+ 384:	e2 f7       	brpl	.-8      	; 0x37e <DIO_void_set_pin+0x4a>
+ 386:	84 2b       	or	r24, r20
+ 388:	8c 93       	st	X, r24
+}
+ 38a:	0f 90       	pop	r0
+ 38c:	0f 90       	pop	r0
+ 38e:	cf 91       	pop	r28
+ 390:	df 91       	pop	r29
+ 392:	08 95       	ret
+
+00000394 <DIO_void_clear_pin>:
+
+
+void DIO_void_clear_pin(u8 copy_u8_port_id, u8 copy_u8_pin_num)
+{
+ 394:	df 93       	push	r29
+ 396:	cf 93       	push	r28
+ 398:	00 d0       	rcall	.+0      	; 0x39a <DIO_void_clear_pin+0x6>
+ 39a:	cd b7       	in	r28, 0x3d	; 61
+ 39c:	de b7       	in	r29, 0x3e	; 62
+ 39e:	89 83       	std	Y+1, r24	; 0x01
+ 3a0:	6a 83       	std	Y+2, r22	; 0x02
+	 *		copy_u8_pin_num>> pin number that needed to be set 0-7
+	 *	
+	 *	Function does not return any output, yet it affects 
+	 *	given pin of the PORT output Register PORTx				   
+	 */
+	clr_bit(*(DIO_PORTx_REF[copy_u8_port_id]), copy_u8_pin_num);
+ 3a2:	89 81       	ldd	r24, Y+1	; 0x01
+ 3a4:	88 2f       	mov	r24, r24
+ 3a6:	90 e0       	ldi	r25, 0x00	; 0
+ 3a8:	88 0f       	add	r24, r24
+ 3aa:	99 1f       	adc	r25, r25
+ 3ac:	fc 01       	movw	r30, r24
+ 3ae:	e0 59       	subi	r30, 0x90	; 144
+ 3b0:	ff 4f       	sbci	r31, 0xFF	; 255
+ 3b2:	a0 81       	ld	r26, Z
+ 3b4:	b1 81       	ldd	r27, Z+1	; 0x01
+ 3b6:	89 81       	ldd	r24, Y+1	; 0x01
+ 3b8:	88 2f       	mov	r24, r24
+ 3ba:	90 e0       	ldi	r25, 0x00	; 0
+ 3bc:	88 0f       	add	r24, r24
+ 3be:	99 1f       	adc	r25, r25
+ 3c0:	fc 01       	movw	r30, r24
+ 3c2:	e0 59       	subi	r30, 0x90	; 144
+ 3c4:	ff 4f       	sbci	r31, 0xFF	; 255
+ 3c6:	01 90       	ld	r0, Z+
+ 3c8:	f0 81       	ld	r31, Z
+ 3ca:	e0 2d       	mov	r30, r0
+ 3cc:	80 81       	ld	r24, Z
+ 3ce:	48 2f       	mov	r20, r24
+ 3d0:	8a 81       	ldd	r24, Y+2	; 0x02
+ 3d2:	28 2f       	mov	r18, r24
+ 3d4:	30 e0       	ldi	r19, 0x00	; 0
+ 3d6:	81 e0       	ldi	r24, 0x01	; 1
+ 3d8:	90 e0       	ldi	r25, 0x00	; 0
+ 3da:	02 2e       	mov	r0, r18
+ 3dc:	02 c0       	rjmp	.+4      	; 0x3e2 <DIO_void_clear_pin+0x4e>
+ 3de:	88 0f       	add	r24, r24
+ 3e0:	99 1f       	adc	r25, r25
+ 3e2:	0a 94       	dec	r0
+ 3e4:	e2 f7       	brpl	.-8      	; 0x3de <DIO_void_clear_pin+0x4a>
+ 3e6:	80 95       	com	r24
+ 3e8:	84 23       	and	r24, r20
+ 3ea:	8c 93       	st	X, r24
+}
+ 3ec:	0f 90       	pop	r0
+ 3ee:	0f 90       	pop	r0
+ 3f0:	cf 91       	pop	r28
+ 3f2:	df 91       	pop	r29
+ 3f4:	08 95       	ret
+
+000003f6 <DIO_void_toggle_pin>:
+
+
+void DIO_void_toggle_pin(u8 copy_u8_port_id, u8 copy_u8_pin_num)
+{
+ 3f6:	df 93       	push	r29
+ 3f8:	cf 93       	push	r28
+ 3fa:	00 d0       	rcall	.+0      	; 0x3fc <DIO_void_toggle_pin+0x6>
+ 3fc:	cd b7       	in	r28, 0x3d	; 61
+ 3fe:	de b7       	in	r29, 0x3e	; 62
+ 400:	89 83       	std	Y+1, r24	; 0x01
+ 402:	6a 83       	std	Y+2, r22	; 0x02
+	 *		copy_u8_pin_num>> pin number that needed to be set 0-7
+	 *	
+	 *	Function does not return any output, yet it affects 
+	 *	given pin of the PORT output Register PORTx				   
+	 */
+	tgl_bit(*(DIO_PORTx_REF[copy_u8_port_id]), copy_u8_pin_num);
+ 404:	89 81       	ldd	r24, Y+1	; 0x01
+ 406:	88 2f       	mov	r24, r24
+ 408:	90 e0       	ldi	r25, 0x00	; 0
+ 40a:	88 0f       	add	r24, r24
+ 40c:	99 1f       	adc	r25, r25
+ 40e:	fc 01       	movw	r30, r24
+ 410:	e0 59       	subi	r30, 0x90	; 144
+ 412:	ff 4f       	sbci	r31, 0xFF	; 255
+ 414:	a0 81       	ld	r26, Z
+ 416:	b1 81       	ldd	r27, Z+1	; 0x01
+ 418:	89 81       	ldd	r24, Y+1	; 0x01
+ 41a:	88 2f       	mov	r24, r24
+ 41c:	90 e0       	ldi	r25, 0x00	; 0
+ 41e:	88 0f       	add	r24, r24
+ 420:	99 1f       	adc	r25, r25
+ 422:	fc 01       	movw	r30, r24
+ 424:	e0 59       	subi	r30, 0x90	; 144
+ 426:	ff 4f       	sbci	r31, 0xFF	; 255
+ 428:	01 90       	ld	r0, Z+
+ 42a:	f0 81       	ld	r31, Z
+ 42c:	e0 2d       	mov	r30, r0
+ 42e:	80 81       	ld	r24, Z
+ 430:	48 2f       	mov	r20, r24
+ 432:	8a 81       	ldd	r24, Y+2	; 0x02
+ 434:	28 2f       	mov	r18, r24
+ 436:	30 e0       	ldi	r19, 0x00	; 0
+ 438:	81 e0       	ldi	r24, 0x01	; 1
+ 43a:	90 e0       	ldi	r25, 0x00	; 0
+ 43c:	02 2e       	mov	r0, r18
+ 43e:	02 c0       	rjmp	.+4      	; 0x444 <DIO_void_toggle_pin+0x4e>
+ 440:	88 0f       	add	r24, r24
+ 442:	99 1f       	adc	r25, r25
+ 444:	0a 94       	dec	r0
+ 446:	e2 f7       	brpl	.-8      	; 0x440 <DIO_void_toggle_pin+0x4a>
+ 448:	84 27       	eor	r24, r20
+ 44a:	8c 93       	st	X, r24
+}
+ 44c:	0f 90       	pop	r0
+ 44e:	0f 90       	pop	r0
+ 450:	cf 91       	pop	r28
+ 452:	df 91       	pop	r29
+ 454:	08 95       	ret
+
+00000456 <DIO_void_assign_pin>:
+
+
+void DIO_void_assign_pin(u8 copy_u8_port_id, u8 copy_u8_pin_num, u8 pin_val)
+{
+ 456:	df 93       	push	r29
+ 458:	cf 93       	push	r28
+ 45a:	00 d0       	rcall	.+0      	; 0x45c <DIO_void_assign_pin+0x6>
+ 45c:	0f 92       	push	r0
+ 45e:	cd b7       	in	r28, 0x3d	; 61
+ 460:	de b7       	in	r29, 0x3e	; 62
+ 462:	89 83       	std	Y+1, r24	; 0x01
+ 464:	6a 83       	std	Y+2, r22	; 0x02
+ 466:	4b 83       	std	Y+3, r20	; 0x03
+	 *		copy_u8_pin_num>> pin number that needed to be set 0-7
+	 *	
+	 *	Function does not return any output, yet it affects 
+	 *	given pin of the PORT output Register PORTx				   
+	 */
+	agn_bit(*(DIO_PORTx_REF[copy_u8_port_id]), copy_u8_pin_num, pin_val);
+ 468:	8b 81       	ldd	r24, Y+3	; 0x03
+ 46a:	88 23       	and	r24, r24
+ 46c:	29 f1       	breq	.+74     	; 0x4b8 <DIO_void_assign_pin+0x62>
+ 46e:	89 81       	ldd	r24, Y+1	; 0x01
+ 470:	88 2f       	mov	r24, r24
+ 472:	90 e0       	ldi	r25, 0x00	; 0
+ 474:	88 0f       	add	r24, r24
+ 476:	99 1f       	adc	r25, r25
+ 478:	fc 01       	movw	r30, r24
+ 47a:	e0 59       	subi	r30, 0x90	; 144
+ 47c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 47e:	a0 81       	ld	r26, Z
+ 480:	b1 81       	ldd	r27, Z+1	; 0x01
+ 482:	89 81       	ldd	r24, Y+1	; 0x01
+ 484:	88 2f       	mov	r24, r24
+ 486:	90 e0       	ldi	r25, 0x00	; 0
+ 488:	88 0f       	add	r24, r24
+ 48a:	99 1f       	adc	r25, r25
+ 48c:	fc 01       	movw	r30, r24
+ 48e:	e0 59       	subi	r30, 0x90	; 144
+ 490:	ff 4f       	sbci	r31, 0xFF	; 255
+ 492:	01 90       	ld	r0, Z+
+ 494:	f0 81       	ld	r31, Z
+ 496:	e0 2d       	mov	r30, r0
+ 498:	80 81       	ld	r24, Z
+ 49a:	48 2f       	mov	r20, r24
+ 49c:	8a 81       	ldd	r24, Y+2	; 0x02
+ 49e:	28 2f       	mov	r18, r24
+ 4a0:	30 e0       	ldi	r19, 0x00	; 0
+ 4a2:	81 e0       	ldi	r24, 0x01	; 1
+ 4a4:	90 e0       	ldi	r25, 0x00	; 0
+ 4a6:	02 2e       	mov	r0, r18
+ 4a8:	02 c0       	rjmp	.+4      	; 0x4ae <DIO_void_assign_pin+0x58>
+ 4aa:	88 0f       	add	r24, r24
+ 4ac:	99 1f       	adc	r25, r25
+ 4ae:	0a 94       	dec	r0
+ 4b0:	e2 f7       	brpl	.-8      	; 0x4aa <DIO_void_assign_pin+0x54>
+ 4b2:	84 2b       	or	r24, r20
+ 4b4:	8c 93       	st	X, r24
+ 4b6:	25 c0       	rjmp	.+74     	; 0x502 <DIO_void_assign_pin+0xac>
+ 4b8:	89 81       	ldd	r24, Y+1	; 0x01
+ 4ba:	88 2f       	mov	r24, r24
+ 4bc:	90 e0       	ldi	r25, 0x00	; 0
+ 4be:	88 0f       	add	r24, r24
+ 4c0:	99 1f       	adc	r25, r25
+ 4c2:	fc 01       	movw	r30, r24
+ 4c4:	e0 59       	subi	r30, 0x90	; 144
+ 4c6:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4c8:	a0 81       	ld	r26, Z
+ 4ca:	b1 81       	ldd	r27, Z+1	; 0x01
+ 4cc:	89 81       	ldd	r24, Y+1	; 0x01
+ 4ce:	88 2f       	mov	r24, r24
+ 4d0:	90 e0       	ldi	r25, 0x00	; 0
+ 4d2:	88 0f       	add	r24, r24
+ 4d4:	99 1f       	adc	r25, r25
+ 4d6:	fc 01       	movw	r30, r24
+ 4d8:	e0 59       	subi	r30, 0x90	; 144
+ 4da:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4dc:	01 90       	ld	r0, Z+
+ 4de:	f0 81       	ld	r31, Z
+ 4e0:	e0 2d       	mov	r30, r0
+ 4e2:	80 81       	ld	r24, Z
+ 4e4:	48 2f       	mov	r20, r24
+ 4e6:	8a 81       	ldd	r24, Y+2	; 0x02
+ 4e8:	28 2f       	mov	r18, r24
+ 4ea:	30 e0       	ldi	r19, 0x00	; 0
+ 4ec:	81 e0       	ldi	r24, 0x01	; 1
+ 4ee:	90 e0       	ldi	r25, 0x00	; 0
+ 4f0:	02 2e       	mov	r0, r18
+ 4f2:	02 c0       	rjmp	.+4      	; 0x4f8 <DIO_void_assign_pin+0xa2>
+ 4f4:	88 0f       	add	r24, r24
+ 4f6:	99 1f       	adc	r25, r25
+ 4f8:	0a 94       	dec	r0
+ 4fa:	e2 f7       	brpl	.-8      	; 0x4f4 <DIO_void_assign_pin+0x9e>
+ 4fc:	80 95       	com	r24
+ 4fe:	84 23       	and	r24, r20
+ 500:	8c 93       	st	X, r24
+}
+ 502:	0f 90       	pop	r0
+ 504:	0f 90       	pop	r0
+ 506:	0f 90       	pop	r0
+ 508:	cf 91       	pop	r28
+ 50a:	df 91       	pop	r29
+ 50c:	08 95       	ret
+
+0000050e <DIO_u8_get_port>:
+
+
+/* Get value from input PORTx functions */
+u8 DIO_u8_get_port(u8 copy_u8_port_id)
+{
+ 50e:	df 93       	push	r29
+ 510:	cf 93       	push	r28
+ 512:	0f 92       	push	r0
+ 514:	cd b7       	in	r28, 0x3d	; 61
+ 516:	de b7       	in	r29, 0x3e	; 62
+ 518:	89 83       	std	Y+1, r24	; 0x01
+	 *	
+	 *	Function does not affect any regester it only gets
+	 *	from the value in the input regester PINx of the 
+	 *	given port                                                 
+	 */
+	return *(DIO_PINx_REF[copy_u8_port_id]);
+ 51a:	89 81       	ldd	r24, Y+1	; 0x01
+ 51c:	88 2f       	mov	r24, r24
+ 51e:	90 e0       	ldi	r25, 0x00	; 0
+ 520:	88 0f       	add	r24, r24
+ 522:	99 1f       	adc	r25, r25
+ 524:	fc 01       	movw	r30, r24
+ 526:	e0 5a       	subi	r30, 0xA0	; 160
+ 528:	ff 4f       	sbci	r31, 0xFF	; 255
+ 52a:	01 90       	ld	r0, Z+
+ 52c:	f0 81       	ld	r31, Z
+ 52e:	e0 2d       	mov	r30, r0
+ 530:	80 81       	ld	r24, Z
+}
+ 532:	0f 90       	pop	r0
+ 534:	cf 91       	pop	r28
+ 536:	df 91       	pop	r29
+ 538:	08 95       	ret
+
+0000053a <DIO_u8_get_pin>:
+
+
+/* Get value from input PINx functions */
+u8 DIO_u8_get_pin(u8 copy_u8_port_id, u8 copy_u8_pin_num)
+{
+ 53a:	df 93       	push	r29
+ 53c:	cf 93       	push	r28
+ 53e:	00 d0       	rcall	.+0      	; 0x540 <DIO_u8_get_pin+0x6>
+ 540:	cd b7       	in	r28, 0x3d	; 61
+ 542:	de b7       	in	r29, 0x3e	; 62
+ 544:	89 83       	std	Y+1, r24	; 0x01
+ 546:	6a 83       	std	Y+2, r22	; 0x02
+	 *	
+	 *	Function does not affect any regester it only gets the pin
+	 *	value from the value in the input regester PINx of the 
+	 *	given port                                                 
+	 */
+	return get_bit(*(DIO_PINx_REF[copy_u8_port_id]), copy_u8_pin_num);
+ 548:	89 81       	ldd	r24, Y+1	; 0x01
+ 54a:	88 2f       	mov	r24, r24
+ 54c:	90 e0       	ldi	r25, 0x00	; 0
+ 54e:	88 0f       	add	r24, r24
+ 550:	99 1f       	adc	r25, r25
+ 552:	fc 01       	movw	r30, r24
+ 554:	e0 5a       	subi	r30, 0xA0	; 160
+ 556:	ff 4f       	sbci	r31, 0xFF	; 255
+ 558:	01 90       	ld	r0, Z+
+ 55a:	f0 81       	ld	r31, Z
+ 55c:	e0 2d       	mov	r30, r0
+ 55e:	80 81       	ld	r24, Z
+ 560:	28 2f       	mov	r18, r24
+ 562:	30 e0       	ldi	r19, 0x00	; 0
+ 564:	8a 81       	ldd	r24, Y+2	; 0x02
+ 566:	88 2f       	mov	r24, r24
+ 568:	90 e0       	ldi	r25, 0x00	; 0
+ 56a:	a9 01       	movw	r20, r18
+ 56c:	02 c0       	rjmp	.+4      	; 0x572 <DIO_u8_get_pin+0x38>
+ 56e:	55 95       	asr	r21
+ 570:	47 95       	ror	r20
+ 572:	8a 95       	dec	r24
+ 574:	e2 f7       	brpl	.-8      	; 0x56e <DIO_u8_get_pin+0x34>
+ 576:	ca 01       	movw	r24, r20
+ 578:	81 70       	andi	r24, 0x01	; 1
+}
+ 57a:	0f 90       	pop	r0
+ 57c:	0f 90       	pop	r0
+ 57e:	cf 91       	pop	r28
+ 580:	df 91       	pop	r29
+ 582:	08 95       	ret
+
+00000584 <ACC_init>:
+#include "ACC_interface.h"
+#include "ACC_private.h"
+
+// ACC Manager intitiation
+void ACC_init( void )
+{
+ 584:	df 93       	push	r29
+ 586:	cf 93       	push	r28
+ 588:	cd b7       	in	r28, 0x3d	; 61
+ 58a:	de b7       	in	r29, 0x3e	; 62
+
+}
+ 58c:	cf 91       	pop	r28
+ 58e:	df 91       	pop	r29
+ 590:	08 95       	ret
+
+00000592 <ACC_WriteChannel>:
+
+// ACC Manager write Channel
+STD_ReturnType ACC_WriteChannel( u8 Copy_ChannelID, u8 copy_ChannelValue )
+{
+ 592:	df 93       	push	r29
+ 594:	cf 93       	push	r28
+ 596:	00 d0       	rcall	.+0      	; 0x598 <ACC_WriteChannel+0x6>
+ 598:	cd b7       	in	r28, 0x3d	; 61
+ 59a:	de b7       	in	r29, 0x3e	; 62
+ 59c:	89 83       	std	Y+1, r24	; 0x01
+ 59e:	6a 83       	std	Y+2, r22	; 0x02
+
+	return 0;
+ 5a0:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 5a2:	0f 90       	pop	r0
+ 5a4:	0f 90       	pop	r0
+ 5a6:	cf 91       	pop	r28
+ 5a8:	df 91       	pop	r29
+ 5aa:	08 95       	ret
+
+000005ac <ACC_ReadChannel>:
+
+// ACC Manager read Channel data
+STD_ReturnType ACC_ReadChannel( u8 Copy_ChannelID )
+{
+ 5ac:	df 93       	push	r29
+ 5ae:	cf 93       	push	r28
+ 5b0:	0f 92       	push	r0
+ 5b2:	cd b7       	in	r28, 0x3d	; 61
+ 5b4:	de b7       	in	r29, 0x3e	; 62
+ 5b6:	89 83       	std	Y+1, r24	; 0x01
+
+	return 0;
+ 5b8:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 5ba:	0f 90       	pop	r0
+ 5bc:	cf 91       	pop	r28
+ 5be:	df 91       	pop	r29
+ 5c0:	08 95       	ret
+
+000005c2 <_exit>:
+ 5c2:	f8 94       	cli
+
+000005c4 <__stop_program>:
+ 5c4:	ff cf       	rjmp	.-2      	; 0x5c4 <__stop_program>

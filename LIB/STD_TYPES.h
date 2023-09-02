@@ -13,7 +13,11 @@
 	typedef float f32;
 	typedef double f64;
 
+	typedef unsigned char STD_ReturnType;
 	
+	#define STD_TRUE	1
+	#define STD_FALSE	0
+
 	/* Comment: 8bit register                               */
 	typedef union{
 		struct{

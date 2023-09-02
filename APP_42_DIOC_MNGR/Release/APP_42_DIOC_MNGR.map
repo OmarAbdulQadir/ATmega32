@@ -1,0 +1,438 @@
+Archive member included because of file (symbol)
+
+d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                              d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o (exit)
+d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                              ./DIOC_MNGR/DIOC_config.o (__do_copy_data)
+d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                              ./DIOC_MNGR/DIOC_program.o (__do_clear_bss)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+LOAD ./SRC/main.o
+LOAD ./DIOC_MNGR/DIOC_config.o
+LOAD ./DIOC_MNGR/DIOC_program.o
+LOAD ./DIO/DIO_program.o
+LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
+LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a
+LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000      0x71e
+ *(.vectors)
+ .vectors       0x00000000       0x54 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+                0x00000054                . = ALIGN (0x2)
+                0x00000054                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000054        0x0 linker stubs
+ *(.trampolines*)
+                0x00000054                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x00000054                __ctors_start = .
+ *(.ctors)
+                0x00000054                __ctors_end = .
+                0x00000054                __dtors_start = .
+ *(.dtors)
+                0x00000054                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x00000054        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x00000054                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000054        0xc d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000060       0x16 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                0x00000060                __do_copy_data
+ .init4         0x00000076       0x10 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x00000076                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000086        0x8 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ *(.init9)
+ *(.text)
+ .text          0x0000008e        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x0000008e                __vector_1
+                0x0000008e                __vector_12
+                0x0000008e                __bad_interrupt
+                0x0000008e                __vector_6
+                0x0000008e                __vector_3
+                0x0000008e                __vector_11
+                0x0000008e                __vector_13
+                0x0000008e                __vector_17
+                0x0000008e                __vector_19
+                0x0000008e                __vector_7
+                0x0000008e                __vector_5
+                0x0000008e                __vector_4
+                0x0000008e                __vector_9
+                0x0000008e                __vector_2
+                0x0000008e                __vector_15
+                0x0000008e                __vector_8
+                0x0000008e                __vector_14
+                0x0000008e                __vector_10
+                0x0000008e                __vector_16
+                0x0000008e                __vector_18
+                0x0000008e                __vector_20
+ .text          0x00000092        0x0 ./SRC/main.o
+ .text          0x00000092        0x0 ./DIOC_MNGR/DIOC_config.o
+ .text          0x00000092        0x0 ./DIOC_MNGR/DIOC_program.o
+ .text          0x00000092        0x0 ./DIO/DIO_program.o
+ .text          0x00000092        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text          0x00000092        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text          0x00000092        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x00000092                . = ALIGN (0x2)
+ *(.text.*)
+ .text.main     0x00000092      0x23a ./SRC/main.o
+                0x00000092                main
+ .text.DIOC_ReadChannel
+                0x000002cc       0x54 ./DIOC_MNGR/DIOC_program.o
+                0x000002cc                DIOC_ReadChannel
+ .text.DIOC_WriteChannel
+                0x00000320       0x7a ./DIOC_MNGR/DIOC_program.o
+                0x00000320                DIOC_WriteChannel
+ .text.DIOC_SetChannelDir
+                0x0000039a       0x68 ./DIOC_MNGR/DIOC_program.o
+                0x0000039a                DIOC_SetChannelDir
+ .text.DIOC_init
+                0x00000402       0x76 ./DIOC_MNGR/DIOC_program.o
+                0x00000402                DIOC_init
+ .text.DIO_void_set_port_dir
+                0x00000478       0x16 ./DIO/DIO_program.o
+                0x00000478                DIO_void_set_port_dir
+ .text.DIO_void_set_port_in_pullUp
+                0x0000048e       0x26 ./DIO/DIO_program.o
+                0x0000048e                DIO_void_set_port_in_pullUp
+ .text.DIO_u8_get_PortDir
+                0x000004b4       0x16 ./DIO/DIO_program.o
+                0x000004b4                DIO_u8_get_PortDir
+ .text.DIO_void_set_pin_dir
+                0x000004ca       0x52 ./DIO/DIO_program.o
+                0x000004ca                DIO_void_set_pin_dir
+ .text.DIO_void_set_pin_in_pullUP
+                0x0000051c       0x3c ./DIO/DIO_program.o
+                0x0000051c                DIO_void_set_pin_in_pullUP
+ .text.DIO_u8_get_PinDir
+                0x00000558       0x24 ./DIO/DIO_program.o
+                0x00000558                DIO_u8_get_PinDir
+ .text.DIO_void_set_port
+                0x0000057c       0x18 ./DIO/DIO_program.o
+                0x0000057c                DIO_void_set_port
+ .text.DIO_void_clear_port
+                0x00000594       0x16 ./DIO/DIO_program.o
+                0x00000594                DIO_void_clear_port
+ .text.DIO_void_toggle_port
+                0x000005aa       0x1a ./DIO/DIO_program.o
+                0x000005aa                DIO_void_toggle_port
+ .text.DIO_void_assign_port
+                0x000005c4       0x16 ./DIO/DIO_program.o
+                0x000005c4                DIO_void_assign_port
+ .text.DIO_u8_get_PortOut
+                0x000005da       0x16 ./DIO/DIO_program.o
+                0x000005da                DIO_u8_get_PortOut
+ .text.DIO_void_set_pin
+                0x000005f0       0x28 ./DIO/DIO_program.o
+                0x000005f0                DIO_void_set_pin
+ .text.DIO_void_clear_pin
+                0x00000618       0x2a ./DIO/DIO_program.o
+                0x00000618                DIO_void_clear_pin
+ .text.DIO_void_toggle_pin
+                0x00000642       0x28 ./DIO/DIO_program.o
+                0x00000642                DIO_void_toggle_pin
+ .text.DIO_void_assign_pin
+                0x0000066a       0x52 ./DIO/DIO_program.o
+                0x0000066a                DIO_void_assign_pin
+ .text.DIO_u8_get_PinOut
+                0x000006bc       0x24 ./DIO/DIO_program.o
+                0x000006bc                DIO_u8_get_PinOut
+ .text.DIO_u8_get_port
+                0x000006e0       0x16 ./DIO/DIO_program.o
+                0x000006e0                DIO_u8_get_port
+ .text.DIO_u8_get_pin
+                0x000006f6       0x24 ./DIO/DIO_program.o
+                0x000006f6                DIO_u8_get_pin
+ .text.libgcc   0x0000071a        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x0000071a        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x0000071a        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x0000071a                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x0000071a        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x0000071a                exit
+                0x0000071a                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x0000071a        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ *(.fini0)
+                0x0000071e                _etext = .
+
+.data           0x00800060       0x1c load address 0x0000071e
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ .data          0x00800060        0x0 ./SRC/main.o
+ .data          0x00800060        0x0 ./DIOC_MNGR/DIOC_config.o
+ .data          0x00800060        0x0 ./DIOC_MNGR/DIOC_program.o
+ .data          0x00800060        0x0 ./DIO/DIO_program.o
+ .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ *(.data*)
+ .data.DIOC_Channels_ptr
+                0x00800060        0x3 ./DIOC_MNGR/DIOC_config.o
+                0x00800060                DIOC_Channels_ptr
+ *(.rodata)
+ *(.rodata*)
+ .rodata.DIO_PINx_REF
+                0x00800063        0x8 ./DIO/DIO_program.o
+ .rodata.DIO_PORTx_REF
+                0x0080006b        0x8 ./DIO/DIO_program.o
+ .rodata.DIO_DDRx_REF
+                0x00800073        0x8 ./DIO/DIO_program.o
+ *(.gnu.linkonce.d*)
+                0x0080007c                . = ALIGN (0x2)
+ *fill*         0x0080007b        0x1 00
+                0x0080007c                _edata = .
+                0x0080007c                PROVIDE (__data_end, .)
+
+.bss            0x0080007c        0x1
+                0x0080007c                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x0080007c        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ .bss           0x0080007c        0x0 ./SRC/main.o
+ .bss           0x0080007c        0x0 ./DIOC_MNGR/DIOC_config.o
+ .bss           0x0080007c        0x0 ./DIOC_MNGR/DIOC_program.o
+ .bss           0x0080007c        0x0 ./DIO/DIO_program.o
+ .bss           0x0080007c        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .bss           0x0080007c        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .bss           0x0080007c        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ *(.bss*)
+ .bss.DIOC_initFlag
+                0x0080007c        0x1 ./DIOC_MNGR/DIOC_program.o
+ *(COMMON)
+                0x0080007d                PROVIDE (__bss_end, .)
+                0x0000071e                __data_load_start = LOADADDR (.data)
+                0x0000073a                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x0080007d        0x0
+                0x0080007d                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x0080007d                PROVIDE (__noinit_end, .)
+                0x0080007d                _end = .
+                0x0080007d                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info)
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(APP_42_DIOC_MNGR.elf elf32-avr)
+LOAD linker stubs

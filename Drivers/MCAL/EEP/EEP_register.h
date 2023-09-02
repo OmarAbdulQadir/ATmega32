@@ -14,13 +14,13 @@
 #define EEP_REGISTER_H
 
 	// EEPROM Address Register
-	#define EEPROM_EEAR		*((volatile u16*) 0x3E)
+	#define EEP_EEAR		*((volatile u16*) 0x3E)
 
 	// EEPROM Data Register
-	#define EEPROM_EEDR		*((volatile u8 *) 0x3D)
+	#define EEP_EEDR		*((volatile u8 *) 0x3D)
 
 	// EEPROM Control Register
-	#define EEPROM_EECR		*((volatile u8 *) 0x3C)
+	#define EEP_EECR		*((volatile u8 *) 0x3C)
 
 
 #endif	//end EEP_REGISTER_H

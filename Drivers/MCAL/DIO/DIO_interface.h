@@ -12,7 +12,11 @@
 
 #ifndef DIO_INTERFACE_H
 #define DIO_INTERFACE_H
-	
+
+	//Standard libraries Section
+	#include "../../../LIB/BIT_MATH.h"
+	#include "../../../LIB/STD_TYPES.h"
+
 	/* Defining global values of ports and pins */
 	#define DIO_REF_PORTA		0
 	#define DIO_REF_PORTB		1
@@ -28,7 +32,8 @@
 	#define B6 6
 	#define B7 7
 	
-	#define OUTPUT 0xFF
+	#define PORT_OUTPUT	0xFF
+	#define OUTPUT 1
 	#define INPUT 0
 	
 	#define HIGH 1
@@ -40,23 +45,26 @@
 	/* Set direction of PORTx functions */
 	void DIO_void_set_port_dir(u8, u8 ); //inputs:: port group: 0:A, 1:B, 2:C and 3:D // direction: 0:Input and 1:OUTPUT
 	void DIO_void_set_port_in_pullUp(u8 ); //inputs: port group: 0:A, 1:B, 2:C and 3:D
-	
+	u8 DIO_u8_get_PortDir(u8 );
+
 	/* Set direction of PINx functions */
 	void DIO_void_set_pin_dir(u8, u8, u8 ); //inputs:: port group: 0:A, 1:B, 2:C and 3:D // direction: 0:Input and 1:OUTPUT // pin number: 0:7
 	void DIO_void_set_pin_in_pullUP(u8, u8 ); //inputs: port group: 0:A, 1:B, 2:C and 3:D // pin number: 0:7
+	u8 DIO_u8_get_PinDir(u8, u8);
 	
 	/* Assign Value to output PORTx functions */
 	void DIO_void_set_port(u8 ); //inputs:: port group: 0:A, 1:B, 2:C and 3:D
 	void DIO_void_clear_port(u8 ); //inputs:: port group: 0:A, 1:B, 2:C and 3:D
 	void DIO_void_toggle_port(u8 ); //inputs:: port group: 0:A, 1:B, 2:C and 3:D
 	void DIO_void_assign_port(u8, u8 ); //inputs:: port group: 0:A, 1:B, 2:C and 3:D // port value: 0:255
+	u8 DIO_u8_get_PortOut(u8 );
 	
 	/* Assign Value to output PINx functions */
 	void DIO_void_set_pin(u8, u8 ); //inputs: port group: 0:A, 1:B, 2:C and 3:D // pin number: 0:7
 	void DIO_void_clear_pin(u8, u8 ); //inputs: port group: 0:A, 1:B, 2:C and 3:D // pin number: 0:7
 	void DIO_void_toggle_pin(u8, u8 ); //inputs: port group: 0:A, 1:B, 2:C and 3:D // pin number: 0:7
 	void DIO_void_assign_pin(u8, u8, u8 ); //inputs: port group: 0:A, 1:B, 2:C and 3:D // pin number: 0:7 // pin value: 0:LOW and 1:HIGH
-	
+	u8 DIO_u8_get_PinOut(u8, u8);
 	
 	/* Get value from input PORTx functions */
 	u8 DIO_u8_get_port(u8 ); //inputs: port group: 0:A, 1:B, 2:C and 3:D // return:: port value: 0:255

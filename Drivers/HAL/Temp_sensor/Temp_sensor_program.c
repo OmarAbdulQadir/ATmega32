@@ -21,7 +21,7 @@
 #define Temp_ADC_max_ch			7
 #define Temp_ADC_def_ch			0
 #define Temp_V_ref				5000
-#define Temp_sensor_Prescaler	2
+#define Temp_sensor_Prescaler	0
 #define Temp_sensor_ADATE		0
 #define Temp_sensor_ADTS		0
 #define Temp_sensor_ADIE		0

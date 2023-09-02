@@ -14,18 +14,18 @@
 
 	/* EEPROM Control Register bits */
 	// EEPROM Ready Interrupt Enable
-	#define EEPROM_EERIE		3
+	#define EEP_EERIE			3
 	// EEPROM Master Write Enable
-	#define EEPROM_EEMWE		2
+	#define EEP_EEMWE			2
 	// EEPROM Write Enable
-	#define EEPROM_EEWE			1
+	#define EEP_EEWE			1
 	// EEPROM Read Enable
-	#define EEPROM_EERE			0
+	#define EEP_EERE			0
 	
 	/* Private Macros */
-	#define EEPROM_LOW			0
-	#define EEPROM_HIGH			1
-	#define EEPROM_max_add		((u16)1023u)
-	#define EEPROM_add_mask		(((u16)0b11111100)<<(8))
+	#define EEP_LOW				0
+	#define EEP_HIGH			1
+	#define EEP_max_add			((u16)1023u)
+	#define EEP_add_mask		(((u16)0b11111100)<<(8))
 
 #endif /* EEP_PRIVATE_H_ */

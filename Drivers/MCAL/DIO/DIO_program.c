@@ -9,13 +9,9 @@
 /***   Unless you are sure of what is the effect on behaviors.   ***/
 /*******************************************************************/
 
-//Standard libraries Section
-#include "../../../LIB/BIT_MATH.h"
-#include "../../../LIB/STD_TYPES.h"
-
 //Private libraries Section
-#include "DIO_register.h"
 #include "DIO_interface.h"
+#include "DIO_register.h"
 
 //Global variables
 static volatile u8* DIO_PINx_REF[4] = {DIO_PINA, DIO_PINB, DIO_PINC, DIO_PIND};
@@ -64,6 +60,11 @@ void DIO_void_set_port_in_pullUp(u8 copy_u8_port_id)
 }
 
 
+u8 DIO_u8_get_PortDir(u8 copy_u8_port_id)
+{
+	return *(DIO_DDRx_REF[copy_u8_port_id]);
+}
+
 /* Set direction of PINx functions */
 void DIO_void_set_pin_dir(u8 copy_u8_port_id, u8 copy_u8_pin_num, u8 pin_dir_copy)
 {
@@ -101,6 +102,12 @@ void DIO_void_set_pin_in_pullUP(u8 copy_u8_port_id, u8 copy_u8_pin_num)
 	 */
 	clr_bit(*(DIO_DDRx_REF[copy_u8_port_id]), copy_u8_pin_num);
 	set_bit(*(DIO_PORTx_REF[copy_u8_port_id]), copy_u8_pin_num);
+}
+
+
+u8 DIO_u8_get_PinDir(u8 copy_u8_port_id, u8 copy_u8_pin_num)
+{
+	return get_bit(*(DIO_DDRx_REF[copy_u8_port_id]), copy_u8_pin_num);
 }
 
 
@@ -170,6 +177,15 @@ void DIO_void_assign_port(u8 copy_u8_port_id, u8 port_val)
 	 *	PORT output Register PORTx							       
 	 */
 	*(DIO_PORTx_REF[copy_u8_port_id]) = port_val;
+}
+
+
+u8 DIO_u8_get_PortOut(u8 copy_u8_port_id)
+{
+	/*
+	 *
+	 */
+	return *(DIO_PORTx_REF[copy_u8_port_id]);
 }
 
 
@@ -243,6 +259,15 @@ void DIO_void_assign_pin(u8 copy_u8_port_id, u8 copy_u8_pin_num, u8 pin_val)
 	 *	given pin of the PORT output Register PORTx				   
 	 */
 	agn_bit(*(DIO_PORTx_REF[copy_u8_port_id]), copy_u8_pin_num, pin_val);
+}
+
+
+u8 DIO_u8_get_PinOut(u8 copy_u8_port_id, u8 copy_u8_pin_num)
+{
+	/*
+	 *
+	 */
+	return get_bit(*(DIO_PORTx_REF[copy_u8_port_id]), copy_u8_pin_num);
 }
 
 

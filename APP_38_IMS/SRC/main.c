@@ -7,6 +7,7 @@
 
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
+#include <util/delay.h>
 
 #include "../../Drivers/MCAL/EEP/EEP_interface.h"
 
@@ -15,6 +16,7 @@
 #include "../../Drivers/HAL/V_DC_sensor/V_DC_sensor_interface.h"
 #include "../../Drivers/HAL/Temp_sensor/Temp_sensor_interface.h"
 #include "../../Drivers/HAL/RTC/RTC_interface.h"
+
 
 void APP_voidUpdateLCD(u8, f64 );
 
@@ -111,7 +113,7 @@ void APP_voidUpdateLCD(u8 copy_u8LCD_location, f64 copy_f64Variable){
 			LCD_set_cursor(LCD_LOC0);
 			LCD_write_float(copy_f64Variable, 1);
 			if(copy_f64Variable > 150.0)
-				EEPROM_write_data(NVM_0++, cycle_counter);
+				EEP_write_data(NVM_0++, cycle_counter);
 			break;
 		case 1:
 			LCD_set_cursor(LCD_LOC1);
@@ -119,7 +121,7 @@ void APP_voidUpdateLCD(u8 copy_u8LCD_location, f64 copy_f64Variable){
 			LCD_set_cursor(LCD_LOC1);
 			LCD_write_float(copy_f64Variable, 1);
 			if(copy_f64Variable < 4.35)
-				EEPROM_write_data(NVM_1++, cycle_counter);
+				EEP_write_data(NVM_1++, cycle_counter);
 			break;
 		case 2:
 			LCD_set_cursor(LCD_LOC2);
@@ -127,7 +129,7 @@ void APP_voidUpdateLCD(u8 copy_u8LCD_location, f64 copy_f64Variable){
 			LCD_set_cursor(LCD_LOC2);
 			LCD_write_float(copy_f64Variable, 1);
 			if(copy_f64Variable > 750.0)
-				EEPROM_write_data(NVM_2++, cycle_counter);
+				EEP_write_data(NVM_2++, cycle_counter);
 			break;
 		case 3:
 			LCD_set_cursor(LCD_LOC3);
@@ -135,7 +137,7 @@ void APP_voidUpdateLCD(u8 copy_u8LCD_location, f64 copy_f64Variable){
 			LCD_set_cursor(LCD_LOC3);
 			LCD_write_float(copy_f64Variable, 1);
 			if(copy_f64Variable > 40.0)
-				EEPROM_write_data(NVM_3++, cycle_counter);
+				EEP_write_data(NVM_3++, cycle_counter);
 			break;
 		default:
 			break;
