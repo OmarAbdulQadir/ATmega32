@@ -23,5 +23,5 @@ C_DEPS :=
 SUBDIRS := \
 DIO \
 FreeRTOS \
-SRS \
+SRC \
 

@@ -53,10 +53,10 @@ void Task1(void * pvParameters){
 	/*
 	 *
 	 */
-	DIO_void_set_pin_dir(DIO_REF_PORTC, B0, OUTPUT);
-	DIO_void_clear_pin(DIO_REF_PORTC, B0);
+	DIO_void_set_pin_dir(DIO_REF_PORTA, B1, OUTPUT);
+	DIO_void_clear_pin(DIO_REF_PORTA, B1);
 	while(1){
-		DIO_void_toggle_pin(DIO_REF_PORTC, B0);
+		DIO_void_toggle_pin(DIO_REF_PORTA, B1);
 		vTaskDelay(1000);
 	}
 }
@@ -66,10 +66,10 @@ void Task2(void * pvParameters){
 	/*
 	 *
 	 */
-	DIO_void_set_pin_dir(DIO_REF_PORTC, B1, OUTPUT);
-	DIO_void_clear_pin(DIO_REF_PORTC, B1);
+	DIO_void_set_pin_dir(DIO_REF_PORTA, B2, OUTPUT);
+	DIO_void_clear_pin(DIO_REF_PORTA, B2);
 	while(1){
-		DIO_void_toggle_pin(DIO_REF_PORTC, B1);
+		DIO_void_toggle_pin(DIO_REF_PORTA, B2);
 		vTaskDelay(2000);
 	}
 }
@@ -79,10 +79,10 @@ void Task3(void * pvParameters){
 	/*
 	 *
 	 */
-	DIO_void_set_pin_dir(DIO_REF_PORTC, B2, OUTPUT);
-	DIO_void_clear_pin(DIO_REF_PORTC, B2);
+	DIO_void_set_pin_dir(DIO_REF_PORTA, B3, OUTPUT);
+	DIO_void_clear_pin(DIO_REF_PORTA, B3);
 	while(1){
-		DIO_void_toggle_pin(DIO_REF_PORTC, B2);
+		DIO_void_toggle_pin(DIO_REF_PORTA, B3);
 		vTaskDelay(3000);
 	}
 }

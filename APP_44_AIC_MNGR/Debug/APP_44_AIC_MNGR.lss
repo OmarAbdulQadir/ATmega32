@@ -1,0 +1,885 @@
+
+APP_44_AIC_MNGR.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000536  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000004  00800060  00000536  000005ca  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000009  00800064  00800064  000005ce  2**0
+                  ALLOC
+  3 .stab         00000ac8  00000000  00000000  000005d0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000c01  00000000  00000000  00001098  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 4e 02 	jmp	0x49c	; 0x49c <__vector_16>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e6 e3       	ldi	r30, 0x36	; 54
+  68:	f5 e0       	ldi	r31, 0x05	; 5
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+  70:	a4 36       	cpi	r26, 0x64	; 100
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a4 e6       	ldi	r26, 0x64	; 100
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	ad 36       	cpi	r26, 0x6D	; 109
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 49 00 	call	0x92	; 0x92 <main>
+  8a:	0c 94 99 02 	jmp	0x532	; 0x532 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <main>:
+ *      Author: Omar A.Qadir
+ */
+
+#include "../AIC_MNGR/AIC_interface.h"
+
+int main(void){
+  92:	df 93       	push	r29
+  94:	cf 93       	push	r28
+  96:	cd b7       	in	r28, 0x3d	; 61
+  98:	de b7       	in	r29, 0x3e	; 62
+  9a:	ff cf       	rjmp	.-2      	; 0x9a <main+0x8>
+
+0000009c <AIC_Init>:
+extern AIC_t AnalogInChannel[NO_CHANNEL];
+static ADC_config_struct AnalogChannelConfig[NO_CHANNEL];
+static AIC_EnFlag_t AIC_ENFlag = {STD_FALSE, STD_FALSE};
+
+// Analog Input Channel Manger Init
+void AIC_Init( void ){
+  9c:	df 93       	push	r29
+  9e:	cf 93       	push	r28
+  a0:	cd b7       	in	r28, 0x3d	; 61
+  a2:	de b7       	in	r29, 0x3e	; 62
+	/*
+	 *
+	 */
+	// Enable manger
+	AIC_ENFlag.AIC_initFlag = STD_TRUE;
+  a4:	80 91 64 00 	lds	r24, 0x0064
+  a8:	81 60       	ori	r24, 0x01	; 1
+  aa:	80 93 64 00 	sts	0x0064, r24
+	// Enable ADC
+	ADC_void_init();
+  ae:	0e 94 5a 01 	call	0x2b4	; 0x2b4 <ADC_void_init>
+}
+  b2:	cf 91       	pop	r28
+  b4:	df 91       	pop	r29
+  b6:	08 95       	ret
+
+000000b8 <AIC_InitChannel>:
+
+// Analog Channel Init
+STD_ReturnType AIC_InitChannel( u8 copy_ChannelID )
+{
+  b8:	df 93       	push	r29
+  ba:	cf 93       	push	r28
+  bc:	00 d0       	rcall	.+0      	; 0xbe <AIC_InitChannel+0x6>
+  be:	cd b7       	in	r28, 0x3d	; 61
+  c0:	de b7       	in	r29, 0x3e	; 62
+  c2:	89 83       	std	Y+1, r24	; 0x01
+	/*
+	 *
+	 */
+	// check data validity
+	if((copy_ChannelID < NO_CHANNEL) && (AIC_ENFlag.AIC_initFlag == STD_TRUE))
+  c4:	89 81       	ldd	r24, Y+1	; 0x01
+  c6:	83 30       	cpi	r24, 0x03	; 3
+  c8:	08 f0       	brcs	.+2      	; 0xcc <AIC_InitChannel+0x14>
+  ca:	76 c0       	rjmp	.+236    	; 0x1b8 <AIC_InitChannel+0x100>
+  cc:	80 91 64 00 	lds	r24, 0x0064
+  d0:	81 70       	andi	r24, 0x01	; 1
+  d2:	88 23       	and	r24, r24
+  d4:	09 f4       	brne	.+2      	; 0xd8 <AIC_InitChannel+0x20>
+  d6:	70 c0       	rjmp	.+224    	; 0x1b8 <AIC_InitChannel+0x100>
+	{// if valid
+		// Enable the channel flag
+		set_bit(AIC_ENFlag.AIC_ChEN, copy_ChannelID);
+  d8:	80 91 64 00 	lds	r24, 0x0064
+  dc:	86 95       	lsr	r24
+  de:	48 2f       	mov	r20, r24
+  e0:	89 81       	ldd	r24, Y+1	; 0x01
+  e2:	28 2f       	mov	r18, r24
+  e4:	30 e0       	ldi	r19, 0x00	; 0
+  e6:	81 e0       	ldi	r24, 0x01	; 1
+  e8:	90 e0       	ldi	r25, 0x00	; 0
+  ea:	02 c0       	rjmp	.+4      	; 0xf0 <AIC_InitChannel+0x38>
+  ec:	88 0f       	add	r24, r24
+  ee:	99 1f       	adc	r25, r25
+  f0:	2a 95       	dec	r18
+  f2:	e2 f7       	brpl	.-8      	; 0xec <AIC_InitChannel+0x34>
+  f4:	84 2b       	or	r24, r20
+  f6:	8f 77       	andi	r24, 0x7F	; 127
+  f8:	98 2f       	mov	r25, r24
+  fa:	99 0f       	add	r25, r25
+  fc:	80 91 64 00 	lds	r24, 0x0064
+ 100:	81 70       	andi	r24, 0x01	; 1
+ 102:	89 2b       	or	r24, r25
+ 104:	80 93 64 00 	sts	0x0064, r24
+		// Configure the channel's configuration structure
+		AnalogChannelConfig[copy_ChannelID].MUX = AnalogInChannel[copy_ChannelID].ChannelID;
+ 108:	89 81       	ldd	r24, Y+1	; 0x01
+ 10a:	28 2f       	mov	r18, r24
+ 10c:	30 e0       	ldi	r19, 0x00	; 0
+ 10e:	89 81       	ldd	r24, Y+1	; 0x01
+ 110:	88 2f       	mov	r24, r24
+ 112:	90 e0       	ldi	r25, 0x00	; 0
+ 114:	fc 01       	movw	r30, r24
+ 116:	e0 5a       	subi	r30, 0xA0	; 160
+ 118:	ff 4f       	sbci	r31, 0xFF	; 255
+ 11a:	80 81       	ld	r24, Z
+ 11c:	48 2f       	mov	r20, r24
+ 11e:	4f 71       	andi	r20, 0x1F	; 31
+ 120:	c9 01       	movw	r24, r18
+ 122:	88 0f       	add	r24, r24
+ 124:	99 1f       	adc	r25, r25
+ 126:	fc 01       	movw	r30, r24
+ 128:	eb 59       	subi	r30, 0x9B	; 155
+ 12a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 12c:	94 2f       	mov	r25, r20
+ 12e:	9f 71       	andi	r25, 0x1F	; 31
+ 130:	80 81       	ld	r24, Z
+ 132:	80 7e       	andi	r24, 0xE0	; 224
+ 134:	89 2b       	or	r24, r25
+ 136:	80 83       	st	Z, r24
+		AnalogChannelConfig[copy_ChannelID].ADPS = AnalogInChannel[copy_ChannelID].ChannelPS;
+ 138:	89 81       	ldd	r24, Y+1	; 0x01
+ 13a:	28 2f       	mov	r18, r24
+ 13c:	30 e0       	ldi	r19, 0x00	; 0
+ 13e:	89 81       	ldd	r24, Y+1	; 0x01
+ 140:	88 2f       	mov	r24, r24
+ 142:	90 e0       	ldi	r25, 0x00	; 0
+ 144:	fc 01       	movw	r30, r24
+ 146:	e0 5a       	subi	r30, 0xA0	; 160
+ 148:	ff 4f       	sbci	r31, 0xFF	; 255
+ 14a:	80 81       	ld	r24, Z
+ 14c:	48 2f       	mov	r20, r24
+ 14e:	42 95       	swap	r20
+ 150:	46 95       	lsr	r20
+ 152:	47 70       	andi	r20, 0x07	; 7
+ 154:	c9 01       	movw	r24, r18
+ 156:	88 0f       	add	r24, r24
+ 158:	99 1f       	adc	r25, r25
+ 15a:	fc 01       	movw	r30, r24
+ 15c:	eb 59       	subi	r30, 0x9B	; 155
+ 15e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 160:	94 2f       	mov	r25, r20
+ 162:	92 95       	swap	r25
+ 164:	99 0f       	add	r25, r25
+ 166:	90 7e       	andi	r25, 0xE0	; 224
+ 168:	80 81       	ld	r24, Z
+ 16a:	8f 71       	andi	r24, 0x1F	; 31
+ 16c:	89 2b       	or	r24, r25
+ 16e:	80 83       	st	Z, r24
+		AnalogChannelConfig[copy_ChannelID].ADATE = AIC_ADATE;
+ 170:	89 81       	ldd	r24, Y+1	; 0x01
+ 172:	88 2f       	mov	r24, r24
+ 174:	90 e0       	ldi	r25, 0x00	; 0
+ 176:	88 0f       	add	r24, r24
+ 178:	99 1f       	adc	r25, r25
+ 17a:	fc 01       	movw	r30, r24
+ 17c:	ea 59       	subi	r30, 0x9A	; 154
+ 17e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 180:	80 81       	ld	r24, Z
+ 182:	8e 7f       	andi	r24, 0xFE	; 254
+ 184:	80 83       	st	Z, r24
+		AnalogChannelConfig[copy_ChannelID].ADTS = AIC_ADTS;
+ 186:	89 81       	ldd	r24, Y+1	; 0x01
+ 188:	88 2f       	mov	r24, r24
+ 18a:	90 e0       	ldi	r25, 0x00	; 0
+ 18c:	88 0f       	add	r24, r24
+ 18e:	99 1f       	adc	r25, r25
+ 190:	fc 01       	movw	r30, r24
+ 192:	ea 59       	subi	r30, 0x9A	; 154
+ 194:	ff 4f       	sbci	r31, 0xFF	; 255
+ 196:	80 81       	ld	r24, Z
+ 198:	81 7f       	andi	r24, 0xF1	; 241
+ 19a:	80 83       	st	Z, r24
+		AnalogChannelConfig[copy_ChannelID].ADIE = AIC_ADIE;
+ 19c:	89 81       	ldd	r24, Y+1	; 0x01
+ 19e:	88 2f       	mov	r24, r24
+ 1a0:	90 e0       	ldi	r25, 0x00	; 0
+ 1a2:	88 0f       	add	r24, r24
+ 1a4:	99 1f       	adc	r25, r25
+ 1a6:	fc 01       	movw	r30, r24
+ 1a8:	ea 59       	subi	r30, 0x9A	; 154
+ 1aa:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1ac:	80 81       	ld	r24, Z
+ 1ae:	8f 7e       	andi	r24, 0xEF	; 239
+ 1b0:	80 83       	st	Z, r24
+		// return ok notice
+		return E_OK;
+ 1b2:	81 e0       	ldi	r24, 0x01	; 1
+ 1b4:	8a 83       	std	Y+2, r24	; 0x02
+ 1b6:	01 c0       	rjmp	.+2      	; 0x1ba <AIC_InitChannel+0x102>
+	}
+	else
+	{// if not valid
+		// report an error
+		// return not ok notice
+		return E_NOT_OK;
+ 1b8:	1a 82       	std	Y+2, r1	; 0x02
+ 1ba:	8a 81       	ldd	r24, Y+2	; 0x02
+	}
+}
+ 1bc:	0f 90       	pop	r0
+ 1be:	0f 90       	pop	r0
+ 1c0:	cf 91       	pop	r28
+ 1c2:	df 91       	pop	r29
+ 1c4:	08 95       	ret
+
+000001c6 <AIC_ReadChannel>:
+
+// Read Analog Channel
+STD_ReturnType AIC_ReadChannel( u8 copy_ChannelID, u16* ptr_ReturnData ){
+ 1c6:	df 93       	push	r29
+ 1c8:	cf 93       	push	r28
+ 1ca:	cd b7       	in	r28, 0x3d	; 61
+ 1cc:	de b7       	in	r29, 0x3e	; 62
+ 1ce:	29 97       	sbiw	r28, 0x09	; 9
+ 1d0:	0f b6       	in	r0, 0x3f	; 63
+ 1d2:	f8 94       	cli
+ 1d4:	de bf       	out	0x3e, r29	; 62
+ 1d6:	0f be       	out	0x3f, r0	; 63
+ 1d8:	cd bf       	out	0x3d, r28	; 61
+ 1da:	8e 83       	std	Y+6, r24	; 0x06
+ 1dc:	78 87       	std	Y+8, r23	; 0x08
+ 1de:	6f 83       	std	Y+7, r22	; 0x07
+	/*
+	 *
+	 */
+	// Check data validity
+	if((copy_ChannelID < NO_CHANNEL) && (ptr_ReturnData != NULL) && (get_bit(AIC_ENFlag.AIC_ChEN, copy_ChannelID) == STD_TRUE))
+ 1e0:	8e 81       	ldd	r24, Y+6	; 0x06
+ 1e2:	83 30       	cpi	r24, 0x03	; 3
+ 1e4:	08 f0       	brcs	.+2      	; 0x1e8 <AIC_ReadChannel+0x22>
+ 1e6:	5b c0       	rjmp	.+182    	; 0x29e <AIC_ReadChannel+0xd8>
+ 1e8:	8f 81       	ldd	r24, Y+7	; 0x07
+ 1ea:	98 85       	ldd	r25, Y+8	; 0x08
+ 1ec:	00 97       	sbiw	r24, 0x00	; 0
+ 1ee:	09 f4       	brne	.+2      	; 0x1f2 <AIC_ReadChannel+0x2c>
+ 1f0:	56 c0       	rjmp	.+172    	; 0x29e <AIC_ReadChannel+0xd8>
+ 1f2:	80 91 64 00 	lds	r24, 0x0064
+ 1f6:	86 95       	lsr	r24
+ 1f8:	28 2f       	mov	r18, r24
+ 1fa:	30 e0       	ldi	r19, 0x00	; 0
+ 1fc:	8e 81       	ldd	r24, Y+6	; 0x06
+ 1fe:	88 2f       	mov	r24, r24
+ 200:	90 e0       	ldi	r25, 0x00	; 0
+ 202:	a9 01       	movw	r20, r18
+ 204:	02 c0       	rjmp	.+4      	; 0x20a <AIC_ReadChannel+0x44>
+ 206:	55 95       	asr	r21
+ 208:	47 95       	ror	r20
+ 20a:	8a 95       	dec	r24
+ 20c:	e2 f7       	brpl	.-8      	; 0x206 <AIC_ReadChannel+0x40>
+ 20e:	ca 01       	movw	r24, r20
+ 210:	81 70       	andi	r24, 0x01	; 1
+ 212:	90 70       	andi	r25, 0x00	; 0
+ 214:	98 2f       	mov	r25, r24
+ 216:	81 e0       	ldi	r24, 0x01	; 1
+ 218:	89 27       	eor	r24, r25
+ 21a:	88 23       	and	r24, r24
+ 21c:	09 f0       	breq	.+2      	; 0x220 <AIC_ReadChannel+0x5a>
+ 21e:	3f c0       	rjmp	.+126    	; 0x29e <AIC_ReadChannel+0xd8>
+	{// if valid
+		// configure the ADC to read from the specific channel
+		ADC_void_config(&AnalogChannelConfig[copy_ChannelID]);
+ 220:	8e 81       	ldd	r24, Y+6	; 0x06
+ 222:	88 2f       	mov	r24, r24
+ 224:	90 e0       	ldi	r25, 0x00	; 0
+ 226:	88 0f       	add	r24, r24
+ 228:	99 1f       	adc	r25, r25
+ 22a:	8b 59       	subi	r24, 0x9B	; 155
+ 22c:	9f 4f       	sbci	r25, 0xFF	; 255
+ 22e:	0e 94 7d 01 	call	0x2fa	; 0x2fa <ADC_void_config>
+		// create the containers for readings
+		u16 tempAnalogData = 0;
+ 232:	1d 82       	std	Y+5, r1	; 0x05
+ 234:	1c 82       	std	Y+4, r1	; 0x04
+		u16 AvgAnalogData = 0;
+ 236:	1b 82       	std	Y+3, r1	; 0x03
+ 238:	1a 82       	std	Y+2, r1	; 0x02
+		// read the channel x number of times
+		for(u8 i= 0; i < AnalogReadAcc; i++)
+ 23a:	19 82       	std	Y+1, r1	; 0x01
+ 23c:	0f c0       	rjmp	.+30     	; 0x25c <AIC_ReadChannel+0x96>
+		{
+			ADC_void_read_data(&tempAnalogData);
+ 23e:	ce 01       	movw	r24, r28
+ 240:	04 96       	adiw	r24, 0x04	; 4
+ 242:	0e 94 0f 02 	call	0x41e	; 0x41e <ADC_void_read_data>
+			AvgAnalogData += tempAnalogData;
+ 246:	2c 81       	ldd	r18, Y+4	; 0x04
+ 248:	3d 81       	ldd	r19, Y+5	; 0x05
+ 24a:	8a 81       	ldd	r24, Y+2	; 0x02
+ 24c:	9b 81       	ldd	r25, Y+3	; 0x03
+ 24e:	82 0f       	add	r24, r18
+ 250:	93 1f       	adc	r25, r19
+ 252:	9b 83       	std	Y+3, r25	; 0x03
+ 254:	8a 83       	std	Y+2, r24	; 0x02
+		ADC_void_config(&AnalogChannelConfig[copy_ChannelID]);
+		// create the containers for readings
+		u16 tempAnalogData = 0;
+		u16 AvgAnalogData = 0;
+		// read the channel x number of times
+		for(u8 i= 0; i < AnalogReadAcc; i++)
+ 256:	89 81       	ldd	r24, Y+1	; 0x01
+ 258:	8f 5f       	subi	r24, 0xFF	; 255
+ 25a:	89 83       	std	Y+1, r24	; 0x01
+ 25c:	89 81       	ldd	r24, Y+1	; 0x01
+ 25e:	85 30       	cpi	r24, 0x05	; 5
+ 260:	70 f3       	brcs	.-36     	; 0x23e <AIC_ReadChannel+0x78>
+		{
+			ADC_void_read_data(&tempAnalogData);
+			AvgAnalogData += tempAnalogData;
+		}
+		// get the average reading
+		AvgAnalogData /= AnalogReadAcc;
+ 262:	8a 81       	ldd	r24, Y+2	; 0x02
+ 264:	9b 81       	ldd	r25, Y+3	; 0x03
+ 266:	25 e0       	ldi	r18, 0x05	; 5
+ 268:	30 e0       	ldi	r19, 0x00	; 0
+ 26a:	b9 01       	movw	r22, r18
+ 26c:	0e 94 85 02 	call	0x50a	; 0x50a <__udivmodhi4>
+ 270:	cb 01       	movw	r24, r22
+ 272:	9b 83       	std	Y+3, r25	; 0x03
+ 274:	8a 83       	std	Y+2, r24	; 0x02
+		*(ptr_ReturnData) = AvgAnalogData;
+ 276:	ef 81       	ldd	r30, Y+7	; 0x07
+ 278:	f8 85       	ldd	r31, Y+8	; 0x08
+ 27a:	8a 81       	ldd	r24, Y+2	; 0x02
+ 27c:	9b 81       	ldd	r25, Y+3	; 0x03
+ 27e:	91 83       	std	Z+1, r25	; 0x01
+ 280:	80 83       	st	Z, r24
+		// Check if data is stored right
+		if(*(ptr_ReturnData) == AvgAnalogData)
+ 282:	ef 81       	ldd	r30, Y+7	; 0x07
+ 284:	f8 85       	ldd	r31, Y+8	; 0x08
+ 286:	20 81       	ld	r18, Z
+ 288:	31 81       	ldd	r19, Z+1	; 0x01
+ 28a:	8a 81       	ldd	r24, Y+2	; 0x02
+ 28c:	9b 81       	ldd	r25, Y+3	; 0x03
+ 28e:	28 17       	cp	r18, r24
+ 290:	39 07       	cpc	r19, r25
+ 292:	19 f4       	brne	.+6      	; 0x29a <AIC_ReadChannel+0xd4>
+		{// if valid
+			// return ok notice
+			return E_OK;
+ 294:	51 e0       	ldi	r21, 0x01	; 1
+ 296:	59 87       	std	Y+9, r21	; 0x09
+ 298:	03 c0       	rjmp	.+6      	; 0x2a0 <AIC_ReadChannel+0xda>
+		}
+		else
+		{// if not valid
+			// report an error
+			// return not ok notice
+			return E_NOT_OK;
+ 29a:	19 86       	std	Y+9, r1	; 0x09
+ 29c:	01 c0       	rjmp	.+2      	; 0x2a0 <AIC_ReadChannel+0xda>
+	}
+	else
+	{// if not valid
+		// Report an error
+		// return not ok notice
+		return E_NOT_OK;
+ 29e:	19 86       	std	Y+9, r1	; 0x09
+ 2a0:	89 85       	ldd	r24, Y+9	; 0x09
+	}
+	return 0;
+}
+ 2a2:	29 96       	adiw	r28, 0x09	; 9
+ 2a4:	0f b6       	in	r0, 0x3f	; 63
+ 2a6:	f8 94       	cli
+ 2a8:	de bf       	out	0x3e, r29	; 62
+ 2aa:	0f be       	out	0x3f, r0	; 63
+ 2ac:	cd bf       	out	0x3d, r28	; 61
+ 2ae:	cf 91       	pop	r28
+ 2b0:	df 91       	pop	r29
+ 2b2:	08 95       	ret
+
+000002b4 <ADC_void_init>:
+
+//Global variables
+static void (*callback_functions_address)(u16 )= NULL;
+
+/* Implementing of the driver functions */
+void ADC_void_init(void ){
+ 2b4:	df 93       	push	r29
+ 2b6:	cf 93       	push	r28
+ 2b8:	cd b7       	in	r28, 0x3d	; 61
+ 2ba:	de b7       	in	r29, 0x3e	; 62
+	 *	No inputs to the function.
+	 *
+	 *	No return from the function.
+	 */
+	// Assign the value of the left adjust bit
+	agn_bit(ADC_ADMUX, ADC_ADLAR_pin, ADC_ADLAR);
+ 2bc:	a7 e2       	ldi	r26, 0x27	; 39
+ 2be:	b0 e0       	ldi	r27, 0x00	; 0
+ 2c0:	e7 e2       	ldi	r30, 0x27	; 39
+ 2c2:	f0 e0       	ldi	r31, 0x00	; 0
+ 2c4:	80 81       	ld	r24, Z
+ 2c6:	8f 7d       	andi	r24, 0xDF	; 223
+ 2c8:	8c 93       	st	X, r24
+
+	// Assign the values of the reference selection regesters
+	agn_bit(ADC_ADMUX, ADC_REFS0_pin, ADC_REFS0);
+ 2ca:	a7 e2       	ldi	r26, 0x27	; 39
+ 2cc:	b0 e0       	ldi	r27, 0x00	; 0
+ 2ce:	e7 e2       	ldi	r30, 0x27	; 39
+ 2d0:	f0 e0       	ldi	r31, 0x00	; 0
+ 2d2:	80 81       	ld	r24, Z
+ 2d4:	80 64       	ori	r24, 0x40	; 64
+ 2d6:	8c 93       	st	X, r24
+	agn_bit(ADC_ADMUX, ADC_REFS1_pin, ADC_REFS1);
+ 2d8:	a7 e2       	ldi	r26, 0x27	; 39
+ 2da:	b0 e0       	ldi	r27, 0x00	; 0
+ 2dc:	e7 e2       	ldi	r30, 0x27	; 39
+ 2de:	f0 e0       	ldi	r31, 0x00	; 0
+ 2e0:	80 81       	ld	r24, Z
+ 2e2:	8f 77       	andi	r24, 0x7F	; 127
+ 2e4:	8c 93       	st	X, r24
+
+	// Assign the value of the enable bit
+	agn_bit(ADC_ADCSRA, ADC_ADEN_pin, ADC_ADEN);
+ 2e6:	a6 e2       	ldi	r26, 0x26	; 38
+ 2e8:	b0 e0       	ldi	r27, 0x00	; 0
+ 2ea:	e6 e2       	ldi	r30, 0x26	; 38
+ 2ec:	f0 e0       	ldi	r31, 0x00	; 0
+ 2ee:	80 81       	ld	r24, Z
+ 2f0:	80 68       	ori	r24, 0x80	; 128
+ 2f2:	8c 93       	st	X, r24
+}
+ 2f4:	cf 91       	pop	r28
+ 2f6:	df 91       	pop	r29
+ 2f8:	08 95       	ret
+
+000002fa <ADC_void_config>:
+
+
+void ADC_void_config(ADC_config_struct* ptr_config){
+ 2fa:	df 93       	push	r29
+ 2fc:	cf 93       	push	r28
+ 2fe:	00 d0       	rcall	.+0      	; 0x300 <ADC_void_config+0x6>
+ 300:	cd b7       	in	r28, 0x3d	; 61
+ 302:	de b7       	in	r29, 0x3e	; 62
+ 304:	9a 83       	std	Y+2, r25	; 0x02
+ 306:	89 83       	std	Y+1, r24	; 0x01
+	 *		ptr_config>> Pointer to ADC configurations Struct.
+	 *	
+	 *	Function does not return any values, Hence it needs to be called every time you need to reconfigure the ADC.
+	 */
+	// Configure the analog channel and gain selection bits
+	ADC_ADMUX &= ADC_MUX_clear;
+ 308:	a7 e2       	ldi	r26, 0x27	; 39
+ 30a:	b0 e0       	ldi	r27, 0x00	; 0
+ 30c:	e7 e2       	ldi	r30, 0x27	; 39
+ 30e:	f0 e0       	ldi	r31, 0x00	; 0
+ 310:	80 81       	ld	r24, Z
+ 312:	80 7e       	andi	r24, 0xE0	; 224
+ 314:	8c 93       	st	X, r24
+	ADC_ADMUX |= ptr_config -> MUX;
+ 316:	a7 e2       	ldi	r26, 0x27	; 39
+ 318:	b0 e0       	ldi	r27, 0x00	; 0
+ 31a:	e7 e2       	ldi	r30, 0x27	; 39
+ 31c:	f0 e0       	ldi	r31, 0x00	; 0
+ 31e:	90 81       	ld	r25, Z
+ 320:	e9 81       	ldd	r30, Y+1	; 0x01
+ 322:	fa 81       	ldd	r31, Y+2	; 0x02
+ 324:	80 81       	ld	r24, Z
+ 326:	8f 71       	andi	r24, 0x1F	; 31
+ 328:	89 2b       	or	r24, r25
+ 32a:	8c 93       	st	X, r24
+
+	// Configure the ADC prescaler select bits
+	ADC_ADCSRA &= ADC_ADPS_clear;
+ 32c:	a6 e2       	ldi	r26, 0x26	; 38
+ 32e:	b0 e0       	ldi	r27, 0x00	; 0
+ 330:	e6 e2       	ldi	r30, 0x26	; 38
+ 332:	f0 e0       	ldi	r31, 0x00	; 0
+ 334:	80 81       	ld	r24, Z
+ 336:	88 7f       	andi	r24, 0xF8	; 248
+ 338:	8c 93       	st	X, r24
+	ADC_ADCSRA |= ptr_config -> ADPS;
+ 33a:	a6 e2       	ldi	r26, 0x26	; 38
+ 33c:	b0 e0       	ldi	r27, 0x00	; 0
+ 33e:	e6 e2       	ldi	r30, 0x26	; 38
+ 340:	f0 e0       	ldi	r31, 0x00	; 0
+ 342:	90 81       	ld	r25, Z
+ 344:	e9 81       	ldd	r30, Y+1	; 0x01
+ 346:	fa 81       	ldd	r31, Y+2	; 0x02
+ 348:	80 81       	ld	r24, Z
+ 34a:	82 95       	swap	r24
+ 34c:	86 95       	lsr	r24
+ 34e:	87 70       	andi	r24, 0x07	; 7
+ 350:	89 2b       	or	r24, r25
+ 352:	8c 93       	st	X, r24
+
+	// Configure the ADC auto trigger source bits
+	ADC_SFIOR &= ADC_ADTS_clear;
+ 354:	a0 e5       	ldi	r26, 0x50	; 80
+ 356:	b0 e0       	ldi	r27, 0x00	; 0
+ 358:	e0 e5       	ldi	r30, 0x50	; 80
+ 35a:	f0 e0       	ldi	r31, 0x00	; 0
+ 35c:	80 81       	ld	r24, Z
+ 35e:	8f 71       	andi	r24, 0x1F	; 31
+ 360:	8c 93       	st	X, r24
+	ADC_SFIOR |= ptr_config -> ADTS;
+ 362:	a0 e5       	ldi	r26, 0x50	; 80
+ 364:	b0 e0       	ldi	r27, 0x00	; 0
+ 366:	e0 e5       	ldi	r30, 0x50	; 80
+ 368:	f0 e0       	ldi	r31, 0x00	; 0
+ 36a:	90 81       	ld	r25, Z
+ 36c:	e9 81       	ldd	r30, Y+1	; 0x01
+ 36e:	fa 81       	ldd	r31, Y+2	; 0x02
+ 370:	81 81       	ldd	r24, Z+1	; 0x01
+ 372:	86 95       	lsr	r24
+ 374:	87 70       	andi	r24, 0x07	; 7
+ 376:	89 2b       	or	r24, r25
+ 378:	8c 93       	st	X, r24
+
+	// Configure the ADC auto trigger enable bit
+	agn_bit(ADC_ADCSRA, ADC_ADATE_pin, ptr_config -> ADATE);
+ 37a:	e9 81       	ldd	r30, Y+1	; 0x01
+ 37c:	fa 81       	ldd	r31, Y+2	; 0x02
+ 37e:	81 81       	ldd	r24, Z+1	; 0x01
+ 380:	81 70       	andi	r24, 0x01	; 1
+ 382:	88 23       	and	r24, r24
+ 384:	41 f0       	breq	.+16     	; 0x396 <ADC_void_config+0x9c>
+ 386:	a6 e2       	ldi	r26, 0x26	; 38
+ 388:	b0 e0       	ldi	r27, 0x00	; 0
+ 38a:	e6 e2       	ldi	r30, 0x26	; 38
+ 38c:	f0 e0       	ldi	r31, 0x00	; 0
+ 38e:	80 81       	ld	r24, Z
+ 390:	80 62       	ori	r24, 0x20	; 32
+ 392:	8c 93       	st	X, r24
+ 394:	07 c0       	rjmp	.+14     	; 0x3a4 <ADC_void_config+0xaa>
+ 396:	a6 e2       	ldi	r26, 0x26	; 38
+ 398:	b0 e0       	ldi	r27, 0x00	; 0
+ 39a:	e6 e2       	ldi	r30, 0x26	; 38
+ 39c:	f0 e0       	ldi	r31, 0x00	; 0
+ 39e:	80 81       	ld	r24, Z
+ 3a0:	8f 7d       	andi	r24, 0xDF	; 223
+ 3a2:	8c 93       	st	X, r24
+
+	// Configure the ADC interrupt enable bit
+	agn_bit(ADC_ADCSRA, ADC_ADIE_pin, ptr_config -> ADIE);
+ 3a4:	e9 81       	ldd	r30, Y+1	; 0x01
+ 3a6:	fa 81       	ldd	r31, Y+2	; 0x02
+ 3a8:	81 81       	ldd	r24, Z+1	; 0x01
+ 3aa:	80 71       	andi	r24, 0x10	; 16
+ 3ac:	88 23       	and	r24, r24
+ 3ae:	41 f0       	breq	.+16     	; 0x3c0 <ADC_void_config+0xc6>
+ 3b0:	a6 e2       	ldi	r26, 0x26	; 38
+ 3b2:	b0 e0       	ldi	r27, 0x00	; 0
+ 3b4:	e6 e2       	ldi	r30, 0x26	; 38
+ 3b6:	f0 e0       	ldi	r31, 0x00	; 0
+ 3b8:	80 81       	ld	r24, Z
+ 3ba:	88 60       	ori	r24, 0x08	; 8
+ 3bc:	8c 93       	st	X, r24
+ 3be:	07 c0       	rjmp	.+14     	; 0x3ce <ADC_void_config+0xd4>
+ 3c0:	a6 e2       	ldi	r26, 0x26	; 38
+ 3c2:	b0 e0       	ldi	r27, 0x00	; 0
+ 3c4:	e6 e2       	ldi	r30, 0x26	; 38
+ 3c6:	f0 e0       	ldi	r31, 0x00	; 0
+ 3c8:	80 81       	ld	r24, Z
+ 3ca:	87 7f       	andi	r24, 0xF7	; 247
+ 3cc:	8c 93       	st	X, r24
+
+	// Configure the Global interupt bit
+	agn_bit(ADC_SREG, ADC_Global_INT, ptr_config -> ADIE);
+ 3ce:	e9 81       	ldd	r30, Y+1	; 0x01
+ 3d0:	fa 81       	ldd	r31, Y+2	; 0x02
+ 3d2:	81 81       	ldd	r24, Z+1	; 0x01
+ 3d4:	80 71       	andi	r24, 0x10	; 16
+ 3d6:	88 23       	and	r24, r24
+ 3d8:	41 f0       	breq	.+16     	; 0x3ea <ADC_void_config+0xf0>
+ 3da:	af e5       	ldi	r26, 0x5F	; 95
+ 3dc:	b0 e0       	ldi	r27, 0x00	; 0
+ 3de:	ef e5       	ldi	r30, 0x5F	; 95
+ 3e0:	f0 e0       	ldi	r31, 0x00	; 0
+ 3e2:	80 81       	ld	r24, Z
+ 3e4:	80 68       	ori	r24, 0x80	; 128
+ 3e6:	8c 93       	st	X, r24
+ 3e8:	07 c0       	rjmp	.+14     	; 0x3f8 <ADC_void_config+0xfe>
+ 3ea:	af e5       	ldi	r26, 0x5F	; 95
+ 3ec:	b0 e0       	ldi	r27, 0x00	; 0
+ 3ee:	ef e5       	ldi	r30, 0x5F	; 95
+ 3f0:	f0 e0       	ldi	r31, 0x00	; 0
+ 3f2:	80 81       	ld	r24, Z
+ 3f4:	8f 77       	andi	r24, 0x7F	; 127
+ 3f6:	8c 93       	st	X, r24
+}
+ 3f8:	0f 90       	pop	r0
+ 3fa:	0f 90       	pop	r0
+ 3fc:	cf 91       	pop	r28
+ 3fe:	df 91       	pop	r29
+ 400:	08 95       	ret
+
+00000402 <ADC_void_start_conv>:
+
+void ADC_void_start_conv(void){
+ 402:	df 93       	push	r29
+ 404:	cf 93       	push	r28
+ 406:	cd b7       	in	r28, 0x3d	; 61
+ 408:	de b7       	in	r29, 0x3e	; 62
+	 *	No inputs to the function.
+	 *
+	 *	No return from the function.
+	 */
+	// Enable ADC start conversion bit
+	agn_bit(ADC_ADCSRA, ADC_ADSC_pin, ADC_ADSC);
+ 40a:	a6 e2       	ldi	r26, 0x26	; 38
+ 40c:	b0 e0       	ldi	r27, 0x00	; 0
+ 40e:	e6 e2       	ldi	r30, 0x26	; 38
+ 410:	f0 e0       	ldi	r31, 0x00	; 0
+ 412:	80 81       	ld	r24, Z
+ 414:	80 64       	ori	r24, 0x40	; 64
+ 416:	8c 93       	st	X, r24
+}
+ 418:	cf 91       	pop	r28
+ 41a:	df 91       	pop	r29
+ 41c:	08 95       	ret
+
+0000041e <ADC_void_read_data>:
+
+void ADC_void_read_data(u16* ptr_result){
+ 41e:	df 93       	push	r29
+ 420:	cf 93       	push	r28
+ 422:	00 d0       	rcall	.+0      	; 0x424 <ADC_void_read_data+0x6>
+ 424:	cd b7       	in	r28, 0x3d	; 61
+ 426:	de b7       	in	r29, 0x3e	; 62
+ 428:	9a 83       	std	Y+2, r25	; 0x02
+ 42a:	89 83       	std	Y+1, r24	; 0x01
+	 *		ptr_result>> pointer to the ADC value container variable.
+	 *	
+	 *	Function does not retuen any data, Hence it needs to be called when a value update is needed.
+	 */
+	// Enable ADC start conversion bit
+	agn_bit(ADC_ADCSRA, ADC_ADSC_pin, ADC_ADSC);
+ 42c:	a6 e2       	ldi	r26, 0x26	; 38
+ 42e:	b0 e0       	ldi	r27, 0x00	; 0
+ 430:	e6 e2       	ldi	r30, 0x26	; 38
+ 432:	f0 e0       	ldi	r31, 0x00	; 0
+ 434:	80 81       	ld	r24, Z
+ 436:	80 64       	ori	r24, 0x40	; 64
+ 438:	8c 93       	st	X, r24
+
+	// Polling on the ADC interrupt flag bit
+	while(get_bit(ADC_ADCSRA, ADC_ADIF_pin) == 0);
+ 43a:	e6 e2       	ldi	r30, 0x26	; 38
+ 43c:	f0 e0       	ldi	r31, 0x00	; 0
+ 43e:	80 81       	ld	r24, Z
+ 440:	82 95       	swap	r24
+ 442:	8f 70       	andi	r24, 0x0F	; 15
+ 444:	88 2f       	mov	r24, r24
+ 446:	90 e0       	ldi	r25, 0x00	; 0
+ 448:	81 70       	andi	r24, 0x01	; 1
+ 44a:	90 70       	andi	r25, 0x00	; 0
+ 44c:	00 97       	sbiw	r24, 0x00	; 0
+ 44e:	a9 f3       	breq	.-22     	; 0x43a <ADC_void_read_data+0x1c>
+
+	// Resit the ADC interrupt flag bit
+	set_bit(ADC_ADCSRA, ADC_ADIF_pin);
+ 450:	a6 e2       	ldi	r26, 0x26	; 38
+ 452:	b0 e0       	ldi	r27, 0x00	; 0
+ 454:	e6 e2       	ldi	r30, 0x26	; 38
+ 456:	f0 e0       	ldi	r31, 0x00	; 0
+ 458:	80 81       	ld	r24, Z
+ 45a:	80 61       	ori	r24, 0x10	; 16
+ 45c:	8c 93       	st	X, r24
+
+	// Return the digital value
+	*(ptr_result)= ADC_ADCD_16bit;
+ 45e:	e4 e2       	ldi	r30, 0x24	; 36
+ 460:	f0 e0       	ldi	r31, 0x00	; 0
+ 462:	80 81       	ld	r24, Z
+ 464:	91 81       	ldd	r25, Z+1	; 0x01
+ 466:	e9 81       	ldd	r30, Y+1	; 0x01
+ 468:	fa 81       	ldd	r31, Y+2	; 0x02
+ 46a:	91 83       	std	Z+1, r25	; 0x01
+ 46c:	80 83       	st	Z, r24
+}
+ 46e:	0f 90       	pop	r0
+ 470:	0f 90       	pop	r0
+ 472:	cf 91       	pop	r28
+ 474:	df 91       	pop	r29
+ 476:	08 95       	ret
+
+00000478 <ADC_void_INIT_callback>:
+
+
+void ADC_void_INIT_callback(void (*ptr_callback_function)(u16 ) ){
+ 478:	df 93       	push	r29
+ 47a:	cf 93       	push	r28
+ 47c:	00 d0       	rcall	.+0      	; 0x47e <ADC_void_INIT_callback+0x6>
+ 47e:	cd b7       	in	r28, 0x3d	; 61
+ 480:	de b7       	in	r29, 0x3e	; 62
+ 482:	9a 83       	std	Y+2, r25	; 0x02
+ 484:	89 83       	std	Y+1, r24	; 0x01
+	 *	Inputs::
+	 *		ptr_callback_function>> pointer to the callback function.
+	 *
+	 *	Function does not return any value and anly called when addressing the callback function.
+	 */
+	callback_functions_address= ptr_callback_function;
+ 486:	89 81       	ldd	r24, Y+1	; 0x01
+ 488:	9a 81       	ldd	r25, Y+2	; 0x02
+ 48a:	90 93 6c 00 	sts	0x006C, r25
+ 48e:	80 93 6b 00 	sts	0x006B, r24
+}
+ 492:	0f 90       	pop	r0
+ 494:	0f 90       	pop	r0
+ 496:	cf 91       	pop	r28
+ 498:	df 91       	pop	r29
+ 49a:	08 95       	ret
+
+0000049c <__vector_16>:
+
+void __vector_16(void){
+ 49c:	1f 92       	push	r1
+ 49e:	0f 92       	push	r0
+ 4a0:	0f b6       	in	r0, 0x3f	; 63
+ 4a2:	0f 92       	push	r0
+ 4a4:	11 24       	eor	r1, r1
+ 4a6:	2f 93       	push	r18
+ 4a8:	3f 93       	push	r19
+ 4aa:	4f 93       	push	r20
+ 4ac:	5f 93       	push	r21
+ 4ae:	6f 93       	push	r22
+ 4b0:	7f 93       	push	r23
+ 4b2:	8f 93       	push	r24
+ 4b4:	9f 93       	push	r25
+ 4b6:	af 93       	push	r26
+ 4b8:	bf 93       	push	r27
+ 4ba:	ef 93       	push	r30
+ 4bc:	ff 93       	push	r31
+ 4be:	df 93       	push	r29
+ 4c0:	cf 93       	push	r28
+ 4c2:	cd b7       	in	r28, 0x3d	; 61
+ 4c4:	de b7       	in	r29, 0x3e	; 62
+	/*
+	 *	ADC flag ISR
+	 */
+	if(callback_functions_address != NULL){
+ 4c6:	80 91 6b 00 	lds	r24, 0x006B
+ 4ca:	90 91 6c 00 	lds	r25, 0x006C
+ 4ce:	00 97       	sbiw	r24, 0x00	; 0
+ 4d0:	49 f0       	breq	.+18     	; 0x4e4 <__vector_16+0x48>
+		callback_functions_address(ADC_ADCD_16bit);
+ 4d2:	e0 91 6b 00 	lds	r30, 0x006B
+ 4d6:	f0 91 6c 00 	lds	r31, 0x006C
+ 4da:	a4 e2       	ldi	r26, 0x24	; 36
+ 4dc:	b0 e0       	ldi	r27, 0x00	; 0
+ 4de:	8d 91       	ld	r24, X+
+ 4e0:	9c 91       	ld	r25, X
+ 4e2:	09 95       	icall
+	}
+}
+ 4e4:	cf 91       	pop	r28
+ 4e6:	df 91       	pop	r29
+ 4e8:	ff 91       	pop	r31
+ 4ea:	ef 91       	pop	r30
+ 4ec:	bf 91       	pop	r27
+ 4ee:	af 91       	pop	r26
+ 4f0:	9f 91       	pop	r25
+ 4f2:	8f 91       	pop	r24
+ 4f4:	7f 91       	pop	r23
+ 4f6:	6f 91       	pop	r22
+ 4f8:	5f 91       	pop	r21
+ 4fa:	4f 91       	pop	r20
+ 4fc:	3f 91       	pop	r19
+ 4fe:	2f 91       	pop	r18
+ 500:	0f 90       	pop	r0
+ 502:	0f be       	out	0x3f, r0	; 63
+ 504:	0f 90       	pop	r0
+ 506:	1f 90       	pop	r1
+ 508:	18 95       	reti
+
+0000050a <__udivmodhi4>:
+ 50a:	aa 1b       	sub	r26, r26
+ 50c:	bb 1b       	sub	r27, r27
+ 50e:	51 e1       	ldi	r21, 0x11	; 17
+ 510:	07 c0       	rjmp	.+14     	; 0x520 <__udivmodhi4_ep>
+
+00000512 <__udivmodhi4_loop>:
+ 512:	aa 1f       	adc	r26, r26
+ 514:	bb 1f       	adc	r27, r27
+ 516:	a6 17       	cp	r26, r22
+ 518:	b7 07       	cpc	r27, r23
+ 51a:	10 f0       	brcs	.+4      	; 0x520 <__udivmodhi4_ep>
+ 51c:	a6 1b       	sub	r26, r22
+ 51e:	b7 0b       	sbc	r27, r23
+
+00000520 <__udivmodhi4_ep>:
+ 520:	88 1f       	adc	r24, r24
+ 522:	99 1f       	adc	r25, r25
+ 524:	5a 95       	dec	r21
+ 526:	a9 f7       	brne	.-22     	; 0x512 <__udivmodhi4_loop>
+ 528:	80 95       	com	r24
+ 52a:	90 95       	com	r25
+ 52c:	bc 01       	movw	r22, r24
+ 52e:	cd 01       	movw	r24, r26
+ 530:	08 95       	ret
+
+00000532 <_exit>:
+ 532:	f8 94       	cli
+
+00000534 <__stop_program>:
+ 534:	ff cf       	rjmp	.-2      	; 0x534 <__stop_program>

@@ -1,0 +1,279 @@
+
+APP_43_DE_MNGR.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000150  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .stab         000005b8  00000000  00000000  000001a4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  2 .stabstr      000005c5  00000000  00000000  0000075c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 36 00 	call	0x6c	; 0x6c <main>
+  64:	0c 94 a6 00 	jmp	0x14c	; 0x14c <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <main>:
+ *  Created on: Sep 6, 2023
+ *      Author: Omar A.Qadir
+ */
+
+
+int main(void ){
+  6c:	df 93       	push	r29
+  6e:	cf 93       	push	r28
+  70:	cd b7       	in	r28, 0x3d	; 61
+  72:	de b7       	in	r29, 0x3e	; 62
+  74:	ff cf       	rjmp	.-2      	; 0x74 <main+0x8>
+
+00000076 <DEM_Init>:
+#include "DEM_config.h"
+
+
+// DEM Init
+void DEM_Init( void )
+{
+  76:	df 93       	push	r29
+  78:	cf 93       	push	r28
+  7a:	cd b7       	in	r28, 0x3d	; 61
+  7c:	de b7       	in	r29, 0x3e	; 62
+	/*
+	 *
+	 */
+}
+  7e:	cf 91       	pop	r28
+  80:	df 91       	pop	r29
+  82:	08 95       	ret
+
+00000084 <DEM_ReportError>:
+
+// DEM Report an error
+void DEM_ReportError( u8 copy_ModuleID, u8 copy_ServiceID, u8 copy_ErrorID )
+{
+  84:	df 93       	push	r29
+  86:	cf 93       	push	r28
+  88:	00 d0       	rcall	.+0      	; 0x8a <DEM_ReportError+0x6>
+  8a:	0f 92       	push	r0
+  8c:	cd b7       	in	r28, 0x3d	; 61
+  8e:	de b7       	in	r29, 0x3e	; 62
+  90:	89 83       	std	Y+1, r24	; 0x01
+  92:	6a 83       	std	Y+2, r22	; 0x02
+  94:	4b 83       	std	Y+3, r20	; 0x03
+	/*
+	 *
+	 */
+}
+  96:	0f 90       	pop	r0
+  98:	0f 90       	pop	r0
+  9a:	0f 90       	pop	r0
+  9c:	cf 91       	pop	r28
+  9e:	df 91       	pop	r29
+  a0:	08 95       	ret
+
+000000a2 <DEM_ReportState>:
+
+// DEM Report a state
+void DEM_ReportState( u8 copy_ModuleID, u8 copy_ServiceID, u8 copy_StateID )
+{
+  a2:	df 93       	push	r29
+  a4:	cf 93       	push	r28
+  a6:	00 d0       	rcall	.+0      	; 0xa8 <DEM_ReportState+0x6>
+  a8:	0f 92       	push	r0
+  aa:	cd b7       	in	r28, 0x3d	; 61
+  ac:	de b7       	in	r29, 0x3e	; 62
+  ae:	89 83       	std	Y+1, r24	; 0x01
+  b0:	6a 83       	std	Y+2, r22	; 0x02
+  b2:	4b 83       	std	Y+3, r20	; 0x03
+	/*
+	 *
+	 */
+}
+  b4:	0f 90       	pop	r0
+  b6:	0f 90       	pop	r0
+  b8:	0f 90       	pop	r0
+  ba:	cf 91       	pop	r28
+  bc:	df 91       	pop	r29
+  be:	08 95       	ret
+
+000000c0 <DEM_RespondToDiagnosis>:
+
+// DEM Respond to a Diagnosis
+u8 DEM_RespondToDiagnosis( u8 copy_ServiceID )
+{
+  c0:	df 93       	push	r29
+  c2:	cf 93       	push	r28
+  c4:	0f 92       	push	r0
+  c6:	cd b7       	in	r28, 0x3d	; 61
+  c8:	de b7       	in	r29, 0x3e	; 62
+  ca:	89 83       	std	Y+1, r24	; 0x01
+	/*
+	 *
+	 */
+	return 0;
+  cc:	80 e0       	ldi	r24, 0x00	; 0
+}
+  ce:	0f 90       	pop	r0
+  d0:	cf 91       	pop	r28
+  d2:	df 91       	pop	r29
+  d4:	08 95       	ret
+
+000000d6 <DEM_ReadDataByID>:
+
+// DEM Read Data by identfier
+u8 DEM_ReadDataByID( u8 copy_DataID)
+{
+  d6:	df 93       	push	r29
+  d8:	cf 93       	push	r28
+  da:	0f 92       	push	r0
+  dc:	cd b7       	in	r28, 0x3d	; 61
+  de:	de b7       	in	r29, 0x3e	; 62
+  e0:	89 83       	std	Y+1, r24	; 0x01
+	/*
+	 *
+	 */
+	return 0;
+  e2:	80 e0       	ldi	r24, 0x00	; 0
+}
+  e4:	0f 90       	pop	r0
+  e6:	cf 91       	pop	r28
+  e8:	df 91       	pop	r29
+  ea:	08 95       	ret
+
+000000ec <DEM_WriteDataByID>:
+
+// DEM Write Data by identifier
+u8 DEM_WriteDataByID( u8 copy_DataID, u8 copy_Data)
+{
+  ec:	df 93       	push	r29
+  ee:	cf 93       	push	r28
+  f0:	00 d0       	rcall	.+0      	; 0xf2 <DEM_WriteDataByID+0x6>
+  f2:	cd b7       	in	r28, 0x3d	; 61
+  f4:	de b7       	in	r29, 0x3e	; 62
+  f6:	89 83       	std	Y+1, r24	; 0x01
+  f8:	6a 83       	std	Y+2, r22	; 0x02
+	/*
+	 *
+	 */
+	return 0;
+  fa:	80 e0       	ldi	r24, 0x00	; 0
+}
+  fc:	0f 90       	pop	r0
+  fe:	0f 90       	pop	r0
+ 100:	cf 91       	pop	r28
+ 102:	df 91       	pop	r29
+ 104:	08 95       	ret
+
+00000106 <DEM_BackupErrors>:
+
+// DEM Backup Errors
+u8* DEM_BackupErrors( void )
+{
+ 106:	df 93       	push	r29
+ 108:	cf 93       	push	r28
+ 10a:	cd b7       	in	r28, 0x3d	; 61
+ 10c:	de b7       	in	r29, 0x3e	; 62
+	/*
+	 *
+	 */
+	return NULL;
+ 10e:	80 e0       	ldi	r24, 0x00	; 0
+ 110:	90 e0       	ldi	r25, 0x00	; 0
+}
+ 112:	cf 91       	pop	r28
+ 114:	df 91       	pop	r29
+ 116:	08 95       	ret
+
+00000118 <DEM_EraseFlash>:
+
+// DEM Erase Flash
+u8 DEM_EraseFlash( void )
+{
+ 118:	df 93       	push	r29
+ 11a:	cf 93       	push	r28
+ 11c:	cd b7       	in	r28, 0x3d	; 61
+ 11e:	de b7       	in	r29, 0x3e	; 62
+	/*
+	 *
+	 */
+	return 0;
+ 120:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 122:	cf 91       	pop	r28
+ 124:	df 91       	pop	r29
+ 126:	08 95       	ret
+
+00000128 <DEM_WriteFlash>:
+
+// DEM Write Flash
+u8 DEM_WriteFlash( u8* ptr64Wu16_FlashPageData )
+{
+ 128:	df 93       	push	r29
+ 12a:	cf 93       	push	r28
+ 12c:	00 d0       	rcall	.+0      	; 0x12e <DEM_WriteFlash+0x6>
+ 12e:	cd b7       	in	r28, 0x3d	; 61
+ 130:	de b7       	in	r29, 0x3e	; 62
+ 132:	9a 83       	std	Y+2, r25	; 0x02
+ 134:	89 83       	std	Y+1, r24	; 0x01
+	/*
+	 *
+	 */
+	return 0;
+ 136:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 138:	0f 90       	pop	r0
+ 13a:	0f 90       	pop	r0
+ 13c:	cf 91       	pop	r28
+ 13e:	df 91       	pop	r29
+ 140:	08 95       	ret
+
+00000142 <DEM_main>:
+
+
+// DEM main
+void DEM_main( void ){
+ 142:	df 93       	push	r29
+ 144:	cf 93       	push	r28
+ 146:	cd b7       	in	r28, 0x3d	; 61
+ 148:	de b7       	in	r29, 0x3e	; 62
+ 14a:	ff cf       	rjmp	.-2      	; 0x14a <DEM_main+0x8>
+
+0000014c <_exit>:
+ 14c:	f8 94       	cli
+
+0000014e <__stop_program>:
+ 14e:	ff cf       	rjmp	.-2      	; 0x14e <__stop_program>

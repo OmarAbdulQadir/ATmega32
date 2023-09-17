@@ -22,6 +22,15 @@
 		u8 ADIE: 1;		// ADC interrupt enable bit
 	}ADC_config_struct;
 	
+	// Prescaller Values
+	#define ADPS_2		1		// ADC Prescaller 2
+	#define ADPS_4		2		// ADC Prescaller 4
+	#define ADPS_8		3		// ADC Prescaller 8
+	#define ADPS_16		4		// ADC Prescaller 16
+	#define ADPS_32		5		// ADC Prescaller 32
+	#define ADPS_64		6		// ADC Prescaller 64
+	#define ADPS_128	7		// ADC Prescaller 128
+
 	//Reference selection macro
 	// Reference voltage selection High pin value
 	#define ADC_REFS1		0
