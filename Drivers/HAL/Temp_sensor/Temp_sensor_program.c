@@ -48,7 +48,7 @@ void Temp_sensor_voidInit(u8 copy_u8_ADC_ch){
 }
 
 // Calculate the current data and return it
-f64 Temp_sensor_voidClcTemp(void ){
+u8 Temp_sensor_u8ClcTemp(void ){
 	/*
 	 *
 	 */
@@ -60,6 +60,7 @@ f64 Temp_sensor_voidClcTemp(void ){
 		currentAccumulator+= current_ADC_data;
 	}
 	current_ADC_data = currentAccumulator/Temp_sensor_Acc;
-	f64 current_data = ((current_ADC_data/Temp_sensor_ADC_max)*Temp_V_ref)/Volt_temp_ref;
+	u8 current_data = ( ( current_ADC_data ) * ( Temp_V_ref / Temp_sensor_ADC_max ) );
+	current_data /= Volt_temp_ref;
 	return current_data;
 }
