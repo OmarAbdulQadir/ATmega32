@@ -13,7 +13,7 @@
 #include "ACC_interface.h"
 
 // AC_Channels_ptr
-extern AC_Channel AC_Channels_ptr[ACC_NO_CHANNELS];
+extern const AC_Channel AC_Channels_ptr[ACC_NO_CHANNELS];
 
 // ACC Manager intitiation
 void ACC_init( void )

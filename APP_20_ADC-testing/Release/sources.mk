@@ -24,5 +24,5 @@ SUBDIRS := \
 ADC \
 DIO \
 LCD \
-SRS \
+SRC \
 

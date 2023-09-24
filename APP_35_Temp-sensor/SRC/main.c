@@ -25,8 +25,8 @@ int main(void){
 	LCD_write_str((u8*)"Value = ");
 
 	Temp_sensor_voidInit(0);
-	f64 Temp = Temp_sensor_voidClcTemp();
-	f64 Temp_prev = 0;
+	u8 Temp = Temp_sensor_u8ClcTemp();
+	u8 Temp_prev = 0;
 
 	while(1){
 		// Loop section
@@ -36,7 +36,7 @@ int main(void){
 			LCD_set_cursor(0, 8);
 			LCD_write_float(Temp_prev, 2);
 		}
-		Temp = Temp_sensor_voidClcTemp();
+		Temp = Temp_sensor_u8ClcTemp();
 	}
 	return 0;
 }

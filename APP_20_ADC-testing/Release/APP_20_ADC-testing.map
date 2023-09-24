@@ -7,13 +7,13 @@ d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/a
 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
                               d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o (exit)
 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
-                              ./SRS/main.o (__do_copy_data)
+                              ./SRC/main.o (__do_copy_data)
 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
                               ./ADC/ADC_program.o (__do_clear_bss)
 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_addsub_sf.o)
                               ./LCD/LCD_program.o (__subsf3)
 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mul_sf.o)
-                              ./SRS/main.o (__mulsf3)
+                              ./SRC/main.o (__mulsf3)
 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_si_to_sf.o)
                               ./LCD/LCD_program.o (__floatsisf)
 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_sf_to_si.o)
@@ -21,7 +21,7 @@ d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/a
 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_thenan_sf.o)
                               d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_addsub_sf.o) (__thenan_sf)
 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_usi_to_sf.o)
-                              ./SRS/main.o (__floatunsisf)
+                              ./SRC/main.o (__floatunsisf)
 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
                               d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o) (__udivmodsi4)
 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
@@ -51,7 +51,7 @@ signature        0x00840000         0x00000400         rw !x
 Linker script and memory map
 
 LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
-LOAD ./SRS/main.o
+LOAD ./SRC/main.o
 LOAD ./LCD/LCD_program.o
 LOAD ./DIO/DIO_program.o
 LOAD ./ADC/ADC_program.o
@@ -149,7 +149,7 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x17fe
+.text           0x00000000     0x188a
  *(.vectors)
  .vectors       0x00000000       0x54 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -225,7 +225,7 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
                 0x0000008e                __vector_10
                 0x0000008e                __vector_18
                 0x0000008e                __vector_20
- .text          0x00000092        0x0 ./SRS/main.o
+ .text          0x00000092        0x0 ./SRC/main.o
  .text          0x00000092        0x0 ./LCD/LCD_program.o
  .text          0x00000092        0x0 ./DIO/DIO_program.o
  .text          0x00000092        0x0 ./ADC/ADC_program.o
@@ -258,7 +258,7 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  .text          0x00000b68        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clz.o)
                 0x00000b68                . = ALIGN (0x2)
  *(.text.*)
- .text.main     0x00000b68       0xd4 ./SRS/main.o
+ .text.main     0x00000b68       0xd4 ./SRC/main.o
                 0x00000b68                main
  .text.LCD_pow  0x00000c3c       0x5e ./LCD/LCD_program.o
                 0x00000c3c                LCD_pow
@@ -317,75 +317,90 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  .text.DIO_void_set_port_in_pullUp
                 0x000013f8       0x26 ./DIO/DIO_program.o
                 0x000013f8                DIO_void_set_port_in_pullUp
+ .text.DIO_u8_get_PortDir
+                0x0000141e       0x16 ./DIO/DIO_program.o
+                0x0000141e                DIO_u8_get_PortDir
  .text.DIO_void_set_pin_dir
-                0x0000141e       0x52 ./DIO/DIO_program.o
-                0x0000141e                DIO_void_set_pin_dir
+                0x00001434       0x52 ./DIO/DIO_program.o
+                0x00001434                DIO_void_set_pin_dir
  .text.DIO_void_set_pin_in_pullUP
-                0x00001470       0x3c ./DIO/DIO_program.o
-                0x00001470                DIO_void_set_pin_in_pullUP
+                0x00001486       0x3c ./DIO/DIO_program.o
+                0x00001486                DIO_void_set_pin_in_pullUP
+ .text.DIO_u8_get_PinDir
+                0x000014c2       0x24 ./DIO/DIO_program.o
+                0x000014c2                DIO_u8_get_PinDir
  .text.DIO_void_set_port
-                0x000014ac       0x18 ./DIO/DIO_program.o
-                0x000014ac                DIO_void_set_port
+                0x000014e6       0x18 ./DIO/DIO_program.o
+                0x000014e6                DIO_void_set_port
  .text.DIO_void_clear_port
-                0x000014c4       0x16 ./DIO/DIO_program.o
-                0x000014c4                DIO_void_clear_port
+                0x000014fe       0x16 ./DIO/DIO_program.o
+                0x000014fe                DIO_void_clear_port
  .text.DIO_void_toggle_port
-                0x000014da       0x1a ./DIO/DIO_program.o
-                0x000014da                DIO_void_toggle_port
+                0x00001514       0x1a ./DIO/DIO_program.o
+                0x00001514                DIO_void_toggle_port
  .text.DIO_void_assign_port
-                0x000014f4       0x16 ./DIO/DIO_program.o
-                0x000014f4                DIO_void_assign_port
+                0x0000152e       0x16 ./DIO/DIO_program.o
+                0x0000152e                DIO_void_assign_port
+ .text.DIO_u8_get_PortOut
+                0x00001544       0x16 ./DIO/DIO_program.o
+                0x00001544                DIO_u8_get_PortOut
  .text.DIO_void_set_pin
-                0x0000150a       0x28 ./DIO/DIO_program.o
-                0x0000150a                DIO_void_set_pin
+                0x0000155a       0x28 ./DIO/DIO_program.o
+                0x0000155a                DIO_void_set_pin
  .text.DIO_void_clear_pin
-                0x00001532       0x2a ./DIO/DIO_program.o
-                0x00001532                DIO_void_clear_pin
+                0x00001582       0x2a ./DIO/DIO_program.o
+                0x00001582                DIO_void_clear_pin
  .text.DIO_void_toggle_pin
-                0x0000155c       0x28 ./DIO/DIO_program.o
-                0x0000155c                DIO_void_toggle_pin
+                0x000015ac       0x28 ./DIO/DIO_program.o
+                0x000015ac                DIO_void_toggle_pin
  .text.DIO_void_assign_pin
-                0x00001584       0x52 ./DIO/DIO_program.o
-                0x00001584                DIO_void_assign_pin
+                0x000015d4       0x52 ./DIO/DIO_program.o
+                0x000015d4                DIO_void_assign_pin
+ .text.DIO_u8_get_PinOut
+                0x00001626       0x24 ./DIO/DIO_program.o
+                0x00001626                DIO_u8_get_PinOut
  .text.DIO_u8_get_port
-                0x000015d6       0x16 ./DIO/DIO_program.o
-                0x000015d6                DIO_u8_get_port
+                0x0000164a       0x16 ./DIO/DIO_program.o
+                0x0000164a                DIO_u8_get_port
  .text.DIO_u8_get_pin
-                0x000015ec       0x24 ./DIO/DIO_program.o
-                0x000015ec                DIO_u8_get_pin
+                0x00001660       0x24 ./DIO/DIO_program.o
+                0x00001660                DIO_u8_get_pin
  .text.ADC_void_init
-                0x00001610        0xa ./ADC/ADC_program.o
-                0x00001610                ADC_void_init
+                0x00001684        0xa ./ADC/ADC_program.o
+                0x00001684                ADC_void_init
  .text.ADC_void_config
-                0x0000161a       0x46 ./ADC/ADC_program.o
-                0x0000161a                ADC_void_config
+                0x0000168e       0x5a ./ADC/ADC_program.o
+                0x0000168e                ADC_void_config
+ .text.ADC_void_start_conv
+                0x000016e8        0x4 ./ADC/ADC_program.o
+                0x000016e8                ADC_void_start_conv
  .text.ADC_void_read_data
-                0x00001660       0x14 ./ADC/ADC_program.o
-                0x00001660                ADC_void_read_data
+                0x000016ec       0x14 ./ADC/ADC_program.o
+                0x000016ec                ADC_void_read_data
  .text.ADC_void_INIT_callback
-                0x00001674        0xa ./ADC/ADC_program.o
-                0x00001674                ADC_void_INIT_callback
+                0x00001700        0xa ./ADC/ADC_program.o
+                0x00001700                ADC_void_INIT_callback
  .text.__vector_16
-                0x0000167e       0x56 ./ADC/ADC_program.o
-                0x0000167e                __vector_16
- .text.libgcc   0x000016d4       0x3e d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
-                0x000016d4                __mulsi3
- .text.libgcc   0x00001712       0x36 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
-                0x00001712                __divmodsi4
- .text.libgcc   0x00001748        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x00001748        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x00001748        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
- .text.libgcc   0x00001748       0x44 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
-                0x00001748                __udivmodsi4
- .text.libgcc   0x0000178c       0x38 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
-                0x0000178c                __prologue_saves__
- .text.libgcc   0x000017c4       0x36 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
-                0x000017c4                __epilogue_restores__
-                0x000017fa                . = ALIGN (0x2)
+                0x0000170a       0x56 ./ADC/ADC_program.o
+                0x0000170a                __vector_16
+ .text.libgcc   0x00001760       0x3e d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+                0x00001760                __mulsi3
+ .text.libgcc   0x0000179e       0x36 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+                0x0000179e                __divmodsi4
+ .text.libgcc   0x000017d4        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x000017d4        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x000017d4        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x000017d4       0x44 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x000017d4                __udivmodsi4
+ .text.libgcc   0x00001818       0x38 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
+                0x00001818                __prologue_saves__
+ .text.libgcc   0x00001850       0x36 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
+                0x00001850                __epilogue_restores__
+                0x00001886                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000017fa        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x000017fa                exit
-                0x000017fa                _exit
+ .fini9         0x00001886        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00001886                exit
+                0x00001886                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -404,15 +419,15 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000017fa        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00001886        0x4 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000017fe                _etext = .
+                0x0000188a                _etext = .
 
-.data           0x00800060      0x126 load address 0x000017fe
+.data           0x00800060      0x126 load address 0x0000188a
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
- .data          0x00800060        0x6 ./SRS/main.o
+ .data          0x00800060        0x6 ./SRC/main.o
  .data          0x00800066        0x0 ./LCD/LCD_program.o
  .data          0x00800066        0x0 ./DIO/DIO_program.o
  .data          0x00800066        0x0 ./ADC/ADC_program.o
@@ -454,7 +469,7 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
                 0x00800186                PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x00800186        0x0 d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
- .bss           0x00800186        0x0 ./SRS/main.o
+ .bss           0x00800186        0x0 ./SRC/main.o
  .bss           0x00800186        0x0 ./LCD/LCD_program.o
  .bss           0x00800186        0x0 ./DIO/DIO_program.o
  .bss           0x00800186        0x0 ./ADC/ADC_program.o
@@ -481,8 +496,8 @@ LOAD d:/engineering/embedded/imt_dip/embedded-tools/winavr/bin/../lib/gcc/avr/4.
                 0x00800186        0x2 ./ADC/ADC_program.o
  *(COMMON)
                 0x00800188                PROVIDE (__bss_end, .)
-                0x000017fe                __data_load_start = LOADADDR (.data)
-                0x00001924                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000188a                __data_load_start = LOADADDR (.data)
+                0x000019b0                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800188        0x0
                 0x00800188                PROVIDE (__noinit_start, .)

@@ -21,12 +21,7 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
-Drivers/HAL/DC_Motor \
-Drivers/HAL/KEYPAD \
-Drivers/HAL/LCD \
-Drivers/HAL/ST_Motor \
-Drivers/MCAL/ADC \
-Drivers/MCAL/DIO \
-Drivers/MCAL/EXTI \
-SRS \
+DIO \
+LCD \
+SRC \
 

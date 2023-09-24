@@ -22,6 +22,6 @@
 	/* Initiate the sensor through a given ADC channel */
 	void Temp_sensor_voidInit(u8 );
 	/* Calculate the temperature data and return it */
-	f64 Temp_sensor_voidClcTemp(void );
+	u8 Temp_sensor_u8ClcTemp(void );
 
 #endif	//end Temp_sensor_INTERFACE_H
